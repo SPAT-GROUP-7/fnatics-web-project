@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="583c53df-7246-4a66-97ab-527ced39aff5" name="Default Changelist" comment="" />
+    <list default="true" id="583c53df-7246-4a66-97ab-527ced39aff5" name="Default Changelist" comment="Added index">
+      <change afterPath="$PROJECT_DIR$/views/index.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/templates/navbar.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Database.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +22,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="PhpTemplates">
+    <option name="NEW_PHP_FILE_LAST_EXTENSION" value="phtml" />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.1" />
   <component name="ProjectId" id="1W4HrOHqqEWNC9Xr9AQahzojBd6" />
   <component name="PropertiesComponent">
@@ -23,6 +32,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/fonts" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/fonts" />
+      <recent name="$PROJECT_DIR$/assets/img" />
+      <recent name="$PROJECT_DIR$/views" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets" />
     </key>
@@ -54,7 +68,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1578402144943</updated>
-      <workItem from="1578402146065" duration="1555000" />
+      <workItem from="1578402146065" duration="3607000" />
+      <workItem from="1578489991404" duration="621000" />
     </task>
     <task id="LOCAL-00001" summary="File Structure and Bootstrap.">
       <created>1578408320440</created>
@@ -70,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578408724817</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="File Structure and Bootstrap.">
+      <created>1578409129682</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1578409129682</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -81,7 +103,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

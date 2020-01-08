@@ -16,7 +16,7 @@ class Database
         }
     }
 
-    // return an instance of the DB, if an instance is allready active use it, otherwise create a new instance
+    // return an instance of the DB, if an instance is already active use it, otherwise create a new instance
     public static function getInstance() {
         $username = "TEST";
         $password = "TEST";
