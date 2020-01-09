@@ -4,6 +4,7 @@
 <?php
     if (isset($_SESSION['loggedIn'])) {
         echo "<h1>" .$_SESSION['username'] . "</h1>";
+        echo "<a href='logout.php'>Logout</a>";
     } else {
         echo "<h1>Please Login :)</h1>";
     }
