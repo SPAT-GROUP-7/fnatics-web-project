@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
     $_dateCreated = htmlentities($_POST['dateCreated']);
     $_dateLastUpdated = htmlentities($_POST['dateUpdated']);
 
-    $teamData->createTeam($_teamID, $_teamName, $_isBusy, $_dateCreated, $_dateLastUpdated);
+    $teamData->deleteTeam($_teamName);
 
     header("Location: newTeam.php");
 }
