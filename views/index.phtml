@@ -115,12 +115,16 @@
             <!-- CREATE TEAM -->
             <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
 
-                <form action="" method="post">
+                <form action="createTeam.php" method="post">
                     <div class="form-group">
                         <label for="teamname">Team Name: </label>
                         <input type="text" name="teamname" id="teamname" placeholder="Enter a Team Name" class="form-control">
                     </div>
                     <br>
+                    <div class="form-group">
+                        <label for="department">Department: </label>
+                        <input type="text" name="department" id="department" placeholder="Enter a Department" class="form-control">
+                    </div>
                     <button type="submit" name="submit" class="btn btn-primary">Create</button>
                 </form>
 
