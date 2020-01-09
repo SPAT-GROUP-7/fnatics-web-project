@@ -40,12 +40,15 @@ class TeamData
     }
 
     //Creates a team
-    public function createTeam($teamName, $isBusy){
-        $sqlQuery = "INSERT INTO Teams (teamName, dateCreated, lastUpdate, isBusy) VALUES :teamName:, NOW(), NOW(), :isBusy";
+    public function createTeam($teamName, $isBusy) {
+        $sqlQuery = "INSERT INTO Teams (teamName, dateCreated, lastUpdate, isBusy)
+                     VALUES (:teamName, NOW(), NOW(), :isBusy)"
+        ;
         $statement = $this->_dbHandle->prepare($sqlQuery);
 
         $statement->bindValue(":teamName", $teamName, PDO::PARAM_STR);
-        $statement->bindValue(":isBusy", $isBusy, PDO::PARAM_STR);
+        $statement->bindValue(":isBusy", $isBusy, PDO::PARAM_INT);
+
 
         $statement->execute();
 
