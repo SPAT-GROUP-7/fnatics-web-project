@@ -14,5 +14,5 @@ if (isset($_POST['submit'])) {
 
     $userData->createUser($teamID, $username, $password, $firstName, $lastName, $isAdmin);
 
-    header("Location: newUser.php");
+    header("Location: index.php");
 }
