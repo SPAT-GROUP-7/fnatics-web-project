@@ -1,7 +1,6 @@
 <?php require("templates/header.phtml"); ?>
 <?php require("templates/navbar.phtml"); ?>
 
-    <!-- LOGIN SESSION -->
 <?php
     if (isset($_SESSION['loggedIn'])) {
         echo "<h1>" .$_SESSION['username'] . "</h1>";
@@ -11,7 +10,6 @@
     }
 ?>
 
-    <!-- LOGIN FORM -->
     <!-- TODO: Make error message appear. Possible in the modal. -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="form">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -59,13 +57,16 @@
                 <a class="nav-link" id="pills-contact2-tab" data-toggle="pill" href="#pills-contact2" role="tab" aria-controls="pills-contact2" aria-selected="false">Change User Team</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="pills-contact3-tab" data-toggle="pill" href="#pills-contact3" role="tab" aria-controls="pills-contact3" aria-selected="false">View All Teams</a>
+                <a class="nav-link" id="pills-contact3-tab" data-toggle="pill" href="#pills-contact3" role="tab" aria-controls="pills-contact3" aria-selected="false">View All Users</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="pills-contact4-tab" data-toggle="pill" href="#pills-contact4" role="tab" aria-controls="pills-contact3" aria-selected="false">Delete Team</a>
+                <a class="nav-link" id="pills-contact4-tab" data-toggle="pill" href="#pills-contact4" role="tab" aria-controls="pills-contact4" aria-selected="false">View All Teams</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="pills-contact5-tab" data-toggle="pill" href="#pills-contact5" role="tab" aria-controls="pills-contact3" aria-selected="false">Delete User</a>
+                <a class="nav-link" id="pills-contact5-tab" data-toggle="pill" href="#pills-contact5" role="tab" aria-controls="pills-contact5" aria-selected="false">Delete Team</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-contact6-tab" data-toggle="pill" href="#pills-contact6" role="tab" aria-controls="pills-contact6" aria-selected="false">Delete User</a>
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
@@ -76,7 +77,6 @@
             </div>
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 
-                <!-- CREATE USER FORM -->
                 <form action="createUser.php" method="post">
                     <div class="form-row">
                         <div class="col">
@@ -111,8 +111,6 @@
                 </form>
 
             </div>
-
-            <!-- CREATE TEAM -->
             <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
 
                 <form action="createTeam.php" method="post">
@@ -125,16 +123,10 @@
                         <label class="form-check-label" for="isBusy">Busy?</label>
                     </div>
                     <br>
-                    <div class="form-group">
-                        <label for="department">Department: </label>
-                        <input type="text" name="department" id="department" placeholder="Enter a Department" class="form-control">
-                    </div>
                     <button type="submit" name="submit" class="btn btn-primary">Create</button>
                 </form>
 
             </div>
-
-            <!-- CHANGE USERS -->
             <div class="tab-pane fade" id="pills-contact2" role="tabpanel" aria-labelledby="pills-contact-tab">
 
                 <form action="" method="post">
@@ -151,24 +143,33 @@
                 </form>
 
             </div>
-
-            <!-- VIEW ALL TEAMS -->
             <div class="tab-pane fade" id="pills-contact3" role="tabpanel" aria-labelledby="pills-contact-tab">
-                <div class="card">
-                    <ul class="list-group">
-                        <li class="list-group-item">DEV TEAM 1</li>
-                        <li class="list-group-item">DEV TEAM 2</li>
-                        <li class="list-group-item">DEV TEAM 3</li>
-                        <li class="list-group-item">DEV TEAM 4</li>
-                        <li class="list-group-item">DEV TEAM 5</li>
-                    </ul>
-                </div>
+                <table class="table">
+                    <tr>
+                        <th>Username</th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                    </tr>
+                    <?php
+                        foreach ($view->users as $user) {
+                            ?>
+                            <tr>
+                                <td><?php echo $user->getUsername() ?></td>
+                                <td><?php echo $user->getFirstName() ?></td>
+                                <td><?php echo $user->getLastName() ?></td>
+                            </tr>
+                            <?php
+                        }
+                    ?>
+                </table>
+
             </div>
-
-            <!-- DELETE TEAMS -->
             <div class="tab-pane fade" id="pills-contact4" role="tabpanel" aria-labelledby="pills-contact-tab">
+                ...
+            </div>
+            <div class="tab-pane fade" id="pills-contact5" role="tabpanel" aria-labelledby="pills-contact-tab">
 
-                <form action="deleteTeam.php" method="post">
+                <form action="" method="post">
                     <div class="form-group">
                         <label for="teamname">Team Name: </label>
                         <input type="text" name="teamname" id="teamname" placeholder="Enter a Team Name" class="form-control">
@@ -178,9 +179,7 @@
                 </form>
 
             </div>
-
-            <!-- DELETE USER -->
-            <div class="tab-pane fade" id="pills-contact5" role="tabpanel" aria-labelledby="pills-contact-tab">
+            <div class="tab-pane fade" id="pills-contact6" role="tabpanel" aria-labelledby="pills-contact-tab">
 
                 <form action="" method="post">
                     <div class="form-group">
