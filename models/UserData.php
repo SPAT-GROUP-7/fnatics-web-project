@@ -26,6 +26,8 @@ class UserData
             $data[] = new User($dbRow);
         }
 
+        $this->_dbInstance->destruct();
+
         return $data;
     }
 
@@ -40,6 +42,8 @@ class UserData
         $statement->execute();
 
         $dbRow = $statement->fetch(PDO::FETCH_ASSOC);
+
+        $this->_dbInstance->destruct();
 
         return new User($dbRow);
     }
@@ -58,7 +62,26 @@ class UserData
 
     public function createUser($teamID, $username, $password, $firstName, $lastName, $isAdmin)
     {
+        $options = ['cost' => 11];
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT, $options);
+        $sqlQuery = "INSERT INTO Users (teamID, username, password, firstName, lastName, dateCreated, lastUpdate, isAdmin) 
+                     VALUES (:teamID, :username, :password, :firstName, :lastName, NOW(), NOW(), :isAdmin)";
 
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->bindValue(":teamID", $teamID, PDO::PARAM_INT);
+        $statement->bindValue(":username", $username, PDO::PARAM_STR);
+        $statement->bindValue(":password", $hashedPassword, PDO::PARAM_STR);
+        $statement->bindValue(":firstName", $firstName, PDO::PARAM_STR);
+        $statement->bindValue(":lastName", $lastName, PDO::PARAM_STR);
+        $statement->bindValue(":isAdmin", $isAdmin, PDO::PARAM_BOOL);
+
+        $statement->execute();
+
+        $this->_dbInstance->destruct();
+
+        // TODO: figure out a proper check for this?
+        return true;
     }
 
     // Unsure of the parameters for this

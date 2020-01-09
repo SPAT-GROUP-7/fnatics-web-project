@@ -33,8 +33,8 @@ class Login
             return false;
         } else {
 
-            //$validPassword = password_verify($password, $user['password']);
-            $validPassword = $password == $user['password'];
+            $validPassword = password_verify($password, $user['password']);
+
 
             if ($validPassword) {
 
