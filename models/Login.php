@@ -14,6 +14,34 @@ class Login
     }
 
     public function login($username, $password) {
-        
+
+        $sqlQuery = "SELECT * FROM Users U
+                     WHERE U.username = ?";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->bindValue(':username', $username, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+        $this->_dbInstance->destruct();
+
+        if ($user == null) {
+
+            return false;
+        } else {
+
+            $validPassword = password_verify($password, $user['password']);
+
+            if ($validPassword) {
+
+                return true;
+            } else {
+
+                return false;
+            }
+        }
     }
 }
