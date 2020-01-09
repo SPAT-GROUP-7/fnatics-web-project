@@ -57,13 +57,16 @@
                 <a class="nav-link" id="pills-contact2-tab" data-toggle="pill" href="#pills-contact2" role="tab" aria-controls="pills-contact2" aria-selected="false">Change User Team</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="pills-contact3-tab" data-toggle="pill" href="#pills-contact3" role="tab" aria-controls="pills-contact3" aria-selected="false">View All Teams</a>
+                <a class="nav-link" id="pills-contact3-tab" data-toggle="pill" href="#pills-contact3" role="tab" aria-controls="pills-contact3" aria-selected="false">View All Users</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="pills-contact4-tab" data-toggle="pill" href="#pills-contact4" role="tab" aria-controls="pills-contact3" aria-selected="false">Delete Team</a>
+                <a class="nav-link" id="pills-contact4-tab" data-toggle="pill" href="#pills-contact4" role="tab" aria-controls="pills-contact4" aria-selected="false">View All Teams</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="pills-contact5-tab" data-toggle="pill" href="#pills-contact5" role="tab" aria-controls="pills-contact3" aria-selected="false">Delete User</a>
+                <a class="nav-link" id="pills-contact5-tab" data-toggle="pill" href="#pills-contact5" role="tab" aria-controls="pills-contact5" aria-selected="false">Delete Team</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-contact6-tab" data-toggle="pill" href="#pills-contact6" role="tab" aria-controls="pills-contact6" aria-selected="false">Delete User</a>
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
@@ -141,9 +144,30 @@
 
             </div>
             <div class="tab-pane fade" id="pills-contact3" role="tabpanel" aria-labelledby="pills-contact-tab">
-                ...
+                <table class="table">
+                    <tr>
+                        <th>Username</th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                    </tr>
+                    <?php
+                        foreach ($view->users as $user) {
+                            ?>
+                            <tr>
+                                <td><?php echo $user->getUsername() ?></td>
+                                <td><?php echo $user->getFirstName() ?></td>
+                                <td><?php echo $user->getLastName() ?></td>
+                            </tr>
+                            <?php
+                        }
+                    ?>
+                </table>
+
             </div>
             <div class="tab-pane fade" id="pills-contact4" role="tabpanel" aria-labelledby="pills-contact-tab">
+                ...
+            </div>
+            <div class="tab-pane fade" id="pills-contact5" role="tabpanel" aria-labelledby="pills-contact-tab">
 
                 <form action="" method="post">
                     <div class="form-group">
@@ -155,7 +179,7 @@
                 </form>
 
             </div>
-            <div class="tab-pane fade" id="pills-contact5" role="tabpanel" aria-labelledby="pills-contact-tab">
+            <div class="tab-pane fade" id="pills-contact6" role="tabpanel" aria-labelledby="pills-contact-tab">
 
                 <form action="" method="post">
                     <div class="form-group">

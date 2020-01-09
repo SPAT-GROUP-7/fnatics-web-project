@@ -14,7 +14,7 @@ class UserData
     }
 
     public function getAllUsers() {
-        $sqlQuery = "SELECT * FROM User U";
+        $sqlQuery = "SELECT * FROM Users U";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
 
@@ -32,7 +32,7 @@ class UserData
     }
 
     public function getUserByID($id) {
-        $sqlQuery = "SELECT  * FROM User U
+        $sqlQuery = "SELECT  * FROM Users U
                      WHERE U.userID = :id";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
