@@ -68,16 +68,12 @@ class TeamData
         return $dataSet;
     }
 
+    //Deletes a team
     public function deleteTeam($teamName){
-        $statement = $this->_dbHandle->prepare("DELETE * FROM Teams WHERE teamName = $teamName ");
+        $sqlQuery = "DELETE * FROM Teams WHERE teamName = $teamName ";
+        $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute();
         $this->_dbInstance->destruct();
-
-        $dataSet = [];
-        while ($dbRow = $statement->fetch()) {
-            $dataSet[] = new Team($dbRow);
-        }
-        return $dataSet;
     }
 
 }
