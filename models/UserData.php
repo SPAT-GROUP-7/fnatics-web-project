@@ -12,4 +12,38 @@ class UserData
         $this->_dbInstance = Database::getInstance();
         $this->_dbHandle = $this->_dbInstance->getConnection();
     }
+
+    public function getAllUsers() {
+
+    }
+
+    public function getUserByID($id) {
+
+    }
+
+    public function getUsers($search) {
+
+    }
+
+    public function getAllAdmins() {
+
+    }
+
+    public function getAdminByID($id) {
+
+    }
+
+    public function createUser($teamID, $username, $password, $firstName, $lastName, $isAdmin)
+    {
+
+    }
+
+    // Unsure of the parameters for this
+    public function updateUser() {
+
+    }
+
+    public function deleteUser($id) {
+
+    }
 }
