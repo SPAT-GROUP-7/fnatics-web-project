@@ -26,6 +26,8 @@ class UserData
             $data[] = new User($dbRow);
         }
 
+        $this->_dbInstance->destruct();
+
         return $data;
     }
 
@@ -40,6 +42,8 @@ class UserData
         $statement->execute();
 
         $dbRow = $statement->fetch(PDO::FETCH_ASSOC);
+
+        $this->_dbInstance->destruct();
 
         return new User($dbRow);
     }
