@@ -16,7 +16,7 @@ class Login
     public function login($username, $password) {
 
         $sqlQuery = "SELECT * FROM Users U
-                     WHERE U.username = ?";
+                     WHERE U.userName = ?";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
 

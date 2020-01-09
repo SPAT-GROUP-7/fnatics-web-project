@@ -38,7 +38,7 @@ class Team
     /**
      * @return mixed
      */
-    public function getisBusy()
+    public function getIsBusy()
     {
         return $this->_isBusy;
     }

@@ -18,10 +18,10 @@ class Database
 
     // return an instance of the DB, if an instance is already active use it, otherwise create a new instance
     public static function getInstance() {
-        $username = "TEST";
-        $password = "TEST";
-        $host = "TEST";
-        $dbName = "TEST";
+        $username = Secrets::$USERNAME;
+        $password = Secrets::$PASSWORD;
+        $host = Secrets::$HOST;
+        $dbName = Secrets::$DB_NAME;
 
         if (self::$_dbInstance == null) {
             self::$_dbInstance = new self($username, $password, $host, $dbName);

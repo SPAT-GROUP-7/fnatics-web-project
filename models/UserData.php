@@ -14,11 +14,34 @@ class UserData
     }
 
     public function getAllUsers() {
+        $sqlQuery = "SELECT * FROM User U";
 
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->execute();
+
+        $data = [];
+
+        while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $data[] = new User($dbRow);
+        }
+
+        return $data;
     }
 
     public function getUserByID($id) {
+        $sqlQuery = "SELECT  * FROM User U
+                     WHERE U.userID = :id";
 
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->bindValue(":id", $id, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        $dbRow = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return new User($dbRow);
     }
 
     public function getUsers($search) {
