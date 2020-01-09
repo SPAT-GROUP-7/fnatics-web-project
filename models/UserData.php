@@ -67,6 +67,7 @@ class UserData
         $sqlQuery = "INSERT INTO Users (teamID, username, password, firstName, lastName, dateCreated, lastUpdate, isAdmin) 
                      VALUES (:teamID, :username, :password, :firstName, :lastName, NOW(), NOW(), :isAdmin)";
 
+        $this->_dbHandle->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
         $statement = $this->_dbHandle->prepare($sqlQuery);
 
         $statement->bindValue(":teamID", $teamID, PDO::PARAM_INT);
