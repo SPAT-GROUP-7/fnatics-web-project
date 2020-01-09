@@ -40,16 +40,19 @@ class TeamData
     }
 
     //Creates a team
-    public function createTeam(){
-        $statement = $this->_dbHandle->prepare("INSERT INTO Teams WHERE ");
+    public function createTeam($teamID, $teamName, $dateCreated, $lastUpdate, $isBusy){
+        $statement = $this->_dbHandle->prepare("INSERT INTO Teams (teamID, teamName, dateCreated, lastUpdate, isBusy) VALUES :teamId, :teamName:, :dateCreated, :lastUpdate, :isBusy");
+
+        $statement->bindValue(":teamID", $teamID, PDO::PARAM_INT);
+        $statement->bindValue(":teamName", $teamName, PDO::PARAM_STR);
+        $statement->bindValue(":dateCreated", $dateCreated, PDO::PARAM_STR);
+        $statement->bindValue(":lastUpdate", $lastUpdate, PDO::PARAM_STR);
+        $statement->bindValue(":isBusy", $isBusy, PDO::PARAM_STR);
+
         $statement->execute();
+
         $this->_dbInstance->__destruct();
 
-        $dataSet = [];
-        while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
-            $dataSet[] = new Team($dbRow);
-        }
-        return $dataSet;
     }
 
     public function updateTeam(){
