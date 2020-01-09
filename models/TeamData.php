@@ -17,7 +17,7 @@ class TeamData
     public function fetchTeam($teamID){
         $statement = $this->_dbHandle->prepare("SELECT teamName, isBusy, firstName, lastName  FROM Teams, Users ORDER BY teamName DESC");
         $statement->execute();
-        $this->_dbInstance->__destruct();
+        $this->_dbInstance->destruct();
 
         $dataSet = [];
         while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
@@ -30,7 +30,7 @@ class TeamData
     public function fetchAllTeams(){
         $statement = $this->_dbHandle->prepare("SELECT teamName, isBusy, firstName, lastName FROM Teams, Users");
         $statement->execute();
-        $this->_dbInstance->__destruct();
+        $this->_dbInstance->destruct();
 
         $dataSet = [];
         while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
@@ -40,25 +40,23 @@ class TeamData
     }
 
     //Creates a team
-    public function createTeam($teamID, $teamName, $dateCreated, $lastUpdate, $isBusy){
-        $statement = $this->_dbHandle->prepare("INSERT INTO Teams (teamID, teamName, dateCreated, lastUpdate, isBusy) VALUES :teamId, :teamName:, :dateCreated, :lastUpdate, :isBusy");
+    public function createTeam($teamName, $isBusy){
+        $sqlQuery = "INSERT INTO Teams (teamName, dateCreated, lastUpdate, isBusy) VALUES :teamName:, NOW(), NOW(), :isBusy";
+        $statement = $this->_dbHandle->prepare($sqlQuery);
 
-        $statement->bindValue(":teamID", $teamID, PDO::PARAM_INT);
         $statement->bindValue(":teamName", $teamName, PDO::PARAM_STR);
-        $statement->bindValue(":dateCreated", $dateCreated, PDO::PARAM_STR);
-        $statement->bindValue(":lastUpdate", $lastUpdate, PDO::PARAM_STR);
         $statement->bindValue(":isBusy", $isBusy, PDO::PARAM_STR);
 
         $statement->execute();
 
-        $this->_dbInstance->__destruct();
+        $this->_dbInstance->destruct();
 
     }
 
     public function updateTeam(){
         $statement = $this->_dbHandle->prepare("UPDATE Teams SET teamName, ");
         $statement->execute();
-        $this->_dbInstance->__destruct();
+        $this->_dbInstance->destruct();
 
         $dataSet = [];
         while ($dbRow = $statement->fetch()) {
@@ -70,7 +68,7 @@ class TeamData
     public function deleteTeam($teamName){
         $statement = $this->_dbHandle->prepare("DELETE * FROM Teams WHERE teamName = $teamName ");
         $statement->execute();
-        $this->_dbInstance->__destruct();
+        $this->_dbInstance->destruct();
 
         $dataSet = [];
         while ($dbRow = $statement->fetch()) {
