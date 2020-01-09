@@ -11,7 +11,6 @@ class Login
     {
         $this->_dbInstance = Database::getInstance();
         $this->_dbHandle = $this->_dbInstance->getConnection();
-        echo "REACHED";
     }
 
     public function login($username, $password) {
