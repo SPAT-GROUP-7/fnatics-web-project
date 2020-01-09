@@ -1,6 +1,6 @@
 <?php
 
-
+require_once ("Secrets.php");
 class Database
 {
     protected static $_dbInstance = null;

@@ -16,7 +16,7 @@ class Login
     public function login($username, $password) {
 
         $sqlQuery = "SELECT * FROM Users U
-                     WHERE U.userName = ?";
+                     WHERE U.userName = :username";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
 
@@ -33,7 +33,8 @@ class Login
             return false;
         } else {
 
-            $validPassword = password_verify($password, $user['password']);
+            //$validPassword = password_verify($password, $user['password']);
+            $validPassword = $password == $user['password'];
 
             if ($validPassword) {
 

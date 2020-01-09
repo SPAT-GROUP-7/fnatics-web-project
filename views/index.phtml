@@ -1,6 +1,13 @@
 <?php require("templates/header.phtml"); ?>
 <?php require("templates/navbar.phtml"); ?>
 
+<?php
+    if (isset($_SESSION['loggedIn'])) {
+        echo "<h1>" .$_SESSION['username'] . "</h1>";
+    } else {
+        echo "<h1>Please Login :)</h1>";
+    }
+?>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
         Login Modal
     </button>
@@ -15,7 +22,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                    <form action="login.php" method="post">
                         <div class="form-group">
                             <label for="username">Username: </label>
                             <input type="text" name="username" id="username" placeholder="Enter Username" class="form-control">
