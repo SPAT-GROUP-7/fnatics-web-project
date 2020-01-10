@@ -209,7 +209,8 @@
                                         <td><?php echo $team->getTeamName() ?></td>
                                         <td><?php echo $team->getIsBusy() ?></td>
                                         <td><button type="button" class="btn btn-warning">Edit</button></td>
-                                        <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                        <td>
+                                            <a class="btn btn-danger" href="deleteTeam.php?id="<?php echo $team->getTeamID();?>>Delete</a></td>
                                     </tr>
                                     <?php
                                 }

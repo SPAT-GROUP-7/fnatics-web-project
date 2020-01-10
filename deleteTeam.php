@@ -3,11 +3,9 @@ require_once ("models/TeamData.php");
 
 if (isset($_POST['submit'])) {
 
-    $teamData = new TeamData();
+    $id = $_GET['teamID'];
 
-    $_teamName = htmlentities($_POST['teamName']);
-
-    $teamData->deleteTeam($_teamName);
+    $teamData->deleteTeam($id);
 
     header("Location: index.php");
 }
