@@ -186,7 +186,7 @@
                             <table class="table">
                                 <tr>
                                     <th>Team Name</th>
-                                    <th>Is Team Busy?</th>
+                                    <th>On Support</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -195,7 +195,12 @@
                                     ?>
                                     <tr>
                                         <td><?php echo $team->getTeamName() ?></td>
-                                        <td><?php echo $team->getTeamID() ?></td>
+                                        <td><?php if ($team->getIsBusy() == 1){
+                                            echo "Yes";
+                                            }
+                                        else{
+                                            echo "No";
+                                        }?></td>
                                         <td><button type="button" class="btn btn-warning">Edit</button></td>
                                         <td><button type="button" class="btn btn-danger">Delete</button></td>
                                     </tr>

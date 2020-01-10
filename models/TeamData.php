@@ -28,8 +28,8 @@ class TeamData
 
     //Fetches all teams
     public function fetchAllTeams(){
-        $sqlQuery =
-        $statement = $this->_dbHandle->prepare("SELECT * FROM Teams, Users");
+        $sqlQuery = "SELECT * FROM Teams";
+        $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute();
 
         $dataSet = [];
@@ -39,6 +39,24 @@ class TeamData
 
         $this->_dbInstance->destruct();
         return $dataSet;
+    }
+
+    public function getAllUsers() {
+        $sqlQuery = "SELECT * FROM Users U";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->execute();
+
+        $data = [];
+
+        while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $data[] = new User($dbRow);
+        }
+
+        $this->_dbInstance->destruct();
+
+        return $data;
     }
 
     //Creates a team
