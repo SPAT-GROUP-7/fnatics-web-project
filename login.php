@@ -4,7 +4,6 @@ session_start();
 
 require_once ("models/Login.php");
 
-$view = new stdClass();
 
 if (isset($_POST['submit'])) {
     // Login

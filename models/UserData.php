@@ -91,6 +91,18 @@ class UserData
     }
 
     public function deleteUser($id) {
+        $sqlQuery = "DELETE FROM Users
+                     WHERE userID = :userID";
 
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->bindValue(":userID", $id, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        $this->_dbInstance->destruct();
+
+        // TODO: Add a check for this
+        return true;
     }
 }
