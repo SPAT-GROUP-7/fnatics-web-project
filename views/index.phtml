@@ -175,6 +175,7 @@
                                     <th>Username</th>
                                     <th>Firstname</th>
                                     <th>Lastname</th>
+                                    <th>Team</th>
                                     <th>Admin</th>
                                 </tr>
                                 <?php
@@ -184,6 +185,7 @@
                                         <td><?php echo $user->getUsername() ?></td>
                                         <td><?php echo $user->getFirstname() ?></td>
                                         <td><?php echo $user->getLastname() ?></td>
+                                        <td><?php echo $user->getTeamName() ?></td>
                                         <td><?php echo $user->getIsAdmin() ?></td>
                                         <td><button type="button" class="btn btn-warning">Edit</button></td>
                                         <td>

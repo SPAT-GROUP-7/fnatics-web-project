@@ -14,7 +14,11 @@ class UserData
     }
 
     public function getAllUsers() {
-        $sqlQuery = "SELECT * FROM Users U";
+        //$_userID, $teamName, $_username, $_password, $_firstName, $_lastName, $_dateCreated, $_dateLastUpdated, $_isAdmin;
+        $sqlQuery = "SELECT U.userID, T.teamName, U.username, U.password, U.firstName, U.lastName, U.dateCreated, U.lastUpdate, U.isAdmin 
+        FROM Users U
+        JOIN Teams T On U.teamID = T.teamID
+        ORDER BY T.teamName";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
 
