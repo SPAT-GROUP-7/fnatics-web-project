@@ -1,0 +1,36 @@
+
+.sidebar-wrapper {
+  z-index: 999;
+  position: absolute;
+  height: 100vh;
+  width: 15vw;
+  overflow-x: hidden;
+  background: #222222;
+  margin-top: 40px;
+
+  text-align: -webkit-center;
+
+  .sidebar-nav {
+    height: 90vh;
+    display: table-cell;
+    vertical-align: middle;
+
+    list-style-type: none;
+    padding: 0;
+  }
+}
+
+.content-wrapper {
+  width: 100%;
+  position: absolute;
+  padding: 15px;
+  margin-top: 40px;
+  margin-left: 15vw;
+
+}
+
+.n-text {
+  @include bv-text-setup("Open Sans", 400, $color-white);
+  @include font-size(24px);
+  @include hover-effect($color-light-red, .5s);
+}
