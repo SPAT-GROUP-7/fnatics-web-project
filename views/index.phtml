@@ -63,10 +63,10 @@
                 <a class="nav-link" id="pills-contact4-tab" data-toggle="pill" href="#pills-contact4" role="tab" aria-controls="pills-contact4" aria-selected="false">View All Teams</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="pills-contact5-tab" data-toggle="pill" href="#pills-contact5" role="tab" aria-controls="pills-contact5" aria-selected="false">Delete Team</a>
+                <a class="nav-link" id="pills-contact5-tab" data-toggle="pill" href="#pills-contact5" role="tab" aria-controls="pills-contact5" aria-selected="false">Delete Team by Name</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="pills-contact6-tab" data-toggle="pill" href="#pills-contact6" role="tab" aria-controls="pills-contact6" aria-selected="false">Delete User</a>
+                <a class="nav-link" id="pills-contact6-tab" data-toggle="pill" href="#pills-contact6" role="tab" aria-controls="pills-contact6" aria-selected="false">Delete User by Name</a>
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
@@ -164,8 +164,37 @@
                 </table>
 
             </div>
+
+            <!-- VIEW ALL TEAMS -OPTION TO EDIT AND DELETE -->
             <div class="tab-pane fade" id="pills-contact4" role="tabpanel" aria-labelledby="pills-contact-tab">
-                ...
+                <div class="row" id="teams">
+                    <div class="col-md-10 mx-auto">
+                        <div class="card card-body bg-light mt-5">
+                            <h1 class="card-title">Teams</h1>
+
+                            <table class="table">
+                                <tr>
+                                    <th>Team Name</th>
+                                    <th>Is Team Busy?</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                <?php
+                                foreach ($view->teams as $team){
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $team->getTeamName() ?></td>
+                                        <td><?php echo $team->getTeamID() ?></td>
+                                        <td><button type="button" class="btn btn-warning">Edit</button></td>
+                                        <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                    </tr>
+                                    <?php
+                                }
+                                ?>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="tab-pane fade" id="pills-contact5" role="tabpanel" aria-labelledby="pills-contact-tab">
 
