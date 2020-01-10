@@ -71,11 +71,15 @@ class TeamData
     }
 
     //Deletes a team
-    public function deleteTeam($teamName){
-        $sqlQuery = "DELETE * FROM Teams WHERE teamName = $teamName ";
+    public function deleteTeam($id){
+        $sqlQuery = "DELETE FROM Teams WHERE teamID = ?";
         $statement = $this->_dbHandle->prepare($sqlQuery);
-        $statement->execute();
+
+//        $statement->bindValue(":teamID", $id, PDO::PARAM_INT);
+        $statement->execute([$id]);
         $this->_dbInstance->destruct();
+
+        return true;
     }
 
 }
