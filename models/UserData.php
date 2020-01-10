@@ -56,11 +56,24 @@ class UserData
     }
 
     public function getAllNonAdmins() {
-        $sqlQuery = "SELECT U.userID, T.teamName, U.username, U.password, U.firstName, U.lastName, U.dateCreated, U.lastUpdate, U.isAdmin 
-        FROM Users U
-        JOIN Teams T On U.teamID = T.teamID
-        WHERE U.isAdmin = 0
-        ORDER BY T.teamName";
+        $sqlQuery = "SELECT U.userID, T.teamName, U.username, U.password, U.firstName, U.lastName, U.dateCreated, U.lastUpdate, U.isAdmin
+                     FROM Users U
+                     JOIN Teams T On U.teamID = T.teamID
+                     WHERE U.isAdmin = 0";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->execute();
+
+        $data = [];
+
+        while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $data[] = new User($dbRow);
+        }
+
+        $this->_dbInstance->destruct();
+
+        return $data;
     }
 
     public function getAllAdmins() {
