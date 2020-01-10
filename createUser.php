@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $password = htmlentities($_POST['password']);
     $firstName = htmlentities($_POST['firstName']);
     $lastName = htmlentities($_POST['lastName']);
-    $isAdmin = htmlentities($_POST['isAdmin']);
+    $isAdmin = isset($_POST['isAdmin']) ? 1 : 0;
 
     $userData->createUser($teamID, $username, $password, $firstName, $lastName, $isAdmin);
 
