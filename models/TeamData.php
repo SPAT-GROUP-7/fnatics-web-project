@@ -41,24 +41,6 @@ class TeamData
         return $dataSet;
     }
 
-    public function getAllUsers() {
-        $sqlQuery = "SELECT * FROM Users U";
-
-        $statement = $this->_dbHandle->prepare($sqlQuery);
-
-        $statement->execute();
-
-        $data = [];
-
-        while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
-            $data[] = new User($dbRow);
-        }
-
-        $this->_dbInstance->destruct();
-
-        return $data;
-    }
-
     //Creates a team
     public function createTeam($teamName, $isBusy) {
         $sqlQuery = "INSERT INTO Teams (teamName, dateCreated, lastUpdate, isBusy)
