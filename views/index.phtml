@@ -187,7 +187,9 @@
                                         <td><?php echo $user->getLastname() ?></td>
                                         <td><?php echo $user->getTeamName() ?></td>
                                         <td><?php echo $user->getIsAdmin() ?></td>
-                                        <td><a class="btn btn-warning" href="editUser.php?teamID=<? echo $team-> ?>">Edit></a></td></td>
+                                        <td>
+                                            <a class="btn btn-warning" href="editUser.php?teamID=<? echo $team->?>">Edit</a>
+                                        </td>
                                         <td>
                                             <a class="btn btn-danger" href="deleteUser.php?userID=<?php echo $user->getUserID() ?>">Delete</a>
                                         </td>
@@ -223,7 +225,7 @@
                                         <td><?php echo $team->getTeamName() ?></td>
                                         <td><?php echo $team->getIsBusy() ?></td>
                                         <td>
-                                            <a class="btn btn-warning" href="editTeam.php?teamID=<? echo $team-> ?>">Edit></a></td>
+                                            <a class="btn btn-warning" href="editTeam.php?teamID=<? echo $team-> ?>">Edit</a></td>
                                         <td>
                                             <a class="btn btn-danger" href="deleteTeam.php?teamID=<?php echo $team->getTeamID() ?>">Delete</a>
                                         </td>
