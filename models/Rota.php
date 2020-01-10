@@ -33,7 +33,7 @@ class Rota
     }
 
     public function getDevs() {
-        return ['devA' => $this->_devA, 'devB' => $this->_devB];
+        return array($this->_devA, $this->_devB);
     }
-    
+
 }
