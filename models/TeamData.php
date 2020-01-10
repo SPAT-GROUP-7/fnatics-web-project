@@ -58,8 +58,12 @@ class TeamData
 
     }
 
-    public function updateTeam(){
-        $statement = $this->_dbHandle->prepare("UPDATE Teams SET teamName, ");
+    public function updateTeam($teamID, $teamName){
+        $statement = $this->_dbHandle->prepare("UPDATE Teams SET teamName = :teamName WHERE teamID = :teamID");
+
+        $statement->bindValue(":teamName", $teamName, PDO::PARAM_STR);
+        $statement->bindValue(":teamID", $teamID, PDO::PARAM_INT);
+
         $statement->execute();
         $this->_dbInstance->destruct();
 
