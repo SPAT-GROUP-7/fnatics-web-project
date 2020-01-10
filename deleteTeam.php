@@ -1,11 +1,10 @@
 <?php
 require_once ("models/TeamData.php");
 
-if (isset($_POST['submit'])) {
+$teamID = $_GET['teamID'];
+echo "DELETING " . $teamID;
 
-    $id = $_GET['teamID'];
+$teamData = new TeamData();
+$teamData->deleteTeam($teamID);
 
-    $teamData->deleteTeam($id);
-
-    header("Location: index.php");
-}
+header("Location: index.php");

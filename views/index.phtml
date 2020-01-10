@@ -210,7 +210,8 @@
                                         <td><?php echo $team->getIsBusy() ?></td>
                                         <td><button type="button" class="btn btn-warning">Edit</button></td>
                                         <td>
-                                            <a class="btn btn-danger" href="deleteTeam.php?id="<?php echo $team->getTeamID();?>>Delete</a></td>
+                                            <a class="btn btn-danger" href="deleteTeam.php?teamID=<?php echo $team->getTeamID() ?>">Delete</a>
+                                        </td>
                                     </tr>
                                     <?php
                                 }
