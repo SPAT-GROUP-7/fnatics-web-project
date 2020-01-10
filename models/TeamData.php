@@ -28,14 +28,16 @@ class TeamData
 
     //Fetches all teams
     public function fetchAllTeams(){
-        $statement = $this->_dbHandle->prepare("SELECT teamName, isBusy, firstName, lastName FROM Teams, Users");
+        $sqlQuery =
+        $statement = $this->_dbHandle->prepare("SELECT * FROM Teams, Users");
         $statement->execute();
-        $this->_dbInstance->destruct();
 
         $dataSet = [];
         while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
             $dataSet[] = new Team($dbRow);
         }
+
+        $this->_dbInstance->destruct();
         return $dataSet;
     }
 
