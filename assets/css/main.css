@@ -1,0 +1,43 @@
+/*
+  Main sass file. Do not edit!!!
+ */
+.sidebar-wrapper {
+  z-index: 999;
+  position: absolute;
+  height: 100vh;
+  width: 15vw;
+  overflow-x: hidden;
+  background: #222222;
+  margin-top: 40px;
+  text-align: -webkit-center;
+}
+.sidebar-wrapper .sidebar-nav {
+  height: 90vh;
+  display: table-cell;
+  vertical-align: middle;
+  list-style-type: none;
+  padding: 0;
+}
+
+.content-wrapper {
+  width: 100%;
+  position: absolute;
+  padding: 15px;
+  margin-top: 40px;
+  margin-left: 15vw;
+}
+
+.n-text {
+  font-family: "Open Sans";
+  font-weight: 400;
+  color: white;
+  font-size: 24px;
+  font-size: 1.5rem;
+  transition: 0.5s;
+}
+.n-text:hover {
+  color: #ffa3a3;
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=main.css.map */
