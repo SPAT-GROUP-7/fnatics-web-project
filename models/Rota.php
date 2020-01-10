@@ -35,5 +35,5 @@ class Rota
     public function getDevs() {
         return ['devA' => $this->_devA, 'devB' => $this->_devB];
     }
-    
+
 }

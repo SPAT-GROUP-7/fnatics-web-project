@@ -1,6 +1,7 @@
 <?php
 require_once ("Database.php");
 require_once ("Rota.php");
+require_once ("UserData.php");
 
 class RotaData
 {
@@ -28,6 +29,10 @@ class RotaData
     }
 
     public function deleteRota() {
+
+    }
+
+    public function generateRota($from, $to) {
 
     }
 }

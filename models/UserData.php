@@ -14,7 +14,6 @@ class UserData
     }
 
     public function getAllUsers() {
-        //$_userID, $teamName, $_username, $_password, $_firstName, $_lastName, $_dateCreated, $_dateLastUpdated, $_isAdmin;
         $sqlQuery = "SELECT U.userID, T.teamName, U.username, U.password, U.firstName, U.lastName, U.dateCreated, U.lastUpdate, U.isAdmin 
         FROM Users U
         JOIN Teams T On U.teamID = T.teamID
@@ -54,6 +53,14 @@ class UserData
 
     public function getUsers($search) {
 
+    }
+
+    public function getAllNonAdmins() {
+        $sqlQuery = "SELECT U.userID, T.teamName, U.username, U.password, U.firstName, U.lastName, U.dateCreated, U.lastUpdate, U.isAdmin 
+        FROM Users U
+        JOIN Teams T On U.teamID = T.teamID
+        WHERE U.isAdmin = 0
+        ORDER BY T.teamName";
     }
 
     public function getAllAdmins() {
