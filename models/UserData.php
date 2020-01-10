@@ -90,8 +90,30 @@ class UserData
     }
 
     // Unsure of the parameters for this
-    public function updateUser() {
+    public function updateUser($userID, $username, $password, $firstName, $lastName, $isAdmin) {
+        $sqlQuery = "UPDATE Users U 
+                     SET U.username = :username,
+                         U.password = :password,
+                         U.firstName = :firstName,
+                         U.lastName = :lastName,
+                         U.lastUpdate = NOW(),
+                         U.isAdmin = :isAdmin
+                     WHERE U.userID = :userID";
 
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->bindValue(":username", $username, PDO::PARAM_STR);
+        $statement->bindValue(":password", $password, PDO::PARAM_STR);
+        $statement->bindValue(":firstName",$firstName, PDO::PARAM_STR);
+        $statement->bindValue(":lastName", $lastName, PDO::PARAM_STR);
+        $statement->bindValue(":isAdmin", $isAdmin, PDO::PARAM_BOOL);
+        $statement->bindValue(":userID", $userID, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        $this->_dbInstance->destruct();
+
+        return true;
     }
 
     public function deleteUser($id) {
