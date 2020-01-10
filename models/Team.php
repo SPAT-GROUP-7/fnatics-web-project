@@ -16,7 +16,7 @@ class Team
         $this->_teamName = $dbRow['teamName'];
         $this->_isBusy = $dbRow['isBusy'] == 1 ? "Yes" : "No" ;
         $this->_dateCreated = $dbRow['dateCreated'];
-        $this->_dateLastUpdated = $dbRow['dateLastUpdated'];
+        $this->_dateLastUpdated = $dbRow['lastUpdate'];
     }
 
     /**
