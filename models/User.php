@@ -20,7 +20,8 @@ class User
         $this->_lastName = $dbRow['lastName'];
         $this->_dateCreated = $dbRow['dateCreated'];
         $this->_dateLastUpdated = $dbRow['dateLastUpdated'];
-        $this->_isAdmin = $dbRow['isAdmin'];
+        // TODO: Maybe a better way of doing this?
+        $this->_isAdmin = $dbRow['isAdmin'] == 1 ? "Yes" : "No";
     }
 
     /**

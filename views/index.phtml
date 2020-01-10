@@ -165,6 +165,7 @@
                                     <th>Username</th>
                                     <th>Firstname</th>
                                     <th>Lastname</th>
+                                    <th>Admin</th>
                                 </tr>
                                 <?php
                                 foreach ($view->users as $user){
@@ -173,6 +174,7 @@
                                         <td><?php echo $user->getUsername() ?></td>
                                         <td><?php echo $user->getFirstname() ?></td>
                                         <td><?php echo $user->getLastname() ?></td>
+                                        <td><?php echo $user->getIsAdmin() ?></td>
                                         <td><button type="button" class="btn btn-warning">Edit</button></td>
                                         <td><button type="button" class="btn btn-danger">Delete</button></td>
                                     </tr>
@@ -205,12 +207,7 @@
                                     ?>
                                     <tr>
                                         <td><?php echo $team->getTeamName() ?></td>
-                                        <td><?php if ($team->getIsBusy() == 1){
-                                            echo "Yes";
-                                            }
-                                        else{
-                                            echo "No";
-                                        }?></td>
+                                        <td><?php echo $team->getIsBusy() ?></td>
                                         <td><button type="button" class="btn btn-warning">Edit</button></td>
                                         <td><button type="button" class="btn btn-danger">Delete</button></td>
                                     </tr>
