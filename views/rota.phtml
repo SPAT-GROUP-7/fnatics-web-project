@@ -1,0 +1,44 @@
+<?php require_once ("templates/header.phtml") ?>
+<?php require_once ("templates/navbar.phtml") ?>
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Rota</h1>
+                <a class="btn btn-primary" href="generateRota.php">Generate a new Rota</a>
+            </div>
+        </div>
+
+        <div class="row" id="rota">
+            <div class="col-md-10 mx-auto">
+                <div class="card card-body bg-light mt-5">
+                    <h1 class="card-title">Rota</h1>
+
+                    <table class="table">
+                        <tr>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Dev A</th>
+                            <th>Dev B</th>
+                        </tr>
+                        <?php
+                            foreach ($view->rotas as $rota) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $rota->getFrom() ?></td>
+                                    <td><?php echo $rota->getTo() ?></td>
+                                    <td><?php echo $rota->getDevA() ?></td>
+                                    <td><?php echo $rota->getDevB() ?></td>
+                                </tr>
+                                <?php
+                            }
+                        ?>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php require_once ("templates/footer.phtml") ?>
