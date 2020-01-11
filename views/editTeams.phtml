@@ -1,0 +1,36 @@
+<?php require("templates/header.phtml"); ?>
+<?php require("templates/navbar.phtml"); ?>
+
+    <!-- TODO: Validation. -->
+    // TODO: figure out a proper check for this?
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row" id="editUser">
+                <div class="col-md-10 mx-auto">
+                    <div class="card card-body bg-light mt-5">
+                        <h1 class="card-title">Edit User</h1>
+                        <form action="editTeams.php" method="post">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Team Name</label>
+                                    <input type="email" class="form-control" id="inputEmail4">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Team Members</label>
+                                    <input type="password" class="form-control" id="inputPassword4">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">isBusy</label>
+                                    <input type="password" class="form-control" id="inputPassword4">
+                                </div>
+                                <button type="button" class="btn btn-success">Confirm</button>
+                                <button type="button" class="btn btn-warning">Clear</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php require("templates/footer.phtml"); ?>
