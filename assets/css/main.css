@@ -2,7 +2,6 @@
   z-index: 999;
   position: absolute;
   height: calc(100vh - 40px);
-  width: 15vw;
   overflow-x: hidden;
   background: #343a40;
   margin-top: 40px;
@@ -13,22 +12,22 @@
   display: table-cell;
   vertical-align: middle;
   list-style-type: none;
-  padding: 0;
+  padding: 25px;
 }
 
 .content-wrapper {
   position: absolute;
   padding: 15px;
   margin-top: 40px;
-  margin-left: 15vw;
+  margin-left: 200px;
 }
 
 .n-text {
   font-family: "Open Sans";
   font-weight: 400;
   color: white;
-  font-size: 24px;
-  font-size: 1.5rem;
+  font-size: 18px;
+  font-size: 1.125rem;
   transition: 0.5s;
 }
 .n-text:hover {
