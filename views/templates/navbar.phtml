@@ -3,6 +3,7 @@
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Logo Here</a>
     <ul class="navbar-nav px-3">
         <li class="navbar-item text-nowrap">
+            <!-- TODO: Can probably just check if loggedIn is set -->
             <?php if (isset($_SESSION["loggedIn"]) && ($_SESSION["loggedIn"] == true)) : ?>
                 <a class="nav-link n-text" href="logout.php">Logout</a>
             <?php else : ?>
@@ -25,7 +26,8 @@
                     <a href="#" class="n-text"><i class="fas fa-handshake"></i> Shift Swap</a>
                 </li>
                 <li>
-                    <a href="#" class="n-text"><i class="fas fa-shield-alt"></i> Admin Panel</a>
+                    <!-- TODO: Add verification check (if $_SESSION['isAdmin'] or something)-->
+                    <a href="adminPanel.php" class="n-text"><i class="fas fa-shield-alt"></i> Admin Panel</a>
                 </li>
                 <li>
                     <a href="#" class="n-text"><i class="fas fa-cog"></i> Settings</a>
