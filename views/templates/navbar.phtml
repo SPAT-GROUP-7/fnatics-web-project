@@ -26,8 +26,9 @@
                     <a href="#" class="n-text"><i class="fas fa-handshake"></i> Shift Swap</a>
                 </li>
                 <li>
-                    <!-- TODO: Add verification check (if $_SESSION['isAdmin'] or something)-->
-                    <a href="adminPanel.php" class="n-text"><i class="fas fa-shield-alt"></i> Admin Panel</a>
+                    <?php if (isset($_SESSION["isAdmin"]) && ($_SESSION["isAdmin"] == true)) : ?>
+                        <a href="adminPanel.php" class="n-text"><i class="fas fa-shield-alt"></i> Admin Panel</a>
+                    <?php endif; ?>
                 </li>
                 <li>
                     <a href="#" class="n-text"><i class="fas fa-cog"></i> Settings</a>
