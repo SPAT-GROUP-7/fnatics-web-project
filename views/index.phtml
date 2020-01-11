@@ -2,6 +2,7 @@
 <?php require("templates/navbar.phtml"); ?>
 <?php require("templates/loginModal.phtml"); ?>
 <?php require("templates/editUserModal.phtml"); ?>
+<?php require("templates/editTeamModal.phtml"); ?>
 
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -191,7 +192,9 @@
                                                     <td><?php echo $team->getTeamName() ?></td>
                                                     <td><?php echo $team->getIsBusy() ?></td>
                                                     <td>
-                                                        <a class="btn btn-warning" href="editTeam.php?teamID=<? echo $team->getTeamID() ?>">Edit</a></td>
+                                                        <button type="button" class="btn btn-warning editTeamBtn" data-toggle="modal" data-target="#editTeamModal">
+                                                            Edit
+                                                        </button>
                                                     <td>
                                                         <a class="btn btn-danger" href="deleteTeam.php?teamID=<?php echo $team->getTeamID() ?>">Delete</a>
                                                     </td>
