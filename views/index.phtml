@@ -196,11 +196,11 @@
                                                     <td><?php echo $team->getTeamName() ?></td>
                                                     <td><?php echo $team->getIsBusy() ?></td>
                                                     <td>
-                                                        <button type="button" class="btn btn-warning editTeamBtn" data-toggle="modal" data-target="#editTeamModal">
+                                                        <button type="button" class="btn btn-warning editTeamBtn" data-toggle="modal" data-target="#editTeamModal" <?php echo $team->getTeamID()?>>
                                                             Edit
                                                         </button>
                                                     <td>
-                                                        <button type="button" class="btn btn-danger deleteTeamBtn" data-toggle="modal" data-target="#deleteTeamWarning">
+                                                        <button type="button" class="btn btn-danger deleteTeamBtn" data-toggle="modal" data-target="#deleteTeamWarning" <?php echo $team->getTeamID()?>>
                                                             Delete
                                                         </button>
                                                     </td>
