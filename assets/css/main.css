@@ -35,4 +35,16 @@
   text-decoration: none;
 }
 
+.f-raleway-thin {
+  font-family: "Raleway";
+  font-weight: 300;
+  color: black;
+}
+
+.f-opensans-bold {
+  font-family: "Open Sans";
+  font-weight: 700;
+  color: black;
+}
+
 /*# sourceMappingURL=main.css.map */
