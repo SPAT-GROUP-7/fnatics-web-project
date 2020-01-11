@@ -18,29 +18,28 @@ class RotaData
 
     }
 
+    public function getAllRotas() {
+        $sqlQuery = "SELECT R.dateFrom, R.dateTo, A.username as devA, B.username as devB
+                     FROM Rota R
+                        JOIN Users A on R.devA = A.userID
+                        JOIN Users B ON R.devB = B.userID
+                     ORDER BY R.dateFrom";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->execute();
+
+        $data = [];
+        while ($dbRow = $statement->fetch()) {
+            $data[] = Rota::fromRow($dbRow);
+        }
+        return $data;
+    }
     public function getRotas($from, $to) {
 
     }
 
     public function createRota($from, $to, $devA, $devB) {
-        $sqlQuery = "INSERT INTO rota (rotaID, from, to, devA, devB) ";
-    }
-
-    public function updateRota() {
-
-    }
-
-    public function deleteRota() {
-
-    }
-
-    public function generateRota() {
-        $nonAdmins = $this->_userData->getAllNonAdmins();
-
-//        var_dump($nonAdmins);
-        $devA =  $nonAdmins[array_rand($nonAdmins, 1)]->getUserID();
-        $devB =  $nonAdmins[array_rand($nonAdmins, 1)]->getUserID();
-
         $sqlQuery = "INSERT INTO Rota (dateFrom, dateTo, devA, devB)
                      VALUES (NOW(), DATE_ADD(NOW(), INTERVAL 14 DAY), :devA, :devB)";
 
@@ -55,5 +54,24 @@ class RotaData
 
         // TODO: maybe add a proper check on this
         return true;
+    }
+
+    public function updateRota() {
+
+    }
+
+    public function deleteRota() {
+
+    }
+
+    public function generateRota() {
+        $nonAdmins = $this->_userData->getAllNonAdmins();
+
+        $devA =  $nonAdmins[array_rand($nonAdmins, 1)];
+        $devB =  $nonAdmins[array_rand($nonAdmins, 1)];
+
+        $tempRota = Rota::fromString(date("d/m/Y"), date("d/m/Y"), $devA, $devB);
+
+        return $tempRota;
     }
 }
