@@ -29,6 +29,9 @@
             }).get();
 
             $('#dtw-name').text(data[0]);
+
+            const teamID = $(this).data('id');
+            $("a").attr("href", "deleteTeam.php?teamID=" + teamID);
         });
     });
 </script>

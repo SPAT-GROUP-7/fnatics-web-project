@@ -160,7 +160,7 @@
                                                         </button>
                                                     </td>
                                                     <td>
-                                                        <button type="button" class="btn btn-danger deleteUserBtn" data-toggle="modal" data-target="#deleteUserWarning">
+                                                        <button type="button" class="btn btn-danger deleteUserBtn" data-id="<?php echo $user->getUserID() ?>" data-toggle="modal" data-target="#deleteUserWarning">
                                                             Delete
                                                         </button>
                                                     </td>
@@ -200,7 +200,7 @@
                                                             Edit
                                                         </button>
                                                     <td>
-                                                        <button type="button" class="btn btn-danger deleteTeamBtn" data-toggle="modal" data-target="#deleteTeamWarning">
+                                                        <button type="button" class="btn btn-danger deleteTeamBtn" data-id="<?php echo $team->getTeamID() ?>" data-toggle="modal" data-target="#deleteTeamWarning">
                                                             Delete
                                                         </button>
                                                     </td>

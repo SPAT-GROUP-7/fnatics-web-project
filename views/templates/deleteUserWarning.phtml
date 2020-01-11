@@ -29,6 +29,9 @@
             }).get();
 
             $('#duw-name').text(data[1] + " " + data[2]);
+
+            const userID = $(this).data('id');
+            $("a").attr("href", "deleteUser.php?userID=" + userID);
         });
     });
 </script>
