@@ -1,14 +1,14 @@
-<div class="modal fade" id="deleteUserWarning" tabindex="-1" role="form">
+<div class="modal fade" id="deleteTeamWarning" tabindex="-1" role="form">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteUserWarningTitle">Delete User</h5>
+                <h5 class="modal-title" id="deleteTeamWarningTitle">Delete Team</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h6 class="f-opensans-bold">Are you sure you want to delete <span id="duw-name">Placeholder</span>?</h6>
+                <h6 class="f-opensans-bold">Are you sure you want to delete <span id="dtw-name">Placeholder</span>?</h6>
                 <p class="f-raleway-thin">This action is irreversible!</p>
             </div>
             <div class="modal-footer">
@@ -21,14 +21,14 @@
 
 <script>
     $(document).ready(function () {
-        $('.deleteUserBtn').on('click', function () {
+        $('.deleteTeamBtn').on('click', function () {
             const $tr = $(this).closest('tr');
 
             const data = $tr.children("td").map(function () {
                 return $(this).text();
             }).get();
 
-            $('#duw-name').text(data[1] + " " + data[2]);
+            $('#dtw-name').text(data[0]);
         });
     });
 </script>

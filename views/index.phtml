@@ -4,6 +4,7 @@
 <?php require("templates/editUserModal.phtml"); ?>
 <?php require("templates/editTeamModal.phtml"); ?>
 <?php require("templates/deleteUserWarning.phtml"); ?>
+<?php require("templates/deleteTeamWarning.phtml"); ?>
 
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -199,7 +200,9 @@
                                                             Edit
                                                         </button>
                                                     <td>
-                                                        <a class="btn btn-danger" href="deleteTeam.php?teamID=<?php echo $team->getTeamID() ?>">Delete</a>
+                                                        <button type="button" class="btn btn-danger deleteTeamBtn" data-toggle="modal" data-target="#deleteTeamWarning">
+                                                            Delete
+                                                        </button>
                                                     </td>
                                                 </tr>
                                                 <?php
