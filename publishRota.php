@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once ("models/RotaData.php");
-$rotaData = new RotaData();
+require_once("models/ScheduleData.php");
+$rotaData = new ScheduleData();
 
 $to = $_GET['to'];
 $from = $_GET['from'];

@@ -1,10 +1,10 @@
 <?php
 require_once ("Database.php");
-require_once ("Rota.php");
+require_once("Schedule.php");
 require_once ("UserData.php");
 
 
-class RotaData
+class ScheduleData
 {
     protected $_dbHandle, $_dbInstance, $_userData;
 
@@ -31,7 +31,7 @@ class RotaData
 
         $data = [];
         while ($dbRow = $statement->fetch()) {
-            $data[] = Rota::fromRow($dbRow);
+            $data[] = Schedule::fromRow($dbRow);
         }
         return $data;
     }
@@ -70,7 +70,7 @@ class RotaData
         $devA =  $nonAdmins[array_rand($nonAdmins, 1)];
         $devB =  $nonAdmins[array_rand($nonAdmins, 1)];
 
-        $tempRota = Rota::fromString(date("d/m/Y"), date("d/m/Y"), $devA, $devB);
+        $tempRota = Schedule::fromString(date("d/m/Y"), date("d/m/Y"), $devA, $devB);
 
         return $tempRota;
     }

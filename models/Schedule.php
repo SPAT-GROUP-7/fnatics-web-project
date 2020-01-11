@@ -6,7 +6,7 @@
  * Time: 14:11
  */
 
-class Rota
+class Schedule
 {
     protected $_from, $_to, $_devA, $_devB;
     public function __construct() {
