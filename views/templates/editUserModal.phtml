@@ -59,7 +59,9 @@
             $('#eum-username').val(data[0]);
             $('#eum-firstName').val(data[1]);
             $('#eum-lastName').val(data[2]);
-            $('#eum-team').val(data[3]);
+            $('#eum-team option').filter(function () {
+                return ($(this).text() === data[3]);
+            }).prop('selected', true);
 
             if (data[4] === "Yes"){
                 $('#eum-isadmin').prop('checked',true);
