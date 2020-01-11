@@ -9,11 +9,30 @@
 class Rota
 {
     protected $_from, $_to, $_devA, $_devB;
-    public function __construct($dbRow) {
-        $this->_from = $dbRow['from'];
-        $this->_to = $dbRow['to'];
-        $this->_devA = $dbRow['devA'];
-        $this->_devB = $dbRow['devB'];
+    public function __construct() {
+
+    }
+
+    public static function fromRow($dbRow) {
+        $instance = new self();
+
+        $instance->_from = $dbRow['from'];
+        $instance->_to = $dbRow['to'];
+        $instance->_devA = $dbRow['devA'];
+        $instance->_devB = $dbRow['devB'];
+
+        return $instance;
+    }
+
+    public static function fromString($from, $to, $devA, $devB) {
+        $instance = new self();
+
+        $instance->_from  = $from;
+        $instance->_to = $to;
+        $instance->_devA  = $devA;
+        $instance->_devB  = $devB;
+
+        return $instance;
     }
 
     public function getFrom() {
