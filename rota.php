@@ -1,6 +1,6 @@
 <?php
 session_start();
 $view = new stdClass();
-$view->pageTitle = "Rota View";
+$view->title = "Rota View";
 
 require_once ("views/rota.phtml");
