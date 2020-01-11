@@ -3,6 +3,7 @@
 <?php require("templates/loginModal.phtml"); ?>
 <?php require("templates/editUserModal.phtml"); ?>
 <?php require("templates/editTeamModal.phtml"); ?>
+<?php require("templates/deleteUserWarning.phtml"); ?>
 
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -158,7 +159,9 @@
                                                         </button>
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-danger" href="deleteUser.php?userID=<?php echo $user->getUserID() ?>">Delete</a>
+                                                        <button type="button" class="btn btn-danger deleteUserBtn" data-toggle="modal" data-target="#deleteUserWarning">
+                                                            Delete
+                                                        </button>
                                                     </td>
                                                 </tr>
                                                 <?php
