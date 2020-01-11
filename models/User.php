@@ -8,7 +8,7 @@
 
 class User
 {
-    protected $_userID, $teamName, $_username, $_password, $_firstName, $_lastName, $_dateCreated, $_dateLastUpdated, $_isAdmin;
+    protected $_userID, $_teamName, $_username, $_password, $_firstName, $_lastName, $_dateCreated, $_dateLastUpdated, $_isAdmin;
 
     public function __construct($dbRow)
     {
@@ -83,7 +83,7 @@ class User
     /**
      * @return mixed
      */
-    public function getisAdmin()
+    public function getIsAdmin()
     {
         return $this->_isAdmin;
     }
