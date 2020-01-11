@@ -16,8 +16,8 @@ class Rota
     public static function fromRow($dbRow) {
         $instance = new self();
 
-        $instance->_from = $dbRow['from'];
-        $instance->_to = $dbRow['to'];
+        $instance->_from = date('F j, Y',strtotime($dbRow['dateFrom']));
+        $instance->_to = date('F, j, Y', strtotime($dbRow['dateTo']));
         $instance->_devA = $dbRow['devA'];
         $instance->_devB = $dbRow['devB'];
 

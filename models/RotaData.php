@@ -18,6 +18,23 @@ class RotaData
 
     }
 
+    public function getAllRotas() {
+        $sqlQuery = "SELECT R.dateFrom, R.dateTo, A.username as devA, B.username as devB
+                     FROM Rota R
+                        JOIN Users A on R.devA = A.userID
+                        JOIN Users B ON R.devB = B.userID
+                     ORDER BY R.dateFrom";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->execute();
+
+        $data = [];
+        while ($dbRow = $statement->fetch()) {
+            $data[] = Rota::fromRow($dbRow);
+        }
+        return $data;
+    }
     public function getRotas($from, $to) {
 
     }
