@@ -1,0 +1,25 @@
+<?php require("templates/header.phtml"); ?>
+<?php require("templates/navbar.phtml"); ?>
+
+    <div class="row" id="editUser">
+        <div class="col-md-10 mx-auto">
+            <div class="card card-body bg-light mt-5">
+                <h1 class="card-title">Edit User</h1>
+                    <form action="editUser.php" method="post">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Edit your email</label>
+                                <input type="email" class="form-control" id="inputEmail4">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Password</label>
+                                <input type="password" class="form-control" id="inputPassword4">
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+
+<?php require("views/editUser.phtml"); ?>
+<?php require("templates/footer.phtml"); ?>
