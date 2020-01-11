@@ -4,7 +4,7 @@
 .sidebar-wrapper {
   z-index: 999;
   position: absolute;
-  height: 100vh;
+  height: calc(100vh - 40px);
   width: 15vw;
   overflow-x: hidden;
   background: #222222;
@@ -12,7 +12,7 @@
   text-align: -webkit-center;
 }
 .sidebar-wrapper .sidebar-nav {
-  height: 90vh;
+  height: calc(100vh - 40px);
   display: table-cell;
   vertical-align: middle;
   list-style-type: none;
