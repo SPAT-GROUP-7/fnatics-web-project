@@ -79,7 +79,8 @@ class TeamData
         $sqlQuery = "DELETE FROM Teams WHERE teamID = ?";
         $statement = $this->_dbHandle->prepare($sqlQuery);
 
-//        $statement->bindValue(":teamID", $id, PDO::PARAM_INT);
+//        TODO: Investigate why statement doesn't work when value is bound
+//       $statement->bindValue(":teamID", $id, PDO::PARAM_INT);
         $statement->execute([$id]);
         $this->_dbInstance->destruct();
 

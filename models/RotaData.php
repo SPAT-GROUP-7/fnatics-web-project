@@ -23,7 +23,7 @@ class RotaData
     }
 
     public function createRota($from, $to, $devA, $devB) {
-        $sqlQuery = "INSERT INTO rota (rotaID, from, to, devA, devB) ";
+//        $sqlQuery = "INSERT INTO Rota (rotaID, dateFrom, dateTo, devA, devB)";
     }
 
     public function updateRota() {
