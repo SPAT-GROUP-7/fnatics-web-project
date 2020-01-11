@@ -15,9 +15,8 @@ $rota = $view->rota;
             <div class="col-lg-12">
                 <a class="btn btn-primary" href="publishRota.php?to=<?php echo $rota->getTo() ?>&from=<?php echo $rota->getFrom() ?> &devA=<?php echo $rota->getDevA()->getUserID() ?>&devB=<?php echo $rota->getDevB()->getUserID() ?>">Publish this Rota</a>
             </div>
-        </div>
-        <div class="row" id="rota">
-            <div class="col-md-10 mx-auto">
+
+            <div class="col-lg-12">
                 <div class="card card-body bg-light mt-5">
                     <h1 class="card-title">Rota</h1>
 
@@ -40,5 +39,6 @@ $rota = $view->rota;
         </div>
     </div>
 </div>
+
 
 <?php require_once ("templates/footer.phtml") ?>
