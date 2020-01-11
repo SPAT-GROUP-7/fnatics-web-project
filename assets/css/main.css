@@ -1,18 +1,15 @@
-/*
-  Main sass file. Do not edit!!!
- */
 .sidebar-wrapper {
   z-index: 999;
   position: absolute;
-  height: 100vh;
+  height: calc(100vh - 40px);
   width: 15vw;
   overflow-x: hidden;
-  background: #222222;
+  background: #343a40;
   margin-top: 40px;
   text-align: -webkit-center;
 }
 .sidebar-wrapper .sidebar-nav {
-  height: 90vh;
+  height: calc(100vh - 40px);
   display: table-cell;
   vertical-align: middle;
   list-style-type: none;
@@ -20,7 +17,6 @@
 }
 
 .content-wrapper {
-  width: 100%;
   position: absolute;
   padding: 15px;
   margin-top: 40px;
