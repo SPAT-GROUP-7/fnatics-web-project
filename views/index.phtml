@@ -1,6 +1,7 @@
 <?php require("templates/header.phtml"); ?>
 <?php require("templates/navbar.phtml"); ?>
 <?php require("templates/loginModal.phtml"); ?>
+<?php require("templates/editUserModal.phtml"); ?>
 
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -151,7 +152,9 @@
                                                     <td><?php echo $user->getTeamName() ?></td>
                                                     <td><?php echo $user->getIsAdmin() ?></td>
                                                     <td>
-                                                        <a class="btn btn-warning" href="editUser.php?teamID=<? echo $team->getUserID()?>">Edit</a>
+                                                        <button type="button" class="btn btn-warning editUserBtn" data-toggle="modal" data-target="#editUserModal">
+                                                            Edit
+                                                        </button>
                                                     </td>
                                                     <td>
                                                         <a class="btn btn-danger" href="deleteUser.php?userID=<?php echo $user->getUserID() ?>">Delete</a>

@@ -1,0 +1,71 @@
+<div class="modal fade" id="editUserModal" tabindex="-1" role="form">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editUserModalTitle">Edit User</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span id="edit-user-error"></span>
+                <form method="post" id="edit-user-form">
+                    <div class="form-group">
+                        <label for="eum-username">Username: </label>
+                        <input type="text" name="username" id="eum-username" placeholder="Enter Username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eum-firstName">First Name: </label>
+                        <input type="text" name="firstName" id="eum-firstName" placeholder="John" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eum-lastName">Last Name: </label>
+                        <input type="text" name="lastName" id="eum-lastName" placeholder="Doe" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eum-team">Team: </label>
+                        <select class="form-control" name="teamID" id="eum-team" required>
+                            <?php
+                                foreach ($view->teams as $team) {
+                                    ?>
+                                    <option value="<?php echo $team->getTeamID() ?>"><?php echo $team->getTeamName() ?></option>
+                                    <?php
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="eum-isadmin">
+                        <label class="form-check-label" for="eum-isadmin">User is an Admin?</label>
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="submit" class="btn btn-success">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.editUserBtn').on('click', function () {
+            $tr = $(this).closest('tr');
+
+            var data = $tr.children("td").map(function () {
+                return $(this).text();
+            }).get();
+
+            $('#eum-username').val(data[0]);
+            $('#eum-firstName').val(data[1]);
+            $('#eum-lastName').val(data[2]);
+            $('#eum-team').val(data[3]);
+
+            if (data[4] === "Yes"){
+                $('#eum-isadmin').prop('checked',true);
+            } else {
+                $('#eum-isadmin').prop('checked',false);
+            }
+        });
+    });
+</script>
