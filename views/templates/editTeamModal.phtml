@@ -30,9 +30,9 @@
 <script>
     $(document).ready(function () {
         $('.editTeamBtn').on('click', function () {
-            $tr = $(this).closest('tr');
+            const $tr = $(this).closest('tr');
 
-            var data = $tr.children("td").map(function () {
+            const data = $tr.children("td").map(function () {
                 return $(this).text();
             }).get();
 
