@@ -13,7 +13,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a class="btn btn-danger" href="#">Delete</a>
+                <a class="btn btn-danger" id="dtw-button" href="#">Delete</a>
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
             $('#dtw-name').text(data[0]);
 
             const teamID = $(this).data('id');
-            $("a").attr("href", "deleteTeam.php?teamID=" + teamID);
+            $("a#dtw-button").prop("href", "deleteTeam.php?teamID=" + teamID);
         });
     });
 </script>

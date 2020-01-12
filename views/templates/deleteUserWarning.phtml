@@ -13,7 +13,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a class="btn btn-danger" href="#">Delete</a>
+                <a class="btn btn-danger" id="duw-button" href="#">Delete</a>
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
             $('#duw-name').text(data[1] + " " + data[2]);
 
             const userID = $(this).data('id');
-            $("a").attr("href", "deleteUser.php?userID=" + userID);
+            $("a#duw-button").prop("href", "deleteUser.php?userID=" + userID);
         });
     });
 </script>
