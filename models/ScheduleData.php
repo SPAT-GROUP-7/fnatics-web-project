@@ -67,8 +67,19 @@ class ScheduleData
     public function generateRota() {
         $nonAdmins = $this->_userData->getAllNonAdmins();
 
-        $devA =  $nonAdmins[array_rand($nonAdmins, 1)];
-        $devB =  $nonAdmins[array_rand($nonAdmins, 1)];
+        // Pick two users to be on support rota
+
+        // pick devA from the array and remove them as to prevent the chance of them being chosen again as devB
+        $indexA = array_rand($nonAdmins, 1);
+
+        $devA =  $nonAdmins[$indexA];
+        unset($nonAdmins[$indexA]);
+
+        // Remove 1st dev
+        unset($nonAdmins[$indexA]);
+
+        $indexB = array_rand($nonAdmins, 1);
+        $devB =  $nonAdmins[$indexB];
 
         $tempRota = Schedule::fromString(date("d/m/Y"), date("d/m/Y"), $devA, $devB);
 
