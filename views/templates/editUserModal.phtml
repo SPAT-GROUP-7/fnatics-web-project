@@ -10,6 +10,7 @@
             <div class="modal-body">
                 <span id="edit-user-error"></span>
                 <form method="post" id="edit-user-form">
+                    <input type="hidden" name="userID" id="eum-userID">
                     <div class="form-group">
                         <label for="eum-username">Username: </label>
                         <input type="text" name="username" id="eum-username" placeholder="Enter Username" class="form-control" required>
@@ -68,6 +69,9 @@
             } else {
                 $('#eum-isadmin').prop('checked',false);
             }
+
+            const userID = $(this).data('id');
+            $("#eum-userID").val(userID);
         });
     });
 </script>
