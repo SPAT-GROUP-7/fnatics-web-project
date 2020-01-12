@@ -64,8 +64,19 @@ class ScheduleData
 
     }
 
-    public function generateRota() {
+    public function generateRotas($from, $n) {
         $nonAdmins = $this->_userData->getAllNonAdmins();
+        $dates = array();
+        $dateFrom = date("d-m-Y", strtotime($from));
+        for ($i = 0; $i < $n; $i++) {
+            $add = ($i * 14);
+            $from = date("d-m-Y", strtotime($dateFrom. ' + ' . $add . ' days'));
+            $to = date("d-m-Y", strtotime($from. ' + 14 days'));
+
+//            echo "<h1>Date FROM: $from</h1>";
+//            echo "<h1>Date TO: $to</h1>";
+            array_push($dates, ["from" => $from, "to" => $to]);
+        }
 
         // Pick two users to be on support rota
 
@@ -81,8 +92,11 @@ class ScheduleData
         $indexB = array_rand($nonAdmins, 1);
         $devB =  $nonAdmins[$indexB];
 
-        $tempRota = Schedule::fromString(date("d/m/Y"), date("d/m/Y"), $devA, $devB);
+        $rotas = [];
+        for ($i = 0; $i < $n; $i++) {
+            $rotas[] = Schedule::fromString($dates[$i]['from'], $dates[$i]['to'], $devA, $devB);
+        }
 
-        return $tempRota;
+        return $rotas;
     }
 }

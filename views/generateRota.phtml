@@ -2,7 +2,7 @@
 <?php require_once ("templates/navbar.phtml") ?>
 
 <?php
-$rota = $view->rota;
+
 ?>
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -13,7 +13,7 @@ $rota = $view->rota;
 
             </div>
             <div class="col-lg-12">
-                <a class="btn btn-primary" href="publishRota.php?to=<?php echo $rota->getTo() ?>&from=<?php echo $rota->getFrom() ?> &devA=<?php echo $rota->getDevA()->getUserID() ?>&devB=<?php echo $rota->getDevB()->getUserID() ?>">Publish this Rota</a>
+<!--                <a class="btn btn-primary" href="publishRota.php?to=--><?php //echo $rota->getTo() ?><!--&from=--><?php //echo $rota->getFrom() ?><!-- &devA=--><?php //echo $rota->getDevA()->getUserID() ?><!--&devB=--><?php //echo $rota->getDevB()->getUserID() ?><!--">Publish this Rota</a>-->
             </div>
 
             <div class="col-lg-12">
@@ -27,12 +27,18 @@ $rota = $view->rota;
                             <th>Dev A</th>
                             <th>Dev B</th>
                         </tr>
-                        <tr>
-                            <th><?php echo $view->rota->getFrom() ?></th>
-                            <th><?php echo $view->rota->getTo() ?></th>
-                            <th><?php echo $view->rota->getDevA()->getUsername()?></th>
-                            <th><?php echo $view->rota->getDevB()->getUsername()?></th>
-                        </tr>
+                        <?php
+                        foreach ($view->rotas as $rota) {
+                            ?>
+                            <tr>
+                                <th><?php echo $rota->getFrom() ?></th>
+                                <th><?php echo $rota->getTo() ?></th>
+                                <th><?php echo $rota->getDevA()->getUsername()?></th>
+                                <th><?php echo $rota->getDevB()->getUsername()?></th>
+                            </tr>
+                            <?php
+                        }
+                        ?>
                     </table>
                 </div>
             </div>
