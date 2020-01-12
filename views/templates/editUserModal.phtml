@@ -47,31 +47,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $('.editUserBtn').on('click', function () {
-            const $tr = $(this).closest('tr');
-
-            const data = $tr.children("td").map(function () {
-                return $(this).text();
-            }).get();
-
-            $('#eum-username').val(data[0]);
-            $('#eum-firstName').val(data[1]);
-            $('#eum-lastName').val(data[2]);
-            $('#eum-team option').filter(function () {
-                return ($(this).text() === data[3]);
-            }).prop('selected', true);
-
-            if (data[4] === "Yes"){
-                $('#eum-isadmin').prop('checked',true);
-            } else {
-                $('#eum-isadmin').prop('checked',false);
-            }
-
-            const userID = $(this).data('id');
-            $("#eum-userID").val(userID);
-        });
-    });
-</script>

@@ -29,23 +29,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $('#login-form').on('submit', function (event) {
-            event.preventDefault();
-            $.ajax({
-                url: "login.php",
-                method: "POST",
-                data: $(this).serialize(),
-                success: function (data) {
-                    if (data !== ''){
-                        $('#login-error').html(data);
-                    } else {
-                        window.location = 'index.php';
-                    }
-                }
-            })
-        });
-    });
-</script>

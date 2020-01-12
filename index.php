@@ -7,6 +7,7 @@ require_once("models/ScheduleData.php");
 
 $view = new stdClass();
 $view->title = "Schedule System - Fanatics";
+$view->pageName = "index";
 
 $userData = new UserData();
 
