@@ -2,11 +2,11 @@
 require_once ("models/UserData.php");
 
 $teamID = $_GET['teamID'];
-echo "DELETING " . $teamID;
 
 $teamName = htmlentities($_POST['teamName']);
+echo $teamName;
 $isBusy = htmlentities($_POST['isBusy']);
 $teamData = new TeamData();
-$teamData->updateTeam($teamID);
+$teamData->updateTeam($teamID, $teamName, $isBusy);
 
 header("Location: index.php");
