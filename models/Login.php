@@ -15,7 +15,9 @@ class Login
 
     public function login($username, $password) {
 
-        $sqlQuery = "SELECT * FROM Users U
+        $sqlQuery = "SELECT U.userID, U.username, U.password, U.firstName, U.lastName, U.isAdmin, U.dateCreated, U.lastUpdate, T.teamName 
+                     FROM Users U
+                        JOIN Teams T on U.teamID = T.teamID
                      WHERE U.userName = :username";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
