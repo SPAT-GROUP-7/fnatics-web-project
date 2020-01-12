@@ -15,6 +15,9 @@
                 <?php
                     if (isset($_SESSION['loggedIn'])) {
                         echo "<h1>" .$_SESSION['username'] . "</h1>";
+                        if (isset($_SESSION['isAdmin'])) {
+                            echo "<h1>You're an admin</h1>";
+                        }
                     } else {
                         echo "<h1>Please Login</h1>";
                     }

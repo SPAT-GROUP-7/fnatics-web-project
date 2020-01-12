@@ -38,7 +38,7 @@ class Login
 
             if ($validPassword) {
 
-                return true;
+                return new User($user);
             } else {
 
                 return false;
