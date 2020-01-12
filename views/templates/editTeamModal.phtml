@@ -43,6 +43,8 @@
             } else {
                 $('#etm-isbusy').prop('checked',false);
             }
+            const teamID = $(this).data('id');
+            $("a").attr("href", "editTeam.php?teamID=" + teamID);
         });
     });
 </script>

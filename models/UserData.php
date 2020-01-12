@@ -136,6 +136,7 @@ class UserData
         return true;
     }
 
+    //Delete user
     public function deleteUser($id) {
         $sqlQuery = "DELETE FROM Users
                      WHERE userID = :userID";

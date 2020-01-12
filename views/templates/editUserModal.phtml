@@ -68,6 +68,8 @@
             } else {
                 $('#eum-isadmin').prop('checked',false);
             }
+            const userID = $(this).data('id');
+            $("a").attr("href", "editUSer.php?userID=" + userID);
         });
     });
 </script>
