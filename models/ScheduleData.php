@@ -64,14 +64,51 @@ class ScheduleData
 
     }
 
-    public function generateRota() {
-        $nonAdmins = $this->_userData->getAllNonAdmins();
+    public function generateRotas($from, $n) {
+        $nonAdminsBase = $this->_userData->getAllNonAdmins();
+        $dates = array();
+        $rotas = [];
+        $dateFrom = date("d-m-Y", strtotime($from));
+        for ($i = 0; $i < $n; $i++) {
+            $nonAdmins = $nonAdminsBase;
+            $add = ($i * 14);
+            $from = date("d-m-Y", strtotime($dateFrom. ' + ' . $add . ' days'));
+            $to = date("d-m-Y", strtotime($from. ' + 14 days'));
 
-        $devA =  $nonAdmins[array_rand($nonAdmins, 1)];
-        $devB =  $nonAdmins[array_rand($nonAdmins, 1)];
+            $indexA = array_rand($nonAdmins, 1);
 
-        $tempRota = Schedule::fromString(date("d/m/Y"), date("d/m/Y"), $devA, $devB);
+            $devA =  $nonAdmins[$indexA];
+            unset($nonAdmins[$indexA]);
 
-        return $tempRota;
+            $indexB = array_rand($nonAdmins, 1);
+            $devB =  $nonAdmins[$indexB];
+
+            $rotas[] = Schedule::fromString($from, $to, $devA, $devB);
+
+//            echo "<h1>Date FROM: $from</h1>";
+//            echo "<h1>Date TO: $to</h1>";
+//            array_push($dates, ["from" => $from, "to" => $to]);
+        }
+
+        // Pick two users to be on support rota
+
+        // pick devA from the array and remove them as to prevent the chance of them being chosen again as devB
+//        $indexA = array_rand($nonAdmins, 1);
+//
+//        $devA =  $nonAdmins[$indexA];
+//        unset($nonAdmins[$indexA]);
+//
+//        // Remove 1st dev
+//        unset($nonAdmins[$indexA]);
+//
+//        $indexB = array_rand($nonAdmins, 1);
+//        $devB =  $nonAdmins[$indexB];
+//
+//
+//        for ($i = 0; $i < $n; $i++) {
+//            $rotas[] = Schedule::fromString($dates[$i]['from'], $dates[$i]['to'], $devA, $devB);
+//        }
+
+        return $rotas;
     }
 }

@@ -13,24 +13,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a class="btn btn-danger" href="/deleteUser.php">Delete</a>
+                <a class="btn btn-danger" id="duw-button" href="#">Delete</a>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $('.deleteUserBtn').on('click', function () {
-            const $tr = $(this).closest('tr');
-            const data = $tr.children("td").map(function () {
-                return $(this).text();
-            }).get();
-
-            $('#duw-name').text(data[1] + " " + data[2]);
-
-            const userID = $(this).data('id');
-            $("a").attr("href", "deleteUser.php?userID=" + userID);
-        });
-    });
-</script>

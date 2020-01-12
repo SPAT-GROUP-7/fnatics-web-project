@@ -2,14 +2,15 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editTeamModalTitle">Edit Team</h5>
+                <h5 class="modal-title" id="editTeamModalTitle">Edit User</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <span id="edit-team-error"></span>
-                <form action="/editTeam.php" method="post" id="edit-team-form">
+                <form method="post" id="edit-team-form">
+                    <input type="hidden" name="teamID" id="etm-teamID">
                     <div class="form-group">
                         <label for="etm-teamname">Team Name: </label>
                         <input type="text" name="username" id="etm-teamname" placeholder="Enter a Team Name" class="form-control" required>
@@ -26,25 +27,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $('.editTeamBtn').on('click', function () {
-            const $tr = $(this).closest('tr');
-
-            const data = $tr.children("td").map(function () {
-                return $(this).text();
-            }).get();
-
-            $('#etm-teamname').val(data[0]);
-
-            if (data[1] === "Yes"){
-                $('#etm-isbusy').prop('checked',true);
-            } else {
-                $('#etm-isbusy').prop('checked',false);
-            }
-            const teamID = $(this).data('id');
-            $("a").attr("href", "editTeam.php?teamID=" + teamID);
-        });
-    });
-</script>
