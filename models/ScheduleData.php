@@ -15,7 +15,18 @@ class ScheduleData
     }
 
     public function getRota($id) {
+        $query = "SELECT * FROM Rota WHERE rotaID = :rotaID";
+        $statement = $this->_dbHandle->prepare($query);
+        $statement->bindValue(":rotaID", $id, PDO::PARAM_INT);
 
+        $statement->execute();
+        $this->_dbInstance->destruct();
+
+        $dataSet = [];
+        while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $dataSet[] = new Schedule($dbRow);
+        }
+        return $dataSet;
     }
 
     public function getAllRotas() {
