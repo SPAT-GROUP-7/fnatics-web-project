@@ -61,8 +61,9 @@ class TeamData
     public function updateTeam($teamID, $teamName, $isBusy){
         $statement = $this->_dbHandle->prepare("UPDATE Teams SET teamName = :teamName, isBusy = :teamName WHERE teamID = :teamID");
 
-        $statement->bindValue(":teamName", $teamName, PDO::PARAM_STR);
+
         $statement->bindValue(":teamID", $teamID, PDO::PARAM_INT);
+        $statement->bindValue(":teamName", $teamName, PDO::PARAM_STR);
         $statement->bindValue(":isBusy", $isBusy, PDO::PARAM_INT);
 
         $statement->execute();

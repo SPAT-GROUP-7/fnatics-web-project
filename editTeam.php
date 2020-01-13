@@ -1,12 +1,13 @@
 <?php
-require_once ("models/UserData.php");
+require_once ("models/TeamData.php");
 
-$teamID = $_GET['teamID'];
+if (isset($_POST['teamName'])) {
+    $teamID = htmlentities($_POST['teamID']);
+    $teamName = htmlentities($_POST['teamName']);
+    $isBusy = isset($_POST['isBusy']) ? 1 : 0;
 
-$teamName = htmlentities($_POST['teamName']);
-echo $teamName;
-$isBusy = htmlentities($_POST['isBusy']);
-$teamData = new TeamData();
-$teamData->updateTeam($teamID, $teamName, $isBusy);
+    $teamData = new TeamData();
+    $teamData->updateTeam(intval($teamID), $teamName, $isBusy);
+}
 
-header("Location: index.php");
+header("Location: adminPanel.php");
