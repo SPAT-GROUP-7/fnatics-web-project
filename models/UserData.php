@@ -127,10 +127,10 @@ class UserData
     }
 
     // Unsure of the parameters for this
-    public function updateUser($userID, $username, $password, $firstName, $lastName, $isAdmin) {
+    public function updateUser($userID, $teamID, $username, $firstName, $lastName, $isAdmin) {
         $sqlQuery = "UPDATE Users U 
                      SET U.username = :username,
-                         U.password = :password,
+                         U.teamID = :teamID,
                          U.firstName = :firstName,
                          U.lastName = :lastName,
                          U.lastUpdate = NOW(),
@@ -140,7 +140,7 @@ class UserData
         $statement = $this->_dbHandle->prepare($sqlQuery);
 
         $statement->bindValue(":username", $username, PDO::PARAM_STR);
-        $statement->bindValue(":password", $password, PDO::PARAM_STR);
+        $statement->bindValue(":teamID", $teamID, PDO::PARAM_STR);
         $statement->bindValue(":firstName",$firstName, PDO::PARAM_STR);
         $statement->bindValue(":lastName", $lastName, PDO::PARAM_STR);
         $statement->bindValue(":isAdmin", $isAdmin, PDO::PARAM_BOOL);

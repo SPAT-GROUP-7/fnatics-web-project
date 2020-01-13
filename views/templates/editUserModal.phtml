@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <span id="edit-user-error"></span>
-                <form method="post" id="edit-user-form">
+                <form action="editUser.php" method="post" id="edit-user-form">
                     <input type="hidden" name="userID" id="eum-userID">
                     <div class="form-group">
                         <label for="eum-username">Username: </label>
@@ -36,7 +36,7 @@
                         </select>
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="eum-isadmin">
+                        <input type="checkbox" class="form-check-input" id="eum-isadmin" name="isAdmin">
                         <label class="form-check-label" for="eum-isadmin">User is an Admin?</label>
                     </div>
                     <br>
