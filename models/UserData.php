@@ -143,7 +143,7 @@ class UserData
         $statement->bindValue(":teamID", $teamID, PDO::PARAM_STR);
         $statement->bindValue(":firstName",$firstName, PDO::PARAM_STR);
         $statement->bindValue(":lastName", $lastName, PDO::PARAM_STR);
-        $statement->bindValue(":isAdmin", $isAdmin, PDO::PARAM_BOOL);
+        $statement->bindValue(":isAdmin", $isAdmin, PDO::PARAM_INT);
         $statement->bindValue(":userID", $userID, PDO::PARAM_INT);
 
         $statement->execute();

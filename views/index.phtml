@@ -13,7 +13,8 @@
                 <h1>Current Support Rota</h1>
                 <table class="table">
                     <tr>
-                        <th>Developer</th>
+                        <th>Developer A</th>
+                        <th>Developer B</th>
                         <th>From</th>
                         <th>To</th>
                     </tr>
@@ -22,10 +23,10 @@
                         foreach ($view->rotas as $rota) {
                         ?>
                     <tr>
-                        <td><?php echo $rota->getFrom() ?></td>
-                        <td><?php echo $rota->getTo() ?></td>
                         <td><?php echo $rota->getDevA() ?></td>
                         <td><?php echo $rota->getDevB() ?></td>
+                        <td><?php echo $rota->getFrom() ?></td>
+                        <td><?php echo $rota->getTo() ?></td>
                     </tr>
                     <?php
                     }
