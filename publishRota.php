@@ -2,13 +2,9 @@
 session_start();
 
 require_once("models/ScheduleData.php");
-$rotaData = new ScheduleData();
+$data = $_POST['rotas'];
+$uns = array(json_decode($data));
 
-$to = $_GET['to'];
-$from = $_GET['from'];
-$devA = $_GET['devA'];
-$devB = $_GET['devB'];
+//$rotaData->createRota($from, $to, $devA, $devB);
 
-$rotaData->createRota($from, $to, $devA, $devB);
-
-header("Location: rota.php");
+//header("Location: rota.php");

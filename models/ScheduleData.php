@@ -95,30 +95,7 @@ class ScheduleData
             $devB =  $nonAdmins[$indexB];
 
             $rotas[] = Schedule::fromString($from, $to, $devA, $devB);
-
-//            echo "<h1>Date FROM: $from</h1>";
-//            echo "<h1>Date TO: $to</h1>";
-//            array_push($dates, ["from" => $from, "to" => $to]);
         }
-
-        // Pick two users to be on support rota
-
-        // pick devA from the array and remove them as to prevent the chance of them being chosen again as devB
-//        $indexA = array_rand($nonAdmins, 1);
-//
-//        $devA =  $nonAdmins[$indexA];
-//        unset($nonAdmins[$indexA]);
-//
-//        // Remove 1st dev
-//        unset($nonAdmins[$indexA]);
-//
-//        $indexB = array_rand($nonAdmins, 1);
-//        $devB =  $nonAdmins[$indexB];
-//
-//
-//        for ($i = 0; $i < $n; $i++) {
-//            $rotas[] = Schedule::fromString($dates[$i]['from'], $dates[$i]['to'], $devA, $devB);
-//        }
 
         return $rotas;
     }
