@@ -64,7 +64,7 @@ class TeamData
 
         $statement->bindValue(":teamID", $teamID, PDO::PARAM_INT);
         $statement->bindValue(":teamName", $teamName, PDO::PARAM_STR);
-        $statement->bindValue(":isBusy", $isBusy, PDO::PARAM_INT);
+        $statement->bindValue(":isBusy", $isBusy, PDO::PARAM_BOOL);
 
         $statement->execute();
         $this->_dbInstance->destruct();
