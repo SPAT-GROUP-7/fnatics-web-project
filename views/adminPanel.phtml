@@ -1,44 +1,220 @@
-<?php require_once("templates/header.phtml"); ?>
-<?php require_once("templates/navbar.phtml"); ?>
-<div class="content-wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1>Admin Panel</h1>
+<?php require("templates/header.phtml"); ?>
+<?php require("templates/navbar.phtml"); ?>
+<?php require("templates/loginModal.phtml"); ?>
+<?php require("templates/editUserModal.phtml"); ?>
+<?php require("templates/editTeamModal.phtml"); ?>
+<?php require("templates/deleteUserWarning.phtml"); ?>
+<?php require("templates/deleteTeamWarning.phtml"); ?>
 
-                <ul class="list-group">
-                    <h3>Users</h3>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                        <?php if (isset($_SESSION['isAdmin'])) : ?>
 
-                    <li class="list-group-item">
-                        <a href="">
-                            Create Users
-                        </a>
-                    </li>
+                        <h1>Welcome, <?php echo $_SESSION['username'] ?>!</h1>
 
-                    <li class="list-group-item">
-                        <a href="viewUsers.php">
-                            View Users
-                        </a>
-                    </li>
-                </ul>
+                        <!-- NAVIGATION FOR ADMIN -->
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Create User</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Create Team</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-contact2-tab" data-toggle="pill" href="#pills-contact2" role="tab" aria-controls="pills-contact2" aria-selected="false">Change User Team</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-contact3-tab" data-toggle="pill" href="#pills-contact3" role="tab" aria-controls="pills-contact3" aria-selected="false">View All Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-contact4-tab" data-toggle="pill" href="#pills-contact4" role="tab" aria-controls="pills-contact4" aria-selected="false">View All Teams</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-contact5-tab" data-toggle="pill" href="#pills-contact5" role="tab" aria-controls="pills-contact5" aria-selected="false">Delete Team by Name</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-contact6-tab" data-toggle="pill" href="#pills-contact6" role="tab" aria-controls="pills-contact6" aria-selected="false">Delete User by Name</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <!-- CREATE A USER -->
+                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 
-                <ul class="list-group">
-                    <h3>Teams</h3>
+                                <form action="createUser.php" method="post">
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label for="firstName">First Name: </label>
+                                            <input type="text" name="firstName" id="firstName" class="form-control" placeholder="Joe">
+                                        </div>
+                                        <div class="col">
+                                            <label for="lastName">Last Name: </label>
+                                            <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Bloggs">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label for="email">Email: </label>
+                                            <input type="text" name="username" id="email" class="form-control" placeholder="john.doe@example.com">
+                                        </div>
+                                        <div class="col">
+                                            <label for="password">Password: </label>
+                                            <input type="password" name="password" id="password" placeholder="Password" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Team: </label>
+                                        <select class="form-control" name="teamID">
+                                            <?php
+                                            foreach ($view->teams as $team) {
+                                                ?>
+                                                <option value="<?php echo $team->getTeamID() ?>">
+                                                    <?php echo $team->getTeamName() ?>
+                                                </option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="isAdmin" id="isadmin">
+                                        <label class="form-check-label" for="isadmin">Admin?</label>
+                                    </div>
+                                    <br>
+                                    <button type="submit" name="submit" class="btn btn-primary">Create</button>
+                                </form>
 
-                    <li class="list-group-item">
-                        <a href="">
-                            Create Teams
-                        </a>
-                    </li>
+                            </div>
 
-                    <li class="list-group-item">
-                        <a href="viewTeams.php">
-                            View Teams
-                        </a>
-                    </li>
-                </ul>
+                            <!-- CREATE A TEAM -->
+                            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+
+                                <form action="createTeam.php" method="post">
+                                    <div class="form-group">
+                                        <label for="teamname">Team Name: </label>
+                                        <input type="text" name="teamName" id="teamname" placeholder="Enter a Team Name" class="form-control">
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="isBusy" id="isBusy">
+                                        <label class="form-check-label" for="isBusy">Busy?</label>
+                                    </div>
+                                    <br>
+                                    <button type="submit" name="submit" class="btn btn-primary">Create</button>
+                                </form>
+
+                            </div>
+
+                            <!-- CHANGE USERS TEAM BY NAME -->
+                            <div class="tab-pane fade" id="pills-contact2" role="tabpanel" aria-labelledby="pills-contact-tab">
+
+                                <form action="" method="post">
+                                    <div class="form-group">
+                                        <label for="email">Email:</label>
+                                        <input type="text" name="email" id="email" placeholder="Enter an Email" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="teamname">Team:</label>
+                                        <input type="text" name="teamname" id="teamname" placeholder="Enter a Team Name" class="form-control">
+                                    </div>
+                                    <br>
+                                    <button type="submit" name="submit" class="btn btn-primary">Create</button>
+                                </form>
+
+                            </div>
+
+                            <!-- VIEW ALL USERS -->
+                            <div class="tab-pane fade" id="pills-contact3" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                <div class="row" id="users">
+                                    <div class="col-md-10 mx-auto">
+                                        <div class="card card-body bg-light mt-5">
+                                            <h1 class="card-title">Users</h1>
+
+                                            <table class="table">
+                                                <tr>
+                                                    <th>Username</th>
+                                                    <th>Firstname</th>
+                                                    <th>Lastname</th>
+                                                    <th>Team</th>
+                                                    <th>Admin</th>
+                                                </tr>
+                                                <?php
+                                                foreach ($view->users as $user){
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $user->getUsername() ?></td>
+                                                        <td><?php echo $user->getFirstname() ?></td>
+                                                        <td><?php echo $user->getLastname() ?></td>
+                                                        <td><?php echo $user->getTeamName() ?></td>
+                                                        <td><?php echo $user->getIsAdmin() ?></td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-warning editUserBtn" data-id="<?php echo $user->getUserID() ?>" data-toggle="modal" data-target="#editUserModal">
+                                                                Edit
+                                                            </button>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-danger deleteUserBtn" data-id="<?php echo $user->getUserID() ?>" data-toggle="modal" data-target="#deleteUserWarning">
+                                                                Delete
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- VIEW ALL TEAMS OPTION TO EDIT AND DELETE -->
+                            <div class="tab-pane fade" id="pills-contact4" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                <div class="row" id="teams">
+                                    <div class="col-md-10 mx-auto">
+                                        <div class="card card-body bg-light mt-5">
+                                            <h1 class="card-title">Teams</h1>
+
+                                            <table class="table">
+                                                <tr>
+                                                    <th>Team Name</th>
+                                                    <th>Is Busy</th>
+                                                    <th>Edit</th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                                <?php
+                                                foreach ($view->teams as $team){
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $team->getTeamName() ?></td>
+                                                        <td><?php echo $team->getIsBusy() ?></td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-warning editTeamBtn" data-id="<?php echo $team->getTeamID() ?>" data-toggle="modal" data-target="#editTeamModal">
+                                                                Edit
+                                                            </button>
+                                                        <td>
+                                                            <button type="button" class="btn btn-danger deleteTeamBtn" data-id="<?php echo $team->getTeamID() ?>" data-toggle="modal" data-target="#deleteTeamWarning">
+                                                                Delete
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php else : ?>
+                        <h1>You do not have permission to view this page...</h1>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<?php require_once("templates/footer.phtml"); ?>
+
+
+
+<?php require("templates/footer.phtml"); ?>
