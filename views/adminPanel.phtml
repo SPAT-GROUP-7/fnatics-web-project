@@ -80,8 +80,8 @@
 
                             <!-- CREATE A TEAM -->
                             <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-
-                                <form action="createTeam.php" method="post">
+                                <span id="createTeamError"></span>
+                                <form method="post" id="createTeamForm">
                                     <div class="form-group">
                                         <label for="teamname">Team Name: </label>
                                         <input type="text" name="teamName" id="teamname" placeholder="Enter a Team Name" class="form-control">
@@ -103,7 +103,8 @@
                                         <div class="card card-body bg-light mt-5">
                                             <h1 class="card-title">Users</h1>
 
-                                            <table class="table">
+                                            <div class="table-overflow-y table-scroll">
+                                            <table class="table table-bordered table-striped mb-0">
                                                 <tr>
                                                     <th>Username</th>
                                                     <th>Firstname</th>
@@ -137,6 +138,7 @@
                                                 }
                                                 ?>
                                             </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -150,6 +152,7 @@
                                         <div class="card card-body bg-light mt-5">
                                             <h1 class="card-title">Teams</h1>
 
+                                            <div class="table-overflow-y table-scroll">
                                             <table class="table">
                                                 <tr>
                                                     <th>Team Name</th>
@@ -177,6 +180,7 @@
                                                 }
                                                 ?>
                                             </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

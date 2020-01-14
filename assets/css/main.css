@@ -47,4 +47,23 @@
   color: black;
 }
 
+body {
+  overflow: hidden;
+}
+
+.table-scroll {
+  position: relative;
+  height: 400px;
+  overflow: auto;
+}
+@media (max-height: 700px) {
+  .table-scroll {
+    max-height: 250px;
+  }
+}
+
+.table-overflow-y {
+  display: block;
+}
+
 /*# sourceMappingURL=main.css.map */
