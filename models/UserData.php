@@ -169,4 +169,17 @@ class UserData
         // TODO: Add a check for this
         return true;
     }
+
+    //Check Username Exists
+    public function checkUsernameExists($username){
+        $sqlQuery = "SELECT * FROM Users
+                     WHERE username = :username";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindValue(":username", $username, PDO::PARAM_STR);
+        $statement->execute();
+        $this->_dbInstance->destruct();
+
+        return ($statement->fetch() == null);
+    }
 }

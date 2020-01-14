@@ -52,10 +52,12 @@ class ScheduleData
 
     public function createRota($from, $to, $devA, $devB) {
         $sqlQuery = "INSERT INTO Rota (dateFrom, dateTo, devA, devB)
-                     VALUES (NOW(), DATE_ADD(NOW(), INTERVAL 14 DAY), :devA, :devB)";
+                     VALUES (:dateFrom, :dateTo, :devA, :devB)";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
-
+        $this->_dbHandle->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+        $statement->bindValue(":dateFrom", $from);
+        $statement->bindValue(":dateTo", $to);
         $statement->bindValue(":devA", $devA, PDO::PARAM_INT);
         $statement->bindValue(":devB", $devB, PDO::PARAM_INT);
 

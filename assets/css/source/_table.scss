@@ -1,0 +1,13 @@
+.table-scroll {
+  position: relative;
+  height: 400px;
+  overflow: auto;
+
+  @include breakpoint-height(700px) {
+    max-height: 250px;
+  }
+}
+
+.table-overflow-y {
+  display: block;
+}

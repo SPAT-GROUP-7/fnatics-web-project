@@ -89,4 +89,17 @@ class TeamData
         return true;
     }
 
+    //Check Team Exists
+    public function checkTeamNameExists($teamName){
+        $sqlQuery = "SELECT * FROM Teams
+                     WHERE teamName = :teamName";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindValue(":teamName", $teamName, PDO::PARAM_STR);
+        $statement->execute();
+        $this->_dbInstance->destruct();
+
+        return ($statement->fetch() == null);
+    }
+
 }
