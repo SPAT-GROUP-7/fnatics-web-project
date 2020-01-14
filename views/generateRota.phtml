@@ -2,7 +2,8 @@
 <?php require_once ("templates/navbar.phtml") ?>
 
 <?php
-$r = $view->rotas;
+//var_dump($view->rotas);
+//die();
 ?>
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -21,14 +22,14 @@ $r = $view->rotas;
             </form>
             <div class="col-lg-12">
                 <form action="publishRota.php" method="POST">
-                    <input type="hidden" name="rotas" value="<?php echo json_encode($r) ?>>">
+                    <input type="hidden" name="schedules" value="<?php print base64_encode(serialize($view->schedules))?>">
                     <input type="submit" class="btn btn-primary" value="Publish Rotas">
                 </form>
             </div>
 
             <div class="col-lg-12">
                 <div class="card card-body bg-light mt-5">
-                    <h1 class="card-title">Rota</h1>
+                    <h1 class="card-title">Preview Schedules</h1>
 
                     <table class="table">
                         <tr>
@@ -38,13 +39,13 @@ $r = $view->rotas;
                             <th>Dev B</th>
                         </tr>
                         <?php
-                        foreach ($view->rotas as $rota) {
+                        foreach ($view->schedules as $schedule) {
                             ?>
                             <tr>
-                                <th><?php echo $rota->getFrom() ?></th>
-                                <th><?php echo $rota->getTo() ?></th>
-                                <th><?php echo $rota->getDevA()->getUsername()?></th>
-                                <th><?php echo $rota->getDevB()->getUsername()?></th>
+                                <th><?php echo $schedule->getFrom() ?></th>
+                                <th><?php echo $schedule->getTo() ?></th>
+                                <th><?php echo $schedule->getDevA()->getUsername()?></th>
+                                <th><?php echo $schedule->getDevB()->getUsername()?></th>
                             </tr>
                             <?php
                         }
