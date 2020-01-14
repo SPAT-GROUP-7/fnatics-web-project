@@ -28,6 +28,10 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="pills-contact4-tab" data-toggle="pill" href="#pills-contact4" role="tab" aria-controls="pills-contact4" aria-selected="false">View All Teams</a>
                             </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-contact5-tab" data-toggle="pill" href="#pills-contact5" role="tab" aria-controls="pills-contact5" aria-selected="false">View Logs</a>
+                                </li>
+
                         </ul>
                         <div class="tab-content" id="pills-tabContent">
                             <!-- CREATE A USER -->
@@ -180,6 +184,41 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-contact5" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                <div class="row" id="users">
+                                    <div class="col-md-12 mx-auto">
+                                        <div class="card card-body bg-light mt-5">
+                                            <h1 class="card-title">Logs</h1>
+
+                                            <table class="table ">
+                                                <tr>
+                                                    <th>Log ID</th>
+                                                    <th>Who Amended</th>
+                                                    <th>Log Type</th>
+                                                    <th>Affected User</th>
+                                                    <th>Affected Team</th>
+                                                    <th>Log Date</th>
+                                                </tr>
+                                                <?php
+                                                foreach ($view->logs as $log){
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $log->getLogID() ?></td>
+                                                        <td><?php echo $log->getLogEditor() ?></td>
+                                                        <td><?php echo $log->getLogAction() ?></td>
+                                                        <td><?php echo $log->getLogAffectedUser() ?></td>
+                                                        <td><?php echo $log->getLogAffectedTeam() ?></td>
+                                                        <td><?php echo $log->getLogDate() ?></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     <?php else : ?>
