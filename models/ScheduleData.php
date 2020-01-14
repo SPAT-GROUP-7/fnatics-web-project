@@ -50,14 +50,64 @@ class ScheduleData
 
     }
 
-    public function createRota($from, $to, $devA, $devB) {
-        $sqlQuery = "INSERT INTO Rota (dateFrom, dateTo, devA, devB)
-                     VALUES (:dateFrom, :dateTo, :devA, :devB)";
+    public function scheduleAlreadyExists($from, $to) {
+        $sqlQuery = "SELECT * FROM Rota R
+                     WHERE R.dateFrom = :dateFrom AND R.dateTo = :dateTo";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
-        $this->_dbHandle->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-        $statement->bindValue(":dateFrom", $from);
-        $statement->bindValue(":dateTo", $to);
+
+        $statement->bindValue(":dateFrom", $from, PDO::PARAM_STR);
+        $statement->bindValue(":dateTo", $to, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $schdeulesFound = $statement->rowCount() > 0;
+
+        $this->_dbInstance->destruct();
+
+        return $schdeulesFound;
+    }
+
+    public function createRota($from, $to, $devA, $devB) {
+
+        $scheduleExists = $this->scheduleAlreadyExists($from, $to);
+
+        if ($scheduleExists) {
+            $this->updateRota($from, $to, $devA, $devB);
+        }
+        else {
+            $sqlQuery = "INSERT INTO Rota (dateFrom, dateTo, devA, devB)
+                     VALUES (:dateFrom, :dateTo, :devA, :devB)";
+
+            $statement = $this->_dbHandle->prepare($sqlQuery);
+            $this->_dbHandle->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+            $statement->bindValue(":dateFrom", $from);
+            $statement->bindValue(":dateTo", $to);
+            $statement->bindValue(":devA", $devA, PDO::PARAM_INT);
+            $statement->bindValue(":devB", $devB, PDO::PARAM_INT);
+
+            $statement->execute();
+
+            $this->_dbInstance->destruct();
+        }
+
+
+        // TODO: maybe add a proper check on this
+        return true;
+    }
+
+    public function updateRota($from, $to, $devA, $devB) {
+        $sqlQuery = "UPDATE Rota R
+                     SET R.dateFrom = :dateFrom,
+                         R.dateTo = :dateTo,
+                         R.devA = :devA,
+                         R.devB = :devB
+                     WHERE R.dateFrom = :dateFrom AND R.dateTo = :dateTo";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->bindValue(":dateFrom", $from, PDO::PARAM_STR);
+        $statement->bindValue(":dateTo", $to, PDO::PARAM_STR);
         $statement->bindValue(":devA", $devA, PDO::PARAM_INT);
         $statement->bindValue(":devB", $devB, PDO::PARAM_INT);
 
@@ -65,12 +115,7 @@ class ScheduleData
 
         $this->_dbInstance->destruct();
 
-        // TODO: maybe add a proper check on this
         return true;
-    }
-
-    public function updateRota() {
-
     }
 
     public function deleteRota() {
