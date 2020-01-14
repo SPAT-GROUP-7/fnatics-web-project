@@ -26,14 +26,6 @@ if (isset($_POST['username'])) {
                             <strong>Error:</strong> Invalid Username or Password!
                         </div>';
     }
-//    if ($Login->login($username, $password)) {
-//        // Authenticated
-//        $_SESSION['loggedIn'] = true;
-//        $_SESSION['username'] = $username;
-//        // TODO: Make isAdmin session if the user is an admin.
-//    } else {
-//
-//    }
 
     echo $modalOutput;
 }
