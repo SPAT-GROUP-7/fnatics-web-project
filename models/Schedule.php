@@ -55,4 +55,8 @@ class Schedule
         return array($this->_devA, $this->_devB);
     }
 
+    public function displayRota() {
+        echo $this->_from . " : " . $this->_to . " : " . $this->_devA->getUserID() . " : " . $this->_devB->getUserID() . "</br>";
+    }
+
 }
