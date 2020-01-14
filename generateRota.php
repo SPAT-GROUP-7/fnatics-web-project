@@ -5,5 +5,5 @@ session_start();
 $view = new stdClass();
 $scheduleData = new ScheduleData();
 $view->title = "Generate new Schedule";
-$view->schedules = $scheduleData->generateRotas(date('d-m-Y'), $_POST['num']);
+$view->schedules = $scheduleData->generateRotas("13-01-2020", "10-02-2020");
 require_once ("views/generateRota.phtml");

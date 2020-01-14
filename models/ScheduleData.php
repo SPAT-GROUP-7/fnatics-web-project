@@ -77,7 +77,7 @@ class ScheduleData
         }
         else {
             $sqlQuery = "INSERT INTO Rota (dateFrom, dateTo, devA, devB)
-                     VALUES (:dateFrom, :dateTo, :devA, :devB)";
+                         VALUES (:dateFrom, :dateTo, :devA, :devB)";
 
             $statement = $this->_dbHandle->prepare($sqlQuery);
             $this->_dbHandle->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
@@ -122,20 +122,27 @@ class ScheduleData
 
     }
 
-    public function generateRotas($from, $n) {
+    public function generateRotas($from, $to) {
         $nonAdminsBase = $this->_userData->getAllNonAdmins();
-        $dates = array();
+
         $rotas = [];
-        $dateFrom = date("d-m-Y", strtotime($from));
+        $dateFrom = date_create($from);
+        $dateTo = date_create($to);
+
+        $n = ceil($dateFrom->diff($dateTo)->days / 14) ;
+
         for ($i = 0; $i < $n; $i++) {
             $nonAdmins = $nonAdminsBase;
+
             $add = ($i * 14);
-            $from = date("d-m-Y", strtotime($dateFrom. ' + ' . $add . ' days'));
+
+            $from = date("d-m-Y", strtotime($dateFrom->format("d-m-Y"). ' + ' . $add . ' days'));
             $to = date("d-m-Y", strtotime($from. ' + 14 days'));
 
             $indexA = array_rand($nonAdmins, 1);
 
             $devA =  $nonAdmins[$indexA];
+
             unset($nonAdmins[$indexA]);
 
             $indexB = array_rand($nonAdmins, 1);
