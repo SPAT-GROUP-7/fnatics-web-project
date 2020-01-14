@@ -182,4 +182,27 @@ class UserData
 
         return ($statement->fetch() == null);
     }
+
+    //Check Username Exists, Ignore Current Username
+    public function checkUsernameExistsIgnore($newUsername, $id){
+        $sqlQuery = "SELECT username FROM Users
+                     WHERE userID = :userID"; // Get user's old email.
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindValue(":userID", $id, PDO::PARAM_STR);
+        $statement->execute();
+        $this->_dbInstance->destruct();
+
+        $r = $statement->fetch();
+
+        if (!$this->checkUsernameExists($newUsername)){ //If new username exists
+            if ($r['username'] == $newUsername){ //If new username == old username
+                return true; //New username == old username
+            } else {
+                return false; //New username already exists.
+            }
+        } else {
+            return true; //New username is new.
+        }
+    }
 }

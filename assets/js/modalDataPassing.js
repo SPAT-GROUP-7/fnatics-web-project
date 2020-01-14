@@ -73,5 +73,4 @@ $(document).ready(function () {
         const teamID = $(this).data('id');
         $("a#dtw-button").prop("href", "deleteTeam.php?teamID=" + teamID);
     });
-
 });
