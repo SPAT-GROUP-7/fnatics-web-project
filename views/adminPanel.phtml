@@ -211,8 +211,8 @@
                                                         <td><?php echo $log->getLogID() ?></td>
                                                         <td><?php echo $log->getLogEditor() ?></td>
                                                         <td><?php echo $log->getLogAction() ?></td>
-                                                        <td><?php echo $log->getLogAffectedUser() ?></td>
-                                                        <td><?php echo $log->getLogAffectedTeam() ?></td>
+                                                        <td><?php echo $user->getUsername($log->getLogAffectedUser()) ?></td>
+                                                        <td><?php echo $team->getTeamName($log->getLogAffectedTeam()) ?></td>
                                                         <td><?php echo $log->getLogDate() ?></td>
                                                     </tr>
                                                     <?php

@@ -28,14 +28,14 @@ class LogsData
         return $dataSet;
     }
     //Adds new log in the system
-    public function addNewLog($logEditor, $actionType, $affectedUser, $afftectedTeam){
+    public function addNewLog($logEditor, $actionType, $affectedUser, $affectedTeam){
         $sqlQuery = "INSERT INTO Logs VALUES (:logEditor, :logAction, :logAffectedUser, :logAffectedTeam, NOW())";
         $statement = $this->_dbHandle->prepare($sqlQuery);
 
         $statement->bindValue(":logEditor", $logEditor, PDO::PARAM_INT);
         $statement->bindValue(":logAction", $actionType, PDO::PARAM_STR);
         $statement->bindValue(":logAffectedUser", $affectedUser, PDO::PARAM_INT);
-        $statement->bindValue(":logAffectedTeam", $afftectedTeam, PDO::PARAM_INT);
+        $statement->bindValue(":logAffectedTeam", $affectedTeam, PDO::PARAM_INT);
 
         $statement->execute();
         $this->_dbInstance->destruct();
