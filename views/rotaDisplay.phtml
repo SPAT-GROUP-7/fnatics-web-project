@@ -18,16 +18,30 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($view->teams as $team){ ?>
+                        <?php for ($x = 0; $x < sizeof($view->teams); $x++){ ?>
 
-                            <tr id="<?php echo $team->getTeamID(); ?>">
-                                <th scope="row"><?php echo $team->getTeamName(); ?></th>
-                                <td></td>
+                            <tr id="<?php echo $view->teams[$x]->getTeamID(); ?>">
+                                <th scope="row"><?php echo $view->teams[$x]->getTeamName(); ?></th>
+                                <td><?php echo $view->members[$x][0] ?></td>
                                 <?php for($i = 1; $i < 24; $i++){
                                     echo "<th scope=\"col\"></th>";
                                 } ?>
                             </tr>
 
+                            <?php $isFirst = true;
+                                for ($j = 0; $j < sizeof($view->members[$x]); $j++) {
+                                    if ($isFirst){
+                                        $isFirst = false;
+                                        continue;
+                                    } else {?>
+                                        <tr>
+                                        <th scope="row"></th>
+                                        <td><?php echo $view->members[$x][$j] ?></td>
+                                        <?php for($i = 1; $i < 24; $i++){
+                                            echo "<th scope=\"col\"></th>";
+                                        } ?>
+                                        </tr>
+                                <?php }} ?>
                         <?php } ?>
                     </tbody>
                 </table>
