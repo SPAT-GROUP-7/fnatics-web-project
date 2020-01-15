@@ -123,6 +123,20 @@ class ScheduleData
     }
 
     public function generateRotas($from, $to) {
+
+        /*
+         * REFINED ALGORITHM:
+         * For each schedule:
+         *      Get a list of all non-admins who are available for the current range (no absences ranging FROM => TO) And who are not busy
+         *      Let devA = random selection from available users
+         *          Remove devA from consideration
+         *      Let devB = random selection from available users
+         *          If devB is on the same team as devA
+         *              Re-select devB
+         *          Else
+         *              select devB
+         *      Create provisional Schedule(From, To, devA, devB)
+         */
         $nonAdminsBase = $this->_userData->getAllNonAdmins();
 
         $rotas = [];
