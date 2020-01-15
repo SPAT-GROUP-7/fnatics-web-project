@@ -129,6 +129,7 @@ class ScheduleData
         $dateFrom = date_create($from);
         $dateTo = date_create($to);
 
+
         $n = ceil($dateFrom->diff($dateTo)->days / 14) ;
 
         for ($i = 0; $i < $n; $i++) {
