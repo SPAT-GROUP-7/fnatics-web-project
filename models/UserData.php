@@ -51,6 +51,23 @@ class UserData
         return $user;
     }
 
+    public function getUsernameByID($id){
+        $sqlQuery = "SELECT username FROM Users U
+                     WHERE U.userID = :userID";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindValue(":userID", $id, PDO::PARAM_INT);
+        $statement->execute();
+        $this->_dbInstance->destruct();
+
+        $r = '';
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
+            $r = $row['username'];
+        }
+
+        return $r;
+    }
+
     public function getUserByID($id) {
         $sqlQuery = "SELECT  * FROM Users U
                      WHERE U.userID = :id";
