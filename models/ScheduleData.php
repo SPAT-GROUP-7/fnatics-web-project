@@ -163,6 +163,11 @@ class ScheduleData
             $indexB = array_rand($nonAdmins, 1);
             $devB =  $nonAdmins[$indexB];
 
+            while ($devA->getTeamName() == $devB->getTeamName()) {
+                $indexB = array_rand($nonAdmins, 1);
+                $devB =  $nonAdmins[$indexB];
+            }
+
             $rotas[] = Schedule::fromString($from, $to, $devA, $devB);
         }
 
