@@ -102,4 +102,27 @@ class TeamData
         return ($statement->fetch() == null);
     }
 
+    //Check Team Exists, Ignore Current Team Name
+    public function checkTeamNameExistsIgnore($newTeamName, $id){
+        $sqlQuery = "SELECT teamName FROM Teams
+                     WHERE teamID = :teamID"; // Get user's old email.
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindValue(":teamID", $id, PDO::PARAM_STR);
+        $statement->execute();
+        $this->_dbInstance->destruct();
+
+        $r = $statement->fetch();
+
+        if (!$this->checkTeamNameExists($newTeamName)){ //If new team name exists
+            if ($r['teamName'] == $newTeamName){ //If new team name == old team name
+                return true; //New team name == old username
+            } else {
+                return false; //New team name already exists.
+            }
+        } else {
+            return true; //New team name is new.
+        }
+    }
+
 }

@@ -10,7 +10,7 @@ if (isset($_POST['teamName'])) {
 
     $teamData = new TeamData();
 
-    if ($teamData->checkTeamNameExists($teamName)){
+    if ($teamData->checkTeamNameExistsIgnore($teamName, $teamID)){
         $teamData->updateTeam(intval($teamID), $teamName, $isBusy);
     } else {
         $output = '<div class="alert alert-danger" id="error-message" role="alert">
