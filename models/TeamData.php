@@ -125,4 +125,18 @@ class TeamData
         }
     }
 
+    public function getTeamMembers($teamID){
+        $sqlQuery = "SELECT CONCAT(U.firstName, ' ', U.lastName) as Name FROM Users U
+                     WHERE U.teamID = :teamID";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindValue(":teamID", $teamID, PDO::PARAM_STR);
+        $statement->execute();
+        $this->_dbInstance->destruct();
+
+        $r = $statement->fetch();
+
+        return $r;
+    }
+
 }
