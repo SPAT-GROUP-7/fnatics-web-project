@@ -27,6 +27,7 @@ class LogsData
         $this->_dbInstance->destruct();
         return $dataSet;
     }
+
     //Adds new log in the system
     public function addLog($logEditor, $actionType, $affectedUser, $affectedTeam){
         $sqlQuery = "INSERT INTO Logs (logEditorID, logActionType, logAffectedUser, logAffectedTeam, logDate) VALUES (:logEditor, :logAction, :logAffectedUser, :logAffectedTeam, NOW())";
@@ -41,5 +42,4 @@ class LogsData
         $this->_dbInstance->destruct();
 
     }
-
 }

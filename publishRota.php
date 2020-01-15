@@ -2,8 +2,10 @@
 session_start();
 
 require_once("models/ScheduleData.php");
+require_once ("models/LogsData.php");
 
 $scheduleData = new ScheduleData();
+$logsData = new LogsData();
 $schedules = unserialize(base64_decode($_POST['schedules']));
 
 
@@ -12,7 +14,11 @@ foreach ($schedules as $schedule) {
     $convertedToDate = date_format(date_create($schedule->getTo()), "Y-m-d");
 
     $scheduleData->createRota($convertedFromDate, $convertedToDate, $schedule->getDevA()->getUserID(), $schedule->getDevB()->getUserID());
+
 }
+
+$logsData->addLog($_SESSION['userID'], 'PUBLISHED A NEW ROTA', null, null);
+
 
 header("Location: rota.php");
 
