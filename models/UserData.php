@@ -72,6 +72,38 @@ class UserData
 
     }
 
+    public function getAllAvailableUsers($from, $to) {
+        $sqlQuery = "SELECT U.userID, T.teamName, U.username, U.password, U.firstName, U.lastName, U.dateCreated, U.lastUpdate, U.isAdmin
+                     FROM Users U
+                      JOIN Teams T on U.teamID = T.teamID
+                      JOIN Unavailable U2 ON U.userID = U2.userID
+                     WHERE (U.isAdmin = 0) AND (:dateTo < U2.dateFrom OR :dateFrom > U2.dateTo)
+                     UNION ALL
+                    # Get all non-admin users
+                     SELECT U3.userID, T1.teamName, U3.username, U3.password, U3.firstName, U3.lastName, U3.dateCreated, U3.lastUpdate, U3.isAdmin
+                     FROM Users U3
+                      JOIN Teams T1 on U3.teamID = T1.teamID
+                     WHERE U3.isAdmin = 0";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->bindValue(":dateTo", $to, PDO::PARAM_STR);
+        $statement->bindValue(":dateFrom", $from, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $data = [];
+
+        while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $data[] = new User($dbRow);
+
+        }
+
+        $this->_dbInstance->destruct();
+
+        return $data;
+    }
+
     public function getAllNonAdmins() {
         $sqlQuery = "SELECT U.userID, T.teamName, U.username, U.password, U.firstName, U.lastName, U.dateCreated, U.lastUpdate, U.isAdmin
                      FROM Users U

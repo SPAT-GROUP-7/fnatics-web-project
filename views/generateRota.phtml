@@ -32,26 +32,29 @@
                 <div class="card card-body bg-light mt-5">
                     <h1 class="card-title">Preview Schedules</h1>
 
-                    <table class="table">
-                        <tr>
-                            <th>From</th>
-                            <th>To</th>
-                            <th>Dev A</th>
-                            <th>Dev B</th>
-                        </tr>
-                        <?php
-                        foreach ($view->schedules as $schedule) {
-                            ?>
+                    <div class="table-scroll table-overflow-y">
+                        <table class="table">
                             <tr>
-                                <th><?php echo $schedule->getFrom() ?></th>
-                                <th><?php echo $schedule->getTo() ?></th>
-                                <th><?php echo $schedule->getDevA()->getUsername()?></th>
-                                <th><?php echo $schedule->getDevB()->getUsername()?></th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Dev A</th>
+                                <th>Dev B</th>
                             </tr>
                             <?php
-                        }
-                        ?>
-                    </table>
+                            foreach ($view->schedules as $schedule) {
+                                ?>
+                                <tr>
+                                    <th><?php echo $schedule->getFrom() ?></th>
+                                    <th><?php echo $schedule->getTo() ?></th>
+                                    <th><?php echo $schedule->getDevA()->getUsername()?></th>
+                                    <th><?php echo $schedule->getDevB()->getUsername()?></th>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>
