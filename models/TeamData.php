@@ -35,6 +35,7 @@ class TeamData
         $dataSet = [];
         while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
             $dataSet[] = new Team($dbRow);
+
         }
 
         $this->_dbInstance->destruct();
