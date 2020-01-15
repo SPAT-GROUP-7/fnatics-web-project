@@ -15,7 +15,11 @@ class TeamData
 
     //Fetch team by ID
     public function fetchTeam($teamID){
-        $statement = $this->_dbHandle->prepare("SELECT teamName, isBusy, firstName, lastName  FROM Teams, Users ORDER BY teamName DESC");
+        $sqlQuery = "SELECT * FROM Teams WHERE teamID = :teamID";
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->bindValue(':teamID', $teamID, PDO::PARAM_INT);
+
         $statement->execute();
         $this->_dbInstance->destruct();
 

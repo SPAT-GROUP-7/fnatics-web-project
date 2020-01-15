@@ -1,8 +1,6 @@
 <?php
 
 require_once ("Database.php");
-require_once("ScheduleData.php");
-require_once("UserData.php");
 require_once ("Logs.php");
 
 class LogsData
@@ -29,13 +27,13 @@ class LogsData
     }
     //Adds new log in the system
     public function addNewLog($logEditor, $actionType, $affectedUser, $affectedTeam){
-        $sqlQuery = "INSERT INTO Logs VALUES (:logEditor, :logAction, :logAffectedUser, :logAffectedTeam, NOW())";
+        $sqlQuery = "INSERT INTO Logs (logEditorID, logActionType, logAffectedUser, logAffectedTeam, logDate) VALUES (:logEditor, :logAction, :logAffectedUser, :logAffectedTeam, NOW())";
         $statement = $this->_dbHandle->prepare($sqlQuery);
 
         $statement->bindValue(":logEditor", $logEditor, PDO::PARAM_INT);
         $statement->bindValue(":logAction", $actionType, PDO::PARAM_STR);
-        $statement->bindValue(":logAffectedUser", $affectedUser, PDO::PARAM_INT);
-        $statement->bindValue(":logAffectedTeam", $affectedTeam, PDO::PARAM_INT);
+        $statement->bindValue(":logAffectedUser", $affectedUser, PDO::PARAM_STR);
+        $statement->bindValue(":logAffectedTeam", $affectedTeam, PDO::PARAM_STR);
 
         $statement->execute();
         $this->_dbInstance->destruct();
