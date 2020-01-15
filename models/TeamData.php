@@ -83,15 +83,32 @@ class TeamData
 
     //Deletes a team
     public function deleteTeam($id){
-        $sqlQuery = "DELETE FROM Teams WHERE teamID = ?";
+        $sqlQuery = "DELETE FROM Teams WHERE teamID = :teamID";
         $statement = $this->_dbHandle->prepare($sqlQuery);
 
 //        TODO: Investigate why statement doesn't work when value is bound
-//       $statement->bindValue(":teamID", $id, PDO::PARAM_INT);
-        $statement->execute([$id]);
+        $statement->bindValue(":teamID", $id, PDO::PARAM_INT);
+        $statement->execute();
         $this->_dbInstance->destruct();
 
         return true;
+    }
+
+    public function getTeamNameByID($id){
+        $sqlQuery = "SELECT teamName FROM Teams T
+                     WHERE T.teamID = :teamID";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindValue(":teamID", $id, PDO::PARAM_INT);
+        $statement->execute();
+        $this->_dbInstance->destruct();
+
+        $r = '';
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
+            $r = $row['teamName'];
+        }
+
+        return $r;
     }
 
     //Check Team Exists

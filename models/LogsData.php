@@ -1,12 +1,14 @@
 <?php
-
 require_once ("Database.php");
 require_once ("Logs.php");
 
 class LogsData
 {
-    //Creates a connection to the database
-    public function __construct() {
+    protected $_dbHandle, $_dbInstance;
+
+    // Establish a connection to the DB
+    public function __construct()
+    {
         $this->_dbInstance = Database::getInstance();
         $this->_dbHandle = $this->_dbInstance->getConnection();
     }
@@ -26,7 +28,7 @@ class LogsData
         return $dataSet;
     }
     //Adds new log in the system
-    public function addNewLog($logEditor, $actionType, $affectedUser, $affectedTeam){
+    public function addLog($logEditor, $actionType, $affectedUser, $affectedTeam){
         $sqlQuery = "INSERT INTO Logs (logEditorID, logActionType, logAffectedUser, logAffectedTeam, logDate) VALUES (:logEditor, :logAction, :logAffectedUser, :logAffectedTeam, NOW())";
         $statement = $this->_dbHandle->prepare($sqlQuery);
 

@@ -2,21 +2,19 @@
 require_once ("models/TeamData.php");
 require_once ("models/LogsData.php");
 require_once ("models/Team.php");
+session_start();
 
 
 $teamID = $_GET['teamID'];
-
 $teamData = new TeamData();
+$logData = new LogsData();
 
-$logs = new LogsData();
+$teamName = $teamData->getTeamNameByID($teamID);
+$delTeam = $teamData->deleteTeam($teamID);
 
-$team = $teamData->fetchTeam($teamID);
-
-var_dump($team);
-die();
-$teamData->deleteTeam($teamID);
-
-$logs->addNewLog(1, 'DELETED', NULL, NULL);
+if ($delTeam) {
+    $logData->addLog($_SESSION['userID'], 'delete', null, $teamName);
+}
 
 
 header("Location: index.php");
