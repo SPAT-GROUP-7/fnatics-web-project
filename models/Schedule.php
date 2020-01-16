@@ -56,7 +56,7 @@ class Schedule implements JsonSerializable
     }
 
     public function displayRota() {
-        echo $this->_from . " : " . $this->_to . " : " . $this->_devA->getUserID() . " : " . $this->_devB->getUserID() . "</br>";
+        echo $this->_from . " : " . $this->_to . " : " . $this->_devA . " : " . $this->_devB . "</br>";
     }
 
     public function jsonSerialize()

@@ -57,12 +57,6 @@
     let schedules = <?php echo json_encode($view->schedules);?>;
     console.log(schedules);
 
-    const devNamesOnSched = schedules.filter(x => x._from === "February 17, 2020")
-        .map(x => [x._devA, x._devB]);
-
-    const [ devA, devB ] = devNamesOnSched[0];
-    console.log(`${devA} and ${devB}`);
-
     //Date Array
     const dateArray = [];
     schedules.forEach(x => dateArray.push(x._from));

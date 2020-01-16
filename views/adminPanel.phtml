@@ -194,9 +194,8 @@
                                     <div class="col-md-12 mx-auto">
                                         <div class="card card-body bg-light mt-5">
                                             <h1 class="card-title">Logs</h1>
-                                            <div class="table-overflow-y table-scroll">
+                                            <div class="table-overflow-y table-scroll" style="min-width: 750px;">
 
-                                            <div class="table-scroll table-overflow-y">
                                                 <?php
 
                                                     foreach ($view->logs as $log){
@@ -207,22 +206,32 @@
                                                         $affTeam = $log->getLogAffectedTeam();
                                                         $date = $log->getLogDate();
                                                         $alertType = "";
+                                                        $icon = "";
 
                                                         switch ($action){
                                                             case "deleted":
                                                                 $alertType = "danger";
+                                                                $icon = "<i class=\"fas fa-minus\"></i>";
                                                                 break;
                                                             case "created":
                                                                 $alertType = "success";
+                                                                $icon = "<i class=\"fas fa-plus\"></i>";
                                                                 break;
                                                             case "updated":
                                                                 $alertType = "warning";
+                                                                $icon = "<i class=\"fas fa-pencil-alt\"></i>";
                                                                 break;
                                                             case "generated a new rota":
                                                                 $alertType = "info";
+                                                                $affTeam = "";
+                                                                $affUser = "";
+                                                                $icon = "<i class=\"fas fa-calendar-plus\"></i>";
                                                                 break;
                                                             case "published a new rota":
                                                                 $alertType = "info";
+                                                                $affTeam = "";
+                                                                $affUser = "";
+                                                                $icon = "<i class=\"fas fa-calendar-plus\"></i>";
                                                                 break;
                                                             default:
                                                                 $alertType = "secondary";
@@ -230,20 +239,21 @@
 
                                                         if ($affUser = "n/a"){ ?>
                                                             <div class="alert alert-<?php echo $alertType; ?>" role="alert">
-                                                                <?php echo "Admin " . $editor . " " . $action . " " . $affTeam . " on " . $date . "!" ?>
+                                                                <?php echo $icon . " Admin " . $editor . " " . $action . " " . $affTeam . " on " . $date . "!" ?>
                                                             </div>
-                                                        <?php } else if ($affTeam = "n/a"){ ?>
+                                                        <?php } elseif ($affTeam = "n/a"){ ?>
                                                             <div class="alert alert-danger" role="alert">
-                                                                <?php echo "Admin " . $editor . " " . $action . " " . $affUser . " on " . $date . "!" ?>
+                                                                <?php echo $icon . " Admin " . $editor . " " . $action . " " . $affUser . " on " . $date . "!" ?>
                                                             </div>
-                                                        <?php } else {
-                                                            echo ':(';
-                                                        }
+                                                        <?php } else { ?>
+                                                            <div class="alert alert-info" role="alert">
+                                                                <?php echo $icon . " Admin " . $editor . " " . $action . " on " . $date . "!" ?>
+                                                            </div>
+                                                        <?php }
                                                     }
 
                                                 ?>
 
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
