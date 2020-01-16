@@ -24,4 +24,5 @@ class UnavailableData
         $statement->execute();
         $this->_dbInstance->destruct();
     }
+
 }
