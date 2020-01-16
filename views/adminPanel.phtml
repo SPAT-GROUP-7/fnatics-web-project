@@ -208,14 +208,20 @@
                                                         $alertType = "";
 
                                                         switch ($action){
-                                                            case "delete":
+                                                            case "deleted":
                                                                 $alertType = "danger";
                                                                 break;
-                                                            case "create":
+                                                            case "created":
                                                                 $alertType = "success";
                                                                 break;
-                                                            case "update":
+                                                            case "updated":
                                                                 $alertType = "warning";
+                                                                break;
+                                                            case "generated a new rota":
+                                                                $alertType = "info";
+                                                                break;
+                                                            case "published a new rota":
+                                                                $alertType = "info";
                                                                 break;
                                                             default:
                                                                 $alertType = "secondary";
