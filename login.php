@@ -17,6 +17,7 @@ if (isset($_POST['username'])) {
     if ($user != null) {
         $_SESSION['loggedIn'] = true;
         $_SESSION['username'] = $user->getUsername();
+        $_SESSION['userID'] = $user->getUserID();
         if ($user->getIsAdmin() == 'Yes') {
             $_SESSION['isAdmin'] = true;
         }

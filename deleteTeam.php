@@ -1,10 +1,16 @@
 <?php
 require_once ("models/TeamData.php");
+require_once ("models/LogsData.php");
+require_once ("models/Team.php");
+session_start();
+
 
 $teamID = $_GET['teamID'];
-echo "DELETING " . $teamID;
-
 $teamData = new TeamData();
-$teamData->deleteTeam($teamID);
+$logData = new LogsData();
+
+$teamName = $teamData->getTeamNameByID($teamID);
+$logData->addLog($_SESSION['userID'], 'DELETED', null, $teamName);
+$delTeam = $teamData->deleteTeam($teamID);
 
 header("Location: index.php");
