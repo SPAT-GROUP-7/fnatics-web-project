@@ -1,5 +1,6 @@
 <?php require_once ("templates/header.phtml") ?>
 <?php require_once ("templates/navbar.phtml") ?>
+<?php require("templates/editScheduleModal.phtml"); ?>
 
 <?php
 //var_dump($view->rotas);
@@ -33,12 +34,13 @@
                     <h1 class="card-title">Preview Schedules</h1>
 
                     <div class="table-scroll table-overflow-y">
-                        <table class="table">
+                        <table class="table table-striped">
                             <tr>
                                 <th>From</th>
                                 <th>To</th>
                                 <th>Dev A</th>
                                 <th>Dev B</th>
+                                <th>Edit Schedule</th>
                             </tr>
                             <?php
                             foreach ($view->schedules as $schedule) {
@@ -48,11 +50,11 @@
                                     <th><?php echo $schedule->getTo() ?></th>
                                     <th><?php echo $schedule->getDevA()->getUsername()?></th>
                                     <th><?php echo $schedule->getDevB()->getUsername()?></th>
-                                    <td>
-                                        <button type="button" class="btn btn-warning editTeamBtn" data-id="<?php echo $team->getTeamID() ?>" data-toggle="modal" data-target="#editTeamModal">
+                                    <th>
+                                        <button type="button" class="btn btn-warning editScheduleBtn" data-id="editScheduleModal" data-toggle="modal" data-target="#editScheduleModal">
                                             Edit
                                         </button>
-                                    <td>
+                                    </th>
                                 </tr>
                                 <?php
                             }
