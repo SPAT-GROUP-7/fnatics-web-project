@@ -90,7 +90,7 @@ class ScheduleData
         $statement->execute();
 
         $this->_dbInstance->destruct();
-        
+
         return $statement->rowCount() != 0;
     }
 
