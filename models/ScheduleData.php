@@ -47,7 +47,27 @@ class ScheduleData
         return $data;
     }
     public function getRotas($from, $to) {
+        $sqlQuery = "SELECT R.dateFrom, R.dateTo, CONCAT(A.firstName, ' ', A.lastName) as devA, CONCAT(B.firstName, ' ', B.lastName)as devB
+                     FROM Rota R
+                        JOIN Users A on R.devA = A.userID
+                        JOIN Users B ON R.devB = B.userID
+                     WHERE R.dateFrom >= :dateFrom AND R.dateTo <= :dateTo 
+                     ORDER BY R.dateFrom";
 
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->bindValue(":dateFrom", $from, PDO::PARAM_STR);
+        $statement->bindValue(":dateTo", $to, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $data = [];
+
+        while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $data[] = Schedule::fromRow($dbRow);
+        }
+
+        return $data;
     }
 
     public function scheduleAlreadyExists($from, $to) {
