@@ -68,7 +68,6 @@ class UserData
         return $user;
     }
 
-
     public function getUserByID($id) {
         $sqlQuery = "SELECT  * FROM Users U
                      WHERE U.userID = :id";
