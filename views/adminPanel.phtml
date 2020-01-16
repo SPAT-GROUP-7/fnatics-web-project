@@ -237,12 +237,12 @@
                                                                 $alertType = "secondary";
                                                         }
 
-                                                        if ($affUser = "n/a"){ ?>
+                                                        if ($affUser == "n/a"){ ?>
                                                             <div class="alert alert-<?php echo $alertType; ?>" role="alert">
                                                                 <?php echo $icon . " Admin " . $editor . " " . $action . " " . $affTeam . " on " . $date . "!" ?>
                                                             </div>
-                                                        <?php } elseif ($affTeam = "n/a"){ ?>
-                                                            <div class="alert alert-danger" role="alert">
+                                                        <?php } elseif ($affTeam == "n/a"){ ?>
+                                                            <div class="alert alert-<?php echo $alertType; ?>" role="alert">
                                                                 <?php echo $icon . " Admin " . $editor . " " . $action . " " . $affUser . " on " . $date . "!" ?>
                                                             </div>
                                                         <?php } else { ?>
