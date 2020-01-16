@@ -12,7 +12,7 @@ class Logs
     public function __construct($dbRow)
     {
         $this->logID = $dbRow['logID'];
-        $this->logEditor = $dbRow['logEditorID'];
+        $this->logEditor = $dbRow['name'];
         $this->logAction = $dbRow['logActionType'];
         $this->logAffectedUser = $dbRow['logAffectedUser'];
         $this->logAffectedTeam = $dbRow['logAffectedTeam'];
