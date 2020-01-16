@@ -196,7 +196,6 @@
                                             <h1 class="card-title">Logs</h1>
                                             <div class="table-overflow-y table-scroll">
 
-                                            <div class="table-scroll table-overflow-y">
                                                 <?php
 
                                                     foreach ($view->logs as $log){
@@ -220,9 +219,13 @@
                                                                 break;
                                                             case "generated a new rota":
                                                                 $alertType = "info";
+                                                                $affTeam = "";
+                                                                $affUser = "";
                                                                 break;
                                                             case "published a new rota":
                                                                 $alertType = "info";
+                                                                $affTeam = "";
+                                                                $affUser = "";
                                                                 break;
                                                             default:
                                                                 $alertType = "secondary";
@@ -232,18 +235,19 @@
                                                             <div class="alert alert-<?php echo $alertType; ?>" role="alert">
                                                                 <?php echo "Admin " . $editor . " " . $action . " " . $affTeam . " on " . $date . "!" ?>
                                                             </div>
-                                                        <?php } else if ($affTeam = "n/a"){ ?>
+                                                        <?php } elseif ($affTeam = "n/a"){ ?>
                                                             <div class="alert alert-danger" role="alert">
                                                                 <?php echo "Admin " . $editor . " " . $action . " " . $affUser . " on " . $date . "!" ?>
                                                             </div>
-                                                        <?php } else {
-                                                            echo ':(';
-                                                        }
+                                                        <?php } else { ?>
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <?php echo "Admin " . $editor . " " . $action . " on " . $date . "!" ?>
+                                                            </div>
+                                                        <?php }
                                                     }
 
                                                 ?>
 
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
