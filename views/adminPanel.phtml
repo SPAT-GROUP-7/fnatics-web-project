@@ -205,9 +205,24 @@
                                                         $affUser = $log->getLogAffectedUser();
                                                         $affTeam = $log->getLogAffectedTeam();
                                                         $date = $log->getLogDate();
+                                                        $alertType = "";
+
+                                                        switch ($action){
+                                                            case "delete":
+                                                                $alertType = "danger";
+                                                                break;
+                                                            case "create":
+                                                                $alertType = "success";
+                                                                break;
+                                                            case "update":
+                                                                $alertType = "warning";
+                                                                break;
+                                                            default:
+                                                                $alertType = "secondary";
+                                                        }
 
                                                         if ($affUser = "n/a"){ ?>
-                                                            <div class="alert alert-danger" role="alert">
+                                                            <div class="alert alert-<?php echo $alertType; ?>" role="alert">
                                                                 <?php echo "Admin " . $editor . " " . $action . " " . $affTeam . " on " . $date . "!" ?>
                                                             </div>
                                                         <?php } else if ($affTeam = "n/a"){ ?>

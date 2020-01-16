@@ -54,56 +54,22 @@
 
 <script>
 
-    <?php
+    let schedules = <?php echo json_encode($view->schedules);?>;
+    console.log(schedules);
 
+    let devNamesOnSched = schedules.filter(x => x._from === "February 10, 2020")
+        .map(x => [x._devA, x._devB]);
 
+    const [ devA, devB ] = devNamesOnSched[0];
+    console.log(`${devA} and ${devB}`);
 
-    ?>
+    let dateArray = [];
 
-    var teams = <?php echo json_encode($view->teams); ?> ;
-    var members = <?php echo json_encode($view->members);?>;
-    var schedules = <?php echo json_encode($view->schedules);?>;
-    const jsonThing = [
-        {
-            team: "Team 1",
-            name: "Mark Otto",
-            onSupport: [1,2,7,8]
-        },
-        {
-            team: "Team 1",
-            name: "Jacob Thornton",
-            onSupport: [4,5,10,11]
-        },
-        {
-            team: "Team 3",
-            name: "Jane Doe",
-            onSupport: [1,2,7,8]
-        },
-        {
-            team: "Team 3",
-            name: "Larry Doe",
-            onSupport: [4,5,10,11]
-        },
-        // ACTUAL IN MEMORY STRUCTURE OF SCHEDULE OBJECT
-        {
-            from: "12-01-2020",
-            to: "28-01-2020",
-            devA: {
-                id: 4,
-                username: "devA@example.test",
-                teamName: "fanatics Admin"
-            },
+    schedules.forEach(x => dateArray.push(x._from));
 
-            devB: {
-                id: 9,
-                username: "devB@example.test",
-                teamName: "fanatics Production"
-            }
-        }
-    ];
+    const scheduleTableHead = document.querySelectorAll('table thead th');
 
-    /*const jsonFilterStuff = jsonThing.filter(x => x.from === "12-01-2020")
-        .map(x => [x.devA.username, x.devB.username]);*/
+    console.log(scheduleTableHead[2]);
 
     // const randomThing = document.querySelectorAll('table tbody tr');
 
