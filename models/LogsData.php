@@ -15,16 +15,16 @@ class LogsData
 
     //Views all logs in the system
     public function viewLog(){
-        $sqlQuery = "SELECT * FROM Logs ORDER BY logDate DESC";
+        $sqlQuery = "SELECT logID, logEditorID, logActionType, IFNULL(logAffectedUser, 'n/a') as logAffectedUser, IFNULL(logAffectedTeam, 'n/a') as logAffectedTeam, logDate FROM Logs ORDER BY logDate DESC";
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute();
+        $this->_dbInstance->destruct();
 
         $dataSet = [];
         while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
             $dataSet[] = new Logs($dbRow);
         }
 
-        $this->_dbInstance->destruct();
         return $dataSet;
     }
 

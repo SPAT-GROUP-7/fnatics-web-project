@@ -13,14 +13,21 @@
         <div class="card card-body">
             <div class="card-header-pills">
                 <div class="card-body">
-                    <label for="datefrom">Date From:</label>
-                    <input type="date" name="dateFrom" class="form-control" placeholder="<?php echo date("Y/m/d") ?>" id="from">
-                    <label for="pwd">Date to:</label>
-                    <input type="date" name="dateTo" class="form-control" placeholder="" id="to">
+                    <form action="rota.php" method="POST">
+                        <div class="form-group">
+                            <label for="datefrom">Date From:</label>
+                            <input type="date" name="dateFrom" class="form-control" id="from">
+                        </div>
+                        <div class="form-group">
+                            <label for="dateTo">Date From:</label>
+                            <input type="date" name="dateTo" class="form-control" id="to">
+                        </div>
+
+                        <input class="btn btn-primary" type="submit" name="submit" value="Filter">
+                    </form>
                 </div>
             </div>
         </div>
-        <a class="btn btn-primary" href="/rotaRange.php">Generate a new Rota</a>
         </form>
         </div>
 
