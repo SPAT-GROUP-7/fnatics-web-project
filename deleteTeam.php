@@ -10,11 +10,7 @@ $teamData = new TeamData();
 $logData = new LogsData();
 
 $teamName = $teamData->getTeamNameByID($teamID);
+$logData->addLog($_SESSION['userID'], 'DELETED', null, $teamName);
 $delTeam = $teamData->deleteTeam($teamID);
-
-if ($delTeam) {
-    $logData->addLog($_SESSION['userID'], 'delete', null, $teamName);
-}
-
 
 header("Location: index.php");
