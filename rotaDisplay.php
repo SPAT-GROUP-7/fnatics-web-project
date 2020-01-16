@@ -1,6 +1,7 @@
 <?php
 require_once ("models/TeamData.php");
 require_once ("models/ScheduleData.php");
+session_start();
 
 $view = new stdClass();
 $view->title = "Some Test Thing";
