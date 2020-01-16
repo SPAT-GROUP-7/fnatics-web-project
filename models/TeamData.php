@@ -15,7 +15,11 @@ class TeamData
 
     //Fetch team by ID
     public function fetchTeam($teamID){
-        $statement = $this->_dbHandle->prepare("SELECT teamName, isBusy, firstName, lastName  FROM Teams, Users ORDER BY teamName DESC");
+        $sqlQuery = "SELECT * FROM Teams WHERE teamID = :teamID";
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->bindValue(':teamID', $teamID, PDO::PARAM_INT);
+
         $statement->execute();
         $this->_dbInstance->destruct();
 
@@ -79,15 +83,32 @@ class TeamData
 
     //Deletes a team
     public function deleteTeam($id){
-        $sqlQuery = "DELETE FROM Teams WHERE teamID = ?";
+        $sqlQuery = "DELETE FROM Teams WHERE teamID = :teamID";
         $statement = $this->_dbHandle->prepare($sqlQuery);
 
 //        TODO: Investigate why statement doesn't work when value is bound
-//       $statement->bindValue(":teamID", $id, PDO::PARAM_INT);
-        $statement->execute([$id]);
+        $statement->bindValue(":teamID", $id, PDO::PARAM_INT);
+        $statement->execute();
         $this->_dbInstance->destruct();
 
         return true;
+    }
+
+    public function getTeamNameByID($id){
+        $sqlQuery = "SELECT teamName FROM Teams T
+                     WHERE T.teamID = :teamID";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindValue(":teamID", $id, PDO::PARAM_INT);
+        $statement->execute();
+        $this->_dbInstance->destruct();
+
+        $r = '';
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
+            $r = $row['teamName'];
+        }
+
+        return $r;
     }
 
     //Check Team Exists
@@ -127,7 +148,7 @@ class TeamData
     }
 
     public function getTeamMembers($teamID){
-        $sqlQuery = "SELECT CONCAT(U.firstName, ' ', U.lastName) as Name FROM Users U
+        $sqlQuery = "SELECT U.firstName, U.lastName FROM Users U
                      WHERE U.teamID = :teamID";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -135,9 +156,14 @@ class TeamData
         $statement->execute();
         $this->_dbInstance->destruct();
 
-        $r = $statement->fetch();
+        $data = [];
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
+            $firstName = $row['firstName'];
+            $lastName = $row['lastName'];
+            $data[] = $firstName . ' '. $lastName;
+        }
 
-        return $r;
+        return $data;
     }
 
 }

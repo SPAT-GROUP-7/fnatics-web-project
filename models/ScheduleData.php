@@ -30,7 +30,7 @@ class ScheduleData
     }
 
     public function getAllRotas() {
-        $sqlQuery = "SELECT R.dateFrom, R.dateTo, A.username as devA, B.username as devB
+        $sqlQuery = "SELECT R.dateFrom, R.dateTo, CONCAT(A.firstName, ' ', A.lastName) as devA, CONCAT(B.firstName, ' ', B.lastName)as devB
                      FROM Rota R
                         JOIN Users A on R.devA = A.userID
                         JOIN Users B ON R.devB = B.userID

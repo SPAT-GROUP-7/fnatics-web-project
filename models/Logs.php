@@ -17,6 +17,8 @@ class Logs
         $this->logAffectedUser = $dbRow['logAffectedUser'];
         $this->logAffectedTeam = $dbRow['logAffectedTeam'];
         $this->logDate = $dbRow['logDate'];
+
+        //var_dump($this->logID, $this->logEditor, $this->logAction, $this->logAffectedUser, $this->logAffectedTeam, $this->logDate);
     }
 
     /**
