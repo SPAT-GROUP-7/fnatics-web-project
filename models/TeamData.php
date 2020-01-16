@@ -1,6 +1,7 @@
 <?php
 require_once ("Database.php");
 require_once ("Team.php");
+require_once ("User.php");
 
 class TeamData
 {
