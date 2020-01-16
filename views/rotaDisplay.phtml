@@ -2,6 +2,8 @@
 <?php require("templates/navbar.phtml"); ?>
 <?php require("templates/loginModal.phtml"); ?>
 
+<?php
+?>
 <div class="content-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -51,6 +53,16 @@
 </div>
 
 <script>
+
+    <?php
+
+
+
+    ?>
+
+    var teams = <?php echo json_encode($view->teams); ?> ;
+    var members = <?php echo json_encode($view->members);?>;
+    var schedules = <?php echo json_encode($view->schedules);?>;
     const jsonThing = [
         {
             team: "Team 1",
