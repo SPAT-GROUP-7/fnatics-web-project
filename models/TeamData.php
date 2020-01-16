@@ -166,4 +166,24 @@ class TeamData
         return $data;
     }
 
+    //$_userID, $_teamName, $_username, $_password, $_firstName, $_lastName, $_dateCreated, $_dateLastUpdated, $_isAdmin;
+    public function getTeamMembersNew($teamID) {
+        $sqlQuery = "SELECT U.userID, T.teamName, U.username, U.password, U.firstName, U.lastName, U.dateCreated, U.lastUpdate, U.isAdmin 
+                     FROM Users U
+                     JOIN Teams T on U.teamID = T.teamID
+                     WHERE U.teamID = :teamID";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->bindValue(":teamID", $teamID, PDO::PARAM_STR);
+        $statement->execute();
+        $this->_dbInstance->destruct();
+
+        $data = [];
+        while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)){
+            $data[] = new User($dbRow);
+        }
+
+        return $data;
+    }
+
 }
