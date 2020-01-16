@@ -38,7 +38,9 @@
                                 <th>From</th>
                                 <th>To</th>
                                 <th>Dev A</th>
+                                <th>Dev A Team</th>
                                 <th>Dev B</th>
+                                <th>Dev B Team</th>
                             </tr>
                             <?php
                             foreach ($view->schedules as $schedule) {
@@ -47,7 +49,9 @@
                                     <th><?php echo $schedule->getFrom() ?></th>
                                     <th><?php echo $schedule->getTo() ?></th>
                                     <th><?php echo $schedule->getDevA()->getUsername()?></th>
+                                    <th><?php echo $schedule->getDevA()->getTeamName()?></th>
                                     <th><?php echo $schedule->getDevB()->getUsername()?></th>
+                                    <th><?php echo $schedule->getDevB()->getTeamName()?></th>
                                 </tr>
                                 <?php
                             }

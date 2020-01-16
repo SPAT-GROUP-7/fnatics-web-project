@@ -196,30 +196,32 @@
                                             <h1 class="card-title">Logs</h1>
                                             <div class="table-overflow-y table-scroll">
 
-                                            <table class="table ">
-                                                <tr>
-                                                    <th>Log Date</th>
-                                                    <th>Log ID</th>
-                                                    <th>User</th>
-                                                    <th>Log Type</th>
-                                                    <th>Affected User</th>
-                                                    <th>Affected Team</th>
-                                                </tr>
+                                            <div class="table-scroll table-overflow-y">
                                                 <?php
-                                                foreach ($view->logs as $log){
-                                                    ?>
-                                                    <tr>
-                                                        <td><?php echo $log->getLogDate() ?></td>
-                                                        <td><?php echo $log->getLogID() ?></td>
-                                                        <td><?php echo $log->getLogEditor() ?></td>
-                                                        <td><?php echo $log->getLogAction() ?></td>
-                                                        <td><?php echo $log->getLogAffectedUser() ?></td>
-                                                        <td><?php echo $log->getLogAffectedTeam() ?></td>
-                                                    </tr>
-                                                    <?php
-                                                }
+
+                                                    foreach ($view->logs as $log){
+                                                        $id = $log->getLogID();
+                                                        $editor = $log->getLogEditor();
+                                                        $action = $log->getLogAction();
+                                                        $affUser = $log->getLogAffectedUser();
+                                                        $affTeam = $log->getLogAffectedTeam();
+                                                        $date = $log->getLogDate();
+
+                                                        if ($affUser = "n/a"){ ?>
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <?php echo "Admin " . $editor . " " . $action . " " . $affTeam . " on " . $date . "!" ?>
+                                                            </div>
+                                                        <?php } else if ($affTeam = "n/a"){ ?>
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <?php echo "Admin " . $editor . " " . $action . " " . $affUser . " on " . $date . "!" ?>
+                                                            </div>
+                                                        <?php } else {
+                                                            echo ':(';
+                                                        }
+                                                    }
+
                                                 ?>
-                                            </table>
+
                                             </div>
                                         </div>
                                     </div>
