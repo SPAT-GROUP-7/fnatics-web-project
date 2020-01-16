@@ -41,9 +41,11 @@ class ScheduleData
         $statement->execute();
 
         $data = [];
-        while ($dbRow = $statement->fetch()) {
+        while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
             $data[] = Schedule::fromRow($dbRow);
         }
+
+        $this->_dbInstance->destruct();
         return $data;
     }
     public function getRotas($from, $to) {
@@ -67,6 +69,33 @@ class ScheduleData
             $data[] = Schedule::fromRow($dbRow);
         }
 
+        $this->_dbInstance->destruct();
+
+        return $data;
+    }
+
+    public function getUserSchedules($id) {
+        $sqlQuery = "SELECT R.dateFrom, R.dateTo, CONCAT(A.firstName, ' ', A.lastName) as devA, CONCAT(B.firstName, ' ', B.lastName)as devB
+                     FROM Rota R
+                        JOIN Users A on R.devA = A.userID
+                        JOIN Users B on R.devB = B.userID
+                     WHERE R.devA = :userID OR R.devB = :userID
+                     ORDER BY R.dateFrom";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->bindValue(":userID", $id, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        $data = [];
+
+        while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $data[] = Schedule::fromRow($dbRow);
+        }
+
+        $this->_dbInstance->destruct();
+
         return $data;
     }
 
@@ -81,11 +110,11 @@ class ScheduleData
 
         $statement->execute();
 
-        $schdeulesFound = $statement->rowCount() > 0;
+        $schedulesFound = $statement->rowCount() > 0;
 
         $this->_dbInstance->destruct();
 
-        return $schdeulesFound;
+        return $schedulesFound;
     }
 
     public function createRota($from, $to, $devA, $devB) {
