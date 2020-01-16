@@ -15,7 +15,10 @@ class LogsData
 
     //Views all logs in the system
     public function viewLog(){
-        $sqlQuery = "SELECT logID, logEditorID, logActionType, IFNULL(logAffectedUser, 'n/a') as logAffectedUser, IFNULL(logAffectedTeam, 'n/a') as logAffectedTeam, logDate FROM Logs ORDER BY logDate DESC";
+        $sqlQuery = "SELECT logID, concat(U.firstName, ' ', U.lastName) as name, logActionType, IFNULL(logAffectedUser, 'n/a') as logAffectedUser, IFNULL(logAffectedTeam, 'n/a') as logAffectedTeam, logDate 
+                     FROM Logs 
+                        JOIN Users U ON Logs.logEditorID = U.userID 
+                     ORDER BY logDate DESC";
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute();
         $this->_dbInstance->destruct();
