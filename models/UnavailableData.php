@@ -16,6 +16,7 @@ class UnavailableData
         $sqlQuery = "INSERT INTO Unavailable (userID, teamID, dateFrom, dateTo) VALUES (:userID, :teamID, :dateFrom, :dateTo)";
         $statement = $this->_dbHandle->prepare($sqlQuery);
 
+        $statement->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
         $statement->bindValue('userID', $userID, PDO::PARAM_INT);
         $statement->bindValue('teamID', $teamID, PDO::PARAM_INT);
         $statement->bindValue('dateFrom', $dateFrom, PDO::PARAM_STR);

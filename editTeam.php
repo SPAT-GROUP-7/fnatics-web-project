@@ -23,7 +23,13 @@ if (isset($_POST['teamName'])) {
         $teamData->updateTeam(intval($teamID), $teamName, $isBusy);
         $logData->addLog($_SESSION['userID'], 'updated', null, $teamName);
         if ($isBusy == 1){
-            $unavailable->markAsAbsent($userID, $teamID, $dateFrom, $dateTo);
+            $members = $teamData->getTeamMembersNew($teamID);
+
+            foreach ($members as $member) {
+                    $unavailable->markAsAbsent($member->getUserID(), $teamID, $dateFrom, $dateTo);
+
+            }
+
         }
     } else {
         $output = '<div class="alert alert-danger" id="error-message" role="alert">
