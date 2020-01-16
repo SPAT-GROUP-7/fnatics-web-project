@@ -6,7 +6,7 @@
  * Time: 14:11
  */
 
-class Schedule
+class Schedule implements JsonSerializable
 {
     protected $_from, $_to, $_devA, $_devB;
     public function __construct() {
@@ -57,6 +57,11 @@ class Schedule
 
     public function displayRota() {
         echo $this->_from . " : " . $this->_to . " : " . $this->_devA->getUserID() . " : " . $this->_devB->getUserID() . "</br>";
+    }
+
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
     }
 
 }

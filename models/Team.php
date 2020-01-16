@@ -6,7 +6,7 @@
  * Time: 12:24
  */
 
-class Team
+class Team implements JsonSerializable
 {
     protected $_teamID, $_teamName, $_isBusy, $_dateCreated, $_dateLastUpdated;
 
@@ -59,5 +59,9 @@ class Team
         return $this->_dateLastUpdated;
     }
 
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
 
 }
