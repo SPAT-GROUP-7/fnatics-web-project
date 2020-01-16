@@ -1,3 +1,5 @@
+
+
 <div class="modal fade" id="editScheduleModal" tabindex="-1" role="form">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -13,10 +15,11 @@
                     <input type="hidden" name="userID" id="etm-userID">
                     <div class="form-group">
                         <label for="eum-user">Dev A: </label>
-                        <select class="form-control" name="userID" id="eum-user" required>
+                        <select class="form-control" name="devA" id="eum-user" required>
                             <?php
-                            foreach ($view->user as $user) {
+                            foreach ($view->users as $user) {
                                 ?>
+
                                 <option value="<?php echo $user->getUserID() ?>"><?php echo $user->getFirstName() . " " . $user->getLastname() ?></option>
                                 <?php
                             }
@@ -24,9 +27,9 @@
                         </select>
                         <div class="form-group">
                             <label for="eum-user">Dev B: </label>
-                            <select class="form-control" name="userID" id="eum-user" required>
+                            <select class="form-control" name="devB" id="eum-user" required>
                                 <?php
-                                foreach ($view->user as $user) {
+                                foreach ($view->users as $user) {
                                     ?>
                                     <option value="<?php echo $user->getUserID() ?>"><?php echo $user->getFirstName() . " " . $user->getLastname() ?></option>
                                     <?php
