@@ -1,9 +1,12 @@
 <?php
 require_once ("models/UserData.php");
+require_once ("models/LogsData.php");
+session_start();
 
 if (isset($_POST['firstName'])) {
 
     $userData = new UserData();
+    $logData = new LogsData();
     $output = '';
 
     $teamID = htmlentities($_POST['teamID']);
@@ -13,10 +16,12 @@ if (isset($_POST['firstName'])) {
     $lastName = htmlentities($_POST['lastName']);
     $isAdmin = isset($_POST['isAdmin']) ? 1 : 0;
 
+
     $emailExists = $userData->checkUsernameExists($username);
 
     if ($emailExists) {
         $userData->createUser($teamID, $username, $password, $firstName, $lastName, $isAdmin);
+        $logData->addLog($_SESSION['userID'], 'created', $firstName . $lastName, null);
     } else {
         $output = '<div class="alert alert-danger" id="error-message" role="alert">
                             <strong>Error:</strong> A user with that email already exists!

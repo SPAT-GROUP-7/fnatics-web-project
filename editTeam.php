@@ -17,7 +17,7 @@ if (isset($_POST['teamName'])) {
 
     if ($teamData->checkTeamNameExistsIgnore($teamName, $teamID)){
         $teamData->updateTeam(intval($teamID), $teamName, $isBusy);
-        $logData->addLog($_SESSION['userID'], 'UPDATED', null, $teamName);
+        $logData->addLog($_SESSION['userID'], 'updated', null, $teamName);
     } else {
         $output = '<div class="alert alert-danger" id="error-message" role="alert">
                             <strong>Error:</strong> A team with that name already exists!

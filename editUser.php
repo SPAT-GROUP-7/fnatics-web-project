@@ -30,7 +30,7 @@ if (isset($_POST['username'])){
         if ($isAbsent = isset($_POST['isAbsent'])){
             $unavailable->markAsAbsent($userID, $teamID, $dateFrom, $dateTo);
         }
-        $logData->addLog($_SESSION['userID'], 'UPDATED', $user, null);
+        $logData->addLog($_SESSION['userID'], 'updated', $user, null);
     } else {
         $output = '<div class="alert alert-danger" id="error-message" role="alert">
                             <strong>Error:</strong> A user with that email already exists!
