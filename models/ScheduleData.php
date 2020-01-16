@@ -48,6 +48,7 @@ class ScheduleData
         $this->_dbInstance->destruct();
         return $data;
     }
+
     public function getRotas($from, $to) {
         $sqlQuery = "SELECT R.dateFrom, R.dateTo, CONCAT(A.firstName, ' ', A.lastName) as devA, CONCAT(B.firstName, ' ', B.lastName)as devB
                      FROM Rota R
@@ -72,6 +73,25 @@ class ScheduleData
         $this->_dbInstance->destruct();
 
         return $data;
+    }
+
+    public function isRotaValid($id, $from, $to) {
+        $sqlQuery = "SELECT DISTINCT U.username
+                     FROM Unavailable A
+                        JOIN Users U ON A.userID = :userID
+                     WHERE (:dateTo > A.dateFrom) or (:dateFrom > A.dateTo)";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->bindValue(":userID", $id, PDO::PARAM_INT);
+        $statement->bindValue(":dateTo", $to, PDO::PARAM_STR);
+        $statement->bindValue(":dateFrom", $from, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $this->_dbInstance->destruct();
+
+        return $statement->rowCount() != 0;
     }
 
     public function getUserSchedules($id) {
@@ -196,12 +216,14 @@ class ScheduleData
         $n = ceil($dateFrom->diff($dateTo)->days / 14) ;
 
         for ($i = 0; $i < $n; $i++) {
-            $nonAdmins = $nonAdminsBase;
+
 
             $add = ($i * 14);
 
             $from = date("d-m-Y", strtotime($dateFrom->format("d-m-Y"). ' + ' . $add . ' days'));
             $to = date("d-m-Y", strtotime($from. ' + 14 days'));
+
+            $nonAdmins = $this->_userData->getAllAvailableUsers($from, $to);
 
             $indexA = array_rand($nonAdmins, 1);
 
