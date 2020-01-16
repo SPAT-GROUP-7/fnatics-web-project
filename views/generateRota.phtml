@@ -48,6 +48,11 @@
                                     <th><?php echo $schedule->getTo() ?></th>
                                     <th><?php echo $schedule->getDevA()->getUsername()?></th>
                                     <th><?php echo $schedule->getDevB()->getUsername()?></th>
+                                    <td>
+                                        <button type="button" class="btn btn-warning editTeamBtn" data-id="<?php echo $team->getTeamID() ?>" data-toggle="modal" data-target="#editTeamModal">
+                                            Edit
+                                        </button>
+                                    <td>
                                 </tr>
                                 <?php
                             }

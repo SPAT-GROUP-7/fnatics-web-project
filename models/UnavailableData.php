@@ -11,6 +11,7 @@ class UnavailableData
         $this->_dbHandle = $this->_dbInstance->getConnection();
     }
 
+
     public function markAsAbsent($userID, $teamID, $dateFrom, $dateTo){
         $sqlQuery = "INSERT INTO Unavailable (userID, teamID, dateFrom, dateTo) VALUES (:userID, :teamID, :dateFrom, :dateTo)";
         $statement = $this->_dbHandle->prepare($sqlQuery);

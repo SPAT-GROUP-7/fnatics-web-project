@@ -1,0 +1,45 @@
+<div class="modal fade" id="editScheduleModal" tabindex="-1" role="form">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editScheduleModalTitle">Edit Schedule</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span id="edit-schedule-error"></span>
+                <form method="post" id="edit-schedule-form">
+                    <input type="hidden" name="userID" id="etm-userID">
+                    <div class="form-group">
+                        <label for="eum-user">Dev A: </label>
+                        <select class="form-control" name="userID" id="eum-user" required>
+                            <?php
+                            foreach ($view->user as $user) {
+                                ?>
+                                <option value="<?php echo $user->getUserID() ?>"><?php echo $user->getFirstName() . " " . $user->getLastname() ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                        <div class="form-group">
+                            <label for="eum-user">Dev B: </label>
+                            <select class="form-control" name="userID" id="eum-user" required>
+                                <?php
+                                foreach ($view->user as $user) {
+                                    ?>
+                                    <option value="<?php echo $user->getUserID() ?>"><?php echo $user->getFirstName() . " " . $user->getLastname() ?></option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="submit" class="btn btn-success">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
