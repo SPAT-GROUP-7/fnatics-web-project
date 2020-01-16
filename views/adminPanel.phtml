@@ -33,7 +33,7 @@
                                 </li>
 
                         </ul>
-                        <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-content justify-content-center" id="pills-tabContent">
                             <!-- CREATE A USER -->
                             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                                 <span id="createUserError"></span>
@@ -152,12 +152,12 @@
                             <!-- VIEW ALL TEAMS OPTION TO EDIT AND DELETE -->
                             <div class="tab-pane fade" id="pills-contact4" role="tabpanel" aria-labelledby="pills-contact-tab">
                                 <div class="row" id="teams">
-                                    <div class="col-md-10 mx-auto">
+                                    <div class="col-md-12 mx-auto">
                                         <div class="card card-body bg-light mt-5">
                                             <h1 class="card-title">Teams</h1>
 
                                             <div class="table-overflow-y table-scroll">
-                                            <table class="table">
+                                            <table class="table table-bordered table-striped mb-0">
                                                 <tr>
                                                     <th>Team Name</th>
                                                     <th>Is Busy</th>
@@ -196,7 +196,7 @@
                                             <h1 class="card-title">Logs</h1>
                                             <div class="table-overflow-y table-scroll">
 
-                                            <table class="table ">
+                                            <table class="table table-bordered table-striped mb-0">
                                                 <tr>
                                                     <th>Log Date</th>
                                                     <th>Log ID</th>
@@ -208,7 +208,7 @@
                                                 <?php
                                                 foreach ($view->logs as $log){
                                                     ?>
-                                                    <tr>
+                                                    <tr id="logs">
                                                         <td><?php echo $log->getLogDate() ?></td>
                                                         <td><?php echo $log->getLogID() ?></td>
                                                         <td><?php echo $log->getLogEditor() ?></td>

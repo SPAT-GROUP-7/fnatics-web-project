@@ -2,6 +2,7 @@
 
 require_once ("models/UserData.php");
 require_once ("models/LogsData.php");
+require_once ("models/UnavailableData.php");
 session_start();
 
 $logData = new LogsData();
@@ -15,14 +16,20 @@ if (isset($_POST['username'])){
     $lastName = htmlentities($_POST['lastName']);
     $teamID = htmlentities($_POST['teamID']);
     $isAdmin = isset($_POST['isAdmin']) ? 1 : 0;
+    $to = $_POST['absentDateFrom'];
+    $from = $_POST['absentDateTo'];
 
     $userData = new UserData();
+    $unavailable = new UnavailableData();
     $usernameQuery = $userData->checkUsernameExistsIgnore($username, $userID);
 
     $user = $userData->getUsernameByID($userID);
 
     if ($usernameQuery){
         $userData->updateUser($userID, $teamID, $username, $firstName, $lastName, $isAdmin);
+        if ($isAbsent = isset($_POST['isAbsent'])){
+            $unavailable->markAsAbsent($userID, $teamID, $dateFrom, $dateTo);
+        }
         $logData->addLog($_SESSION['userID'], 'UPDATED', $user, null);
     } else {
         $output = '<div class="alert alert-danger" id="error-message" role="alert">

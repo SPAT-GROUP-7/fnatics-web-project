@@ -17,9 +17,11 @@
 
 .content-wrapper {
   position: absolute;
-  padding: 15px;
+  padding: auto;
   margin-top: 40px;
   margin-left: 200px;
+  margin-right: auto;
+  padding-right: 0px;
 }
 
 .n-text {
@@ -66,4 +68,5 @@ body {
   display: block;
 }
 
+#logs
 /*# sourceMappingURL=main.css.map */
