@@ -1,7 +1,7 @@
 <?php
 
 
-class Unavailable
+class Unavailable implements JsonSerializable
 {
     protected $unavailableID, $userID, $teamID, $dateFrom, $dateTo;
 
@@ -101,7 +101,9 @@ class Unavailable
         $this->dateTo = $dateTo;
     }
 
-
-
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
 
 }

@@ -25,4 +25,25 @@ class UnavailableData
         $this->_dbInstance->destruct();
     }
 
+    public function getAllUnavailableUsers() {
+        $sqlQuery = "SELECT CONCAT(U.firstName, ' ', U.lastName), T.teamName, U2.dateFrom, U2.dateTo 
+                     FROM Users U
+                        JOIN Unavailable U2 ON U.userID = U2.userID
+                        JOIN Teams T ON U2.teamID = T.teamID";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->execute();
+
+        $data = [];
+
+        while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $data[] = new Unavailable($dbRow);
+        }
+
+        $this->_dbInstance->destruct();
+
+        return $data;
+    }
+
 }

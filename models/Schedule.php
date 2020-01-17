@@ -8,7 +8,7 @@
 
 class Schedule implements JsonSerializable
 {
-    protected $_from, $_to, $_devA, $_devB;
+    protected $_scheduleID, $_from, $_to, $_devA, $_devB;
     public function __construct() {
 
     }
@@ -16,6 +16,7 @@ class Schedule implements JsonSerializable
     public static function fromRow($dbRow) {
         $instance = new self();
 
+        $instance->_scheduleID = $dbRow['rotaID'];
         $instance->_from = date('F j, Y',strtotime($dbRow['dateFrom']));
         $instance->_to = date('F, j, Y', strtotime($dbRow['dateTo']));
         $instance->_devA = $dbRow['devA'];
@@ -33,6 +34,10 @@ class Schedule implements JsonSerializable
         $instance->_devB  = $devB;
 
         return $instance;
+    }
+
+    public function getScheduleID() {
+        return $this->_scheduleID;
     }
 
     public function getFrom() {
