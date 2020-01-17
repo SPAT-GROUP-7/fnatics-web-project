@@ -13,8 +13,8 @@ if (isset($_POST['teamName'])) {
     $teamID = $_POST['teamID'];
     $teamName = htmlentities($_POST['teamName']);
     $isBusy = isset($_POST['isBusy']) ? 1 : 0;
-    $dateFrom = htmlentities($_POST['isBusyFrom']);
-    $dateTo = htmlentities($_POST['isBusyTo']);
+    $isBusyFrom = htmlentities($_POST['isBusyFrom']);
+    $isBusyTo = htmlentities($_POST['isBusyTo']);
 
     $teamData = new TeamData();
     $teamData->getTeamNameByID($teamID);
