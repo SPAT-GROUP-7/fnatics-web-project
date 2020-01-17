@@ -30,8 +30,10 @@
         </div>
         </form>
         </div>
-
-                    <table class="table">
+    <div class="col-lg-12">
+        <div class="card card-body bg-light mt-5">
+            <h1 class="card-title">Current Schedule</h1>
+                    <table class="table table-overflow-y table-scroll">
                         <tr>
                             <th>From</th>
                             <th>To</th>
@@ -46,6 +48,9 @@
                                     <td><?php echo $rota->getTo() ?></td>
                                     <td><?php echo $rota->getDevA() ?></td>
                                     <td><?php echo $rota->getDevB() ?></td>
+                                    <td><button type="button" class="btn btn-warning editCurrentScheduleBtn" data-id="<?php  ?>" data-toggle="modal" data-target="">
+                                            Edit
+                                        </button></td>
                                 </tr>
                                 <?php
                             }
