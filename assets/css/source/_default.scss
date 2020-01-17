@@ -1,3 +1,8 @@
 body {
   overflow: hidden;
+  @include bv-text-setup("Nexa Light", 200, $color-black);
+}
+
+h1 {
+  @include bv-text-setup("Nexa Bold", 700, $color-black);
 }

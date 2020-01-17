@@ -1,31 +1,32 @@
 .sidebar-wrapper {
   z-index: 999;
-  position: absolute;
-  height: calc(100vh - 40px);
+  position: relative;
+  float: left;
+  height: 100vh;
   overflow-x: hidden;
-  background: #343a40;
-  margin-top: 40px;
+  background: #011f43;
+  margin-top: 50px;
   text-align: -webkit-center;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 .sidebar-wrapper .sidebar-nav {
-  height: calc(100vh - 40px);
+  height: 100vh;
   display: table-cell;
   vertical-align: middle;
   list-style-type: none;
-  padding: 25px;
 }
 
 .content-wrapper {
-  position: absolute;
-  padding: auto;
-  margin-top: 40px;
-  margin-left: 200px;
-  margin-right: auto;
-  padding-right: 0px;
+  position: relative;
+  float: left;
+}
+
+nav {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .n-text {
-  font-family: "Open Sans";
+  font-family: "Nexa Bold";
   font-weight: 400;
   color: white;
   font-size: 18px;
@@ -33,10 +34,24 @@
   transition: 0.5s;
 }
 .n-text:hover {
-  color: #ffa3a3;
+  color: #e53c2e;
   text-decoration: none;
 }
 
+@font-face {
+  font-family: "Nexa Bold";
+  src: url("/assets/fonts/Nexa-Bold.otf");
+  src: url("/assets/fonts/Nexa-Bold.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Nexa Light";
+  src: url("/assets/fonts/Nexa-Light.otf");
+  src: url("/assets/fonts/Nexa-Light.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
 .f-raleway-thin {
   font-family: "Raleway";
   font-weight: 300;
@@ -51,6 +66,15 @@
 
 body {
   overflow: hidden;
+  font-family: "Nexa Light";
+  font-weight: 200;
+  color: black;
+}
+
+h1 {
+  font-family: "Nexa Bold";
+  font-weight: 700;
+  color: black;
 }
 
 .table-scroll {
@@ -79,5 +103,34 @@ body {
   overflow: auto;
 }
 
-#logs
+.btn-danger {
+  background-color: #e53c2e;
+  font-family: "Nexa Light";
+  font-weight: 200;
+  color: white;
+}
+
+.btn-primary {
+  background-color: #011f43;
+  border-color: #011f43;
+  font-family: "Nexa Light";
+  font-weight: 200;
+  color: white;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: white;
+  background-color: #e53c2e;
+}
+
+a {
+  color: black;
+  transition: 0s;
+}
+a:hover {
+  color: #e53c2e;
+  text-decoration: none;
+}
+
 /*# sourceMappingURL=main.css.map */
