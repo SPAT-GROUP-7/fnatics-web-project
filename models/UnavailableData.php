@@ -26,7 +26,7 @@ class UnavailableData
     }
 
     public function getAllUnavailableUsers() {
-        $sqlQuery = "SELECT CONCAT(U.firstName, ' ', U.lastName), T.teamName, U2.dateFrom, U2.dateTo 
+        $sqlQuery = "SELECT U2.unaID, CONCAT(U.firstName, ' ', U.lastName), T.teamName, U2.dateFrom, U2.dateTo 
                      FROM Users U
                         JOIN Unavailable U2 ON U.userID = U2.userID
                         JOIN Teams T ON U2.teamID = T.teamID";
