@@ -5,7 +5,7 @@ require_once ("models/UnavailableData.php");
 session_start();
 
 $view = new stdClass();
-$view->title = "Some Test Thing";
+$view->title = "Admin Rota View";
 
 $teamData = new TeamData();
 $scheduleData = new ScheduleData();
