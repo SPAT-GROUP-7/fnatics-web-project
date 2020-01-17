@@ -88,4 +88,18 @@ $(document).ready(function () {
         const teamID = $(this).data('id');
         $("a#dtw-button").prop("href", "editSchedule.php?scheduleID=" + scheduleID);
     });
+
+    // edit currentSchedule
+    $('.editScheduleBtn').on('click', function () {
+        const $tr = $(this).closest('tr');
+
+        const data = $tr.children("td").map(function () {
+            return $(this).text();
+        }).get();
+
+        $('#dtw-name').text(data[0]);
+
+        const teamID = $(this).data('id');
+        $("a#dtw-button").prop("href", "editSchedule.php?scheduleID=" + scheduleID);
+    });
 });
