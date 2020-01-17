@@ -17,8 +17,8 @@ class Unavailable implements JsonSerializable
         $this->unavailableID = $dbRow['unaID'];
         $this->userID = $dbRow['name'];
         $this->teamID = $dbRow['teamID'];
-        $this->dateFrom = $dbRow['dateFrom'];
-        $this->dateTo = $dbRow['dateTo'];
+        $this->dateFrom = date('F j, Y',strtotime($dbRow['dateFrom']));;
+        $this->dateTo = date('F j, Y',strtotime($dbRow['dateTo']));;
     }
 
     /**
