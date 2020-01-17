@@ -26,10 +26,11 @@ class UnavailableData
     }
 
     public function getAllUnavailableUsers() {
-        $sqlQuery = "SELECT CONCAT(U.firstName, ' ', U.lastName), T.teamName, U2.dateFrom, U2.dateTo 
-                     FROM Users U
-                        JOIN Unavailable U2 ON U.userID = U2.userID
+        $sqlQuery = "SELECT U2.unaID, CONCAT(U.firstName, ' ', U.lastName) as 'name', T.teamID, U2.dateFrom, U2.dateTo 
+                     FROM Unavailable U2
+                        JOIN Users U  ON U2.userID = U.userID
                         JOIN Teams T ON U2.teamID = T.teamID";
+
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
 
@@ -47,3 +48,19 @@ class UnavailableData
     }
 
 }
+
+/* Getting all available users
+
+user is available if theyre are in users table and a
+ */
+
+
+
+
+
+
+
+
+
+
+

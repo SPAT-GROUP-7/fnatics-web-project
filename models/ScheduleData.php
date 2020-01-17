@@ -206,7 +206,7 @@ class ScheduleData
          *              select devB
          *      Create provisional Schedule(From, To, devA, devB)
          */
-        $nonAdminsBase = $this->_userData->getAllNonAdmins();
+        $nonAdmins =
 
         $rotas = [];
         $dateFrom = date_create($from);
