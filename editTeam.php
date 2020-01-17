@@ -26,7 +26,7 @@ if (isset($_POST['teamName'])) {
             $members = $teamData->getTeamMembersNew($teamID);
 
             foreach ($members as $member) {
-                    $unavailable->markAsAbsent($member->getUserID(), $teamID, $dateFrom, $dateTo);
+                    $unavailable->markAsAbsent($member->getUserID(), $teamID, $isBusyFrom, $isBusyTo);
 
             }
 
