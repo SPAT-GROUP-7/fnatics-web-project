@@ -1,5 +1,6 @@
 <?php require_once ("templates/header.phtml") ?>
 <?php require_once ("templates/navbar.phtml") ?>
+<?php require("templates/editCurrentSchedule.phtml"); ?>
 
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -48,7 +49,7 @@
                                     <td><?php echo $rota->getTo() ?></td>
                                     <td><?php echo $rota->getDevA() ?></td>
                                     <td><?php echo $rota->getDevB() ?></td>
-                                    <td><button type="button" class="btn btn-warning editCurrentScheduleBtn" data-id="<?php  ?>" data-toggle="modal" data-target="">
+                                    <td><button type="button" class="btn btn-warning editCurrentScheduleBtn" data-id="editCurrentSchedule" data-toggle="modal" data-target="#editCurrentSchedule">
                                             Edit
                                         </button></td>
                                 </tr>
