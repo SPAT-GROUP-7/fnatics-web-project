@@ -1,0 +1,11 @@
+//Importing some custom tools such as mixins and colors
+@import "mytools";
+
+//Importing bootstrap custom variables
+@import "customVariables";
+
+//Importing Non-Bootstrap related CSS
+@import "nonbootstrap";
+
+//Importing Bootstrap
+@import "../bootstrap/scss/bootstrap";
