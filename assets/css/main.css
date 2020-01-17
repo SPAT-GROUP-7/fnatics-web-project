@@ -68,5 +68,16 @@ body {
   display: block;
 }
 
+.table-overflow-x {
+  display: block;
+}
+
+.table-scroll-large {
+  position: relative;
+  height: 85vh;
+  width: 85vw;
+  overflow: auto;
+}
+
 #logs
 /*# sourceMappingURL=main.css.map */
