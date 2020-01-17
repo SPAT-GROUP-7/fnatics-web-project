@@ -17,7 +17,7 @@ foreach ($schedules as $schedule) {
 
 }
 
-$logsData->addLog($_SESSION['userID'], 'PUBLISHED A NEW ROTA', null, null);
+$logsData->addLog($_SESSION['userID'], 'published a new rota', null, null);
 
 
 header("Location: rota.php");
