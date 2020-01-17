@@ -177,13 +177,14 @@ class TeamData
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->bindValue(":teamID", $teamID, PDO::PARAM_STR);
         $statement->execute();
-        $this->_dbInstance->destruct();
+
 
         $data = [];
         while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)){
             $data[] = new User($dbRow);
         }
 
+        $this->_dbInstance->destruct();
         return $data;
     }
 
