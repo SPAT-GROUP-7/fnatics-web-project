@@ -18,8 +18,8 @@ class UnavailableData
 
         $statement->bindValue('userID', $userID, PDO::PARAM_INT);
         $statement->bindValue('teamID', $teamID, PDO::PARAM_INT);
-        $statement->bindValue('dateFrom', $dateFrom, PDO::PARAM_STR);
-        $statement->bindValue('dateTo', $dateTo, PDO::PARAM_STR);
+        $statement->bindValue('dateFrom', $dateFrom);
+        $statement->bindValue('dateTo', $dateTo);
 
         $statement->execute();
         $this->_dbInstance->destruct();

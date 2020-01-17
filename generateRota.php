@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
     $from = $_POST['from'];
 
     $view->schedules = $scheduleData->generateRotas($from, $to);
-    $logData->addLog($_SESSION['userID'], 'GENERATED A NEW ROTA', null, null);
+    $logData->addLog($_SESSION['userID'], 'generated a new rota', null, null);
 } else {
     $view->schedules = $scheduleData->generateRotas("12-01-2020", "10-02-2020");
 }

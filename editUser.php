@@ -16,8 +16,8 @@ if (isset($_POST['username'])){
     $lastName = htmlentities($_POST['lastName']);
     $teamID = htmlentities($_POST['teamID']);
     $isAdmin = isset($_POST['isAdmin']) ? 1 : 0;
-    $to = $_POST['absentDateFrom'];
-    $from = $_POST['absentDateTo'];
+    $dateFrom = $_POST['absentDateFrom'];
+    $dateTo = $_POST['absentDateTo'];
 
     $userData = new UserData();
     $unavailable = new UnavailableData();

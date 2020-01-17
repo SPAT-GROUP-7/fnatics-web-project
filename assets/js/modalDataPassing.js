@@ -41,7 +41,8 @@ $(document).ready(function () {
         } else {
             $('#etm-isbusy').prop('checked',false);
         }
-
+        $('#etm-isBusyFrom-').val(data[1])
+        $('#etm-isBusyto-').val(data[2])
         const teamID = $(this).data('id');
         $('#etm-teamID').val(teamID);
     });
