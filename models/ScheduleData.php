@@ -30,7 +30,7 @@ class ScheduleData
     }
 
     public function getAllRotas() {
-        $sqlQuery = "SELECT R.dateFrom, R.dateTo, CONCAT(A.firstName, ' ', A.lastName) as devA, CONCAT(B.firstName, ' ', B.lastName)as devB
+        $sqlQuery = "SELECT R.rotaID, R.dateFrom, R.dateTo, CONCAT(A.firstName, ' ', A.lastName) as devA, CONCAT(B.firstName, ' ', B.lastName)as devB
                      FROM Rota R
                         JOIN Users A on R.devA = A.userID
                         JOIN Users B ON R.devB = B.userID
@@ -50,7 +50,7 @@ class ScheduleData
     }
 
     public function getRotas($from, $to) {
-        $sqlQuery = "SELECT R.dateFrom, R.dateTo, CONCAT(A.firstName, ' ', A.lastName) as devA, CONCAT(B.firstName, ' ', B.lastName)as devB
+        $sqlQuery = "SELECT R.rotaID, R.dateFrom, R.dateTo, CONCAT(A.firstName, ' ', A.lastName) as devA, CONCAT(B.firstName, ' ', B.lastName)as devB
                      FROM Rota R
                         JOIN Users A on R.devA = A.userID
                         JOIN Users B ON R.devB = B.userID
@@ -95,7 +95,7 @@ class ScheduleData
     }
 
     public function getUserSchedules($id) {
-        $sqlQuery = "SELECT R.dateFrom, R.dateTo, CONCAT(A.firstName, ' ', A.lastName) as devA, CONCAT(B.firstName, ' ', B.lastName)as devB
+        $sqlQuery = "SELECT R.rotaID, R.dateFrom, R.dateTo, CONCAT(A.firstName, ' ', A.lastName) as devA, CONCAT(B.firstName, ' ', B.lastName)as devB
                      FROM Rota R
                         JOIN Users A on R.devA = A.userID
                         JOIN Users B on R.devB = B.userID
