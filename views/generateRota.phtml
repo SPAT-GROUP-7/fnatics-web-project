@@ -44,8 +44,8 @@
                                 <tr>
                                     <th><?php echo $schedule->getFrom() ?></th>
                                     <th><?php echo $schedule->getTo() ?></th>
-                                    <th><?php echo $schedule->getDevA()->getUsername()?></th>
-                                    <th><?php echo $schedule->getDevB()->getUsername()?></th>
+                                    <th><?php echo $schedule->getDevA()->getFirstName() . ' ' . $schedule->getDevA()->getLastName()?></th>
+                                    <th><?php echo $schedule->getDevB()->getFirstName() . ' ' . $schedule->getDevB()->getLastName()?></th>
                                     <th>
                                         <button type="button" class="btn btn-warning editScheduleBtn" data-id="editScheduleModal" data-toggle="modal" data-target="#editScheduleModal">
                                             Edit
