@@ -231,15 +231,15 @@ class ScheduleData
             $from = date("d-m-Y", strtotime($dateFrom->format("d-m-Y"). ' + ' . $add . ' days'));
             $to = date("d-m-Y", strtotime($from. ' + 14 days'));
 
-            $nonAdmins = $this->_userData->getAllNonAdmins();
-            $notAvailable = $this->_userData->getAllUnavailableUsers($from);
 
-            $availableUsers = array_udiff_assoc($nonAdmins, $notAvailable, function($obj_A, $obj_B) {
-                return strcmp($obj_A->getUserName(), $obj_B->getUserName());
+            $dateDB = date('Y-m-d', strtotime($from));
+            $nonAdmins = $this->_userData->getAllNonAdmins();
+            $unavailable = $this->_userData->getAllUnavailableUsers($dateDB);
+
+            $availableUsers = array_udiff($nonAdmins, $unavailable, function($obj_A, $obj_B) {
+                return ($obj_A->getUserID() - $obj_B->getUserID());
             });
 
-
-            echo "NEW SCHEDULE BELOW";
             $indexA = array_rand($availableUsers, 1);
 
             $devA =  $availableUsers[$indexA];
@@ -256,7 +256,6 @@ class ScheduleData
 
             $rotas[] = Schedule::fromString($from, $to, $devA, $devB);
         }
-
         return $rotas;
     }
 }
