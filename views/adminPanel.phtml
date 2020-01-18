@@ -6,258 +6,255 @@
 <?php require("templates/deleteUserWarning.phtml"); ?>
 <?php require("templates/deleteTeamWarning.phtml"); ?>
 
-    <div class="content-wrapper pt-4">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 mt-5 ml-5">
-                        <?php if (isset($_SESSION['isAdmin'])) : ?>
+<div class="content-wrapper pt-4">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 mt-5 ml-5">
+                <?php if (isset($_SESSION['isAdmin'])) : ?>
 
-                        <h1>Welcome, <?php echo $_SESSION['username'] ?>!</h1>
+                <h1>Welcome, <?php echo $_SESSION['username'] ?>!</h1>
 
-                        <!-- NAVIGATION FOR ADMIN -->
-                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="pills-cuser-tab" data-toggle="pill" href="#pills-cuser" role="tab">Create User</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="pills-cteam-tab" data-toggle="pill" href="#pills-cteam" role="tab">Create Team</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="pills-vuser-tab" data-toggle="pill" href="#pills-vuser" role="tab">View All Users</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="pills-vteam-tab" data-toggle="pill" href="#pills-vteam" role="tab">View All Teams</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="pills-vlogs-tab" data-toggle="pill" href="#pills-vlogs" role="tab">View Logs</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="pills-tabContent">
-                            <!-- CREATE A USER -->
-                            <div class="tab-pane fade show active" id="pills-cuser" role="tabpanel">
-                                <span id="createUserError"></span>
-                                <form method="post" id="createUserForm">
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <label for="firstName">First Name: </label>
-                                            <input type="text" name="firstName" id="firstName" class="form-control" placeholder="Joe" required>
-                                        </div>
-                                        <div class="col">
-                                            <label for="lastName">Last Name: </label>
-                                            <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Bloggs" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <label for="email">Email: </label>
-                                            <input type="text" name="username" id="email" class="form-control" placeholder="john.doe@example.com" required>
-                                        </div>
-                                        <div class="col">
-                                            <label for="password">Password: </label>
-                                            <input type="password" name="password" id="password" placeholder="Password" class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">Team: </label>
-                                        <select class="form-control" name="teamID">
-                                            <?php
-                                            foreach ($view->teams as $team) {
-                                                ?>
-                                                <option value="<?php echo $team->getTeamID() ?>">
-                                                    <?php echo $team->getTeamName() ?>
-                                                </option>
-                                                <?php
-                                            }
+                <!-- NAVIGATION FOR ADMIN -->
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-cuser-tab" data-toggle="pill" href="#pills-cuser" role="tab">Create User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-cteam-tab" data-toggle="pill" href="#pills-cteam" role="tab">Create Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-vuser-tab" data-toggle="pill" href="#pills-vuser" role="tab">View All Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-vteam-tab" data-toggle="pill" href="#pills-vteam" role="tab">View All Teams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-vlogs-tab" data-toggle="pill" href="#pills-vlogs" role="tab">View Logs</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <!-- CREATE A USER -->
+                    <div class="tab-pane fade show active" id="pills-cuser" role="tabpanel">
+                        <span id="createUserError"></span>
+                        <form method="post" id="createUserForm">
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="firstName">First Name: </label>
+                                    <input type="text" name="firstName" id="firstName" class="form-control" placeholder="Joe" required>
+                                </div>
+                                <div class="col">
+                                    <label for="lastName">Last Name: </label>
+                                    <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Bloggs" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="email">Email: </label>
+                                    <input type="text" name="username" id="email" class="form-control" placeholder="john.doe@example.com" required>
+                                </div>
+                                <div class="col">
+                                    <label for="password">Password: </label>
+                                    <input type="password" name="password" id="password" placeholder="Password" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Team: </label>
+                                <select class="form-control" name="teamID">
+                                    <?php
+                                    foreach ($view->teams as $team) {
+                                        ?>
+                                        <option value="<?php echo $team->getTeamID() ?>">
+                                            <?php echo $team->getTeamName() ?>
+                                        </option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="isAdmin" id="isadmin">
+                                <label class="form-check-label" for="isadmin">Admin?</label>
+                            </div>
+                            <br>
+                            <button type="submit" name="submit" class="btn btn-primary">Create</button>
+                        </form>
+                    </div>
+
+                    <!-- CREATE A TEAM -->
+                    <div class="tab-pane fade" id="pills-cteam" role="tabpanel">
+                        <span id="createTeamError"></span>
+                        <form method="post" id="createTeamForm">
+                            <div class="form-group">
+                                <label for="teamname">Team Name: </label>
+                                <input type="text" name="teamName" id="teamname" placeholder="Enter a Team Name" class="form-control">
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="isBusy" id="isBusy">
+                                <label class="form-check-label" for="isBusy">Busy?</label>
+                            </div>
+                            <br>
+                            <button type="submit" name="submit" class="btn btn-primary">Create</button>
+                        </form>
+
+                    </div>
+
+                    <!-- VIEW ALL USERS -->
+                    <div class="tab-pane fade" id="pills-vuser" role="tabpanel">
+                        <div class="row" id="users">
+                            <div class="col-md-12 mx-auto">
+                                <div class="card card-body bg-light">
+                                    <h1 class="card-title">Users</h1>
+
+                                    <div class="table-overflow-y table-scroll">
+                                    <table class="table table-bordered table-striped mb-0">
+                                        <tr>
+                                            <th>Username</th>
+                                            <th>Firstname</th>
+                                            <th>Lastname</th>
+                                            <th>Team</th>
+                                            <th>Admin</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                        <?php
+                                        foreach ($view->users as $user){
                                             ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="isAdmin" id="isadmin">
-                                        <label class="form-check-label" for="isadmin">Admin?</label>
-                                    </div>
-                                    <br>
-                                    <button type="submit" name="submit" class="btn btn-primary">Create</button>
-                                </form>
-                            </div>
-
-                            <!-- CREATE A TEAM -->
-                            <div class="tab-pane fade" id="pills-cteam" role="tabpanel">
-                                <span id="createTeamError"></span>
-                                <form method="post" id="createTeamForm">
-                                    <div class="form-group">
-                                        <label for="teamname">Team Name: </label>
-                                        <input type="text" name="teamName" id="teamname" placeholder="Enter a Team Name" class="form-control">
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="isBusy" id="isBusy">
-                                        <label class="form-check-label" for="isBusy">Busy?</label>
-                                    </div>
-                                    <br>
-                                    <button type="submit" name="submit" class="btn btn-primary">Create</button>
-                                </form>
-
-                            </div>
-
-                            <!-- VIEW ALL USERS -->
-                            <div class="tab-pane fade" id="pills-vuser" role="tabpanel">
-                                <div class="row" id="users">
-                                    <div class="col-md-12 mx-auto">
-                                        <div class="card card-body bg-light">
-                                            <h1 class="card-title">Users</h1>
-
-                                            <div class="table-overflow-y table-scroll">
-                                            <table class="table table-bordered table-striped mb-0">
-                                                <tr>
-                                                    <th>Username</th>
-                                                    <th>Firstname</th>
-                                                    <th>Lastname</th>
-                                                    <th>Team</th>
-                                                    <th>Admin</th>
-                                                    <th></th>
-                                                    <th></th>
-                                                </tr>
-                                                <?php
-                                                foreach ($view->users as $user){
-                                                    ?>
-                                                    <tr>
-                                                        <td><?php echo $user->getUsername() ?></td>
-                                                        <td><?php echo $user->getFirstname() ?></td>
-                                                        <td><?php echo $user->getLastname() ?></td>
-                                                        <td><?php echo $user->getTeamName() ?></td>
-                                                        <td><?php echo $user->getIsAdmin() ?></td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-warning editUserBtn" data-id="<?php echo $user->getUserID() ?>" data-toggle="modal" data-target="#editUserModal">
-                                                                Edit
-                                                            </button>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-danger deleteUserBtn" data-id="<?php echo $user->getUserID() ?>" data-toggle="modal" data-target="#deleteUserWarning">
-                                                                Delete
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <?php
-                                                }
-                                                ?>
-                                            </table>
-                                            </div>
-                                        </div>
+                                            <tr>
+                                                <td><?php echo $user->getUsername() ?></td>
+                                                <td><?php echo $user->getFirstname() ?></td>
+                                                <td><?php echo $user->getLastname() ?></td>
+                                                <td><?php echo $user->getTeamName() ?></td>
+                                                <td><?php echo $user->getIsAdmin() ?></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-warning editUserBtn" data-id="<?php echo $user->getUserID() ?>" data-toggle="modal" data-target="#editUserModal">
+                                                        Edit
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger deleteUserBtn" data-id="<?php echo $user->getUserID() ?>" data-toggle="modal" data-target="#deleteUserWarning">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                        ?>
+                                    </table>
                                     </div>
                                 </div>
-
-                            </div>
-
-                            <!-- VIEW ALL TEAMS OPTION TO EDIT AND DELETE -->
-                            <div class="tab-pane fade" id="pills-vteam" role="tabpanel">
-                                <div class="row" id="teams">
-                                    <div class="col-md-12 mx-auto">
-                                        <div class="card card-body bg-light">
-                                            <h1 class="card-title">Teams</h1>
-
-                                            <div class="table-overflow-y table-scroll">
-                                            <table class="table table-bordered table-striped mb-0">
-                                                <tr>
-                                                    <th>Team Name</th>
-                                                    <th>Is Busy</th>
-                                                    <th>Edit</th>
-                                                    <th>Delete</th>
-                                                </tr>
-                                                <?php
-                                                foreach ($view->teams as $team){
-                                                    ?>
-                                                    <tr>
-                                                        <td><?php echo $team->getTeamName() ?></td>
-                                                        <td><?php echo $team->getIsBusy() ?></td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-warning editTeamBtn" data-id="<?php echo $team->getTeamID() ?>" data-toggle="modal" data-target="#editTeamModal">
-                                                                Edit
-                                                            </button>
-                                                        <td>
-                                                            <button type="button" class="btn btn-danger deleteTeamBtn" data-id="<?php echo $team->getTeamID() ?>" data-toggle="modal" data-target="#deleteTeamWarning">
-                                                                Delete
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <?php
-                                                }
-                                                ?>
-                                            </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="pills-vlogs" role="tabpanel">
-                                <div class="row" id="users">
-                                    <div class="col-md-12 mx-auto">
-                                        <div class="card card-body bg-light mt-5">
-                                            <h1 class="card-title">Logs</h1>
-                                            <div class="table-overflow-y table-scroll" style="min-width: 750px;">
-
-                                                <?php
-
-                                                    foreach ($view->logs as $log){
-                                                        $id = $log->getLogID();
-                                                        $editor = $log->getLogEditor();
-                                                        $action = $log->getLogAction();
-                                                        $affUser = $log->getLogAffectedUser();
-                                                        $affTeam = $log->getLogAffectedTeam();
-                                                        $date = $log->getLogDate();
-                                                        $alertType = "";
-                                                        $icon = "";
-
-                                                        switch ($action){
-                                                            case "deleted":
-                                                                $alertType = "danger";
-                                                                $icon = "<i class=\"fas fa-minus\"></i>";
-                                                                break;
-                                                            case "created":
-                                                                $alertType = "success";
-                                                                $icon = "<i class=\"fas fa-plus\"></i>";
-                                                                break;
-                                                            case "updated":
-                                                                $alertType = "warning";
-                                                                $icon = "<i class=\"fas fa-pencil-alt\"></i>";
-                                                                break;
-                                                            case "generated a new rota":
-                                                                $alertType = "info";
-                                                                $affTeam = "";
-                                                                $affUser = "";
-                                                                $icon = "<i class=\"fas fa-calendar-plus\"></i>";
-                                                                break;
-                                                            case "published a new rota":
-                                                                $alertType = "info";
-                                                                $affTeam = "";
-                                                                $affUser = "";
-                                                                $icon = "<i class=\"fas fa-calendar-plus\"></i>";
-                                                                break;
-                                                            default:
-                                                                $alertType = "secondary";
-                                                        }
-
-                                                        if ($affUser == "n/a"){ ?>
-                                                            <div class="alert alert-<?php echo $alertType; ?>" role="alert">
-                                                                <?php echo $icon . " Admin " . $editor . " " . $action . " " . $affTeam . " on " . $date . "!" ?>
-                                                            </div>
-                                                        <?php } elseif ($affTeam == "n/a"){ ?>
-                                                            <div class="alert alert-<?php echo $alertType; ?>" role="alert">
-                                                                <?php echo $icon . " Admin " . $editor . " " . $action . " " . $affUser . " on " . $date . "!" ?>
-                                                            </div>
-                                                        <?php } else { ?>
-                                                            <div class="alert alert-info" role="alert">
-                                                                <?php echo $icon . " Admin " . $editor . " " . $action . " on " . $date . "!" ?>
-                                                            </div>
-                                                        <?php }
-                                                    }
-
-                                                ?>
-
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
+
+                    </div>
+
+                    <!-- VIEW ALL TEAMS OPTION TO EDIT AND DELETE -->
+                    <div class="tab-pane fade" id="pills-vteam" role="tabpanel">
+                        <div class="row" id="teams">
+                            <div class="col-md-12 mx-auto">
+                                <div class="card card-body bg-light">
+                                    <h1 class="card-title">Teams</h1>
+
+                                    <div class="table-overflow-y table-scroll">
+                                    <table class="table table-bordered table-striped mb-0">
+                                        <tr>
+                                            <th>Team Name</th>
+                                            <th>Is Busy</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                        <?php
+                                        foreach ($view->teams as $team){
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $team->getTeamName() ?></td>
+                                                <td><?php echo $team->getIsBusy() ?></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-warning editTeamBtn" data-id="<?php echo $team->getTeamID() ?>" data-toggle="modal" data-target="#editTeamModal">
+                                                        Edit
+                                                    </button>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger deleteTeamBtn" data-id="<?php echo $team->getTeamID() ?>" data-toggle="modal" data-target="#deleteTeamWarning">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                        ?>
+                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-vlogs" role="tabpanel">
+                        <div class="row" id="users">
+                            <div class="col-md-12 mx-auto">
+                                <h1 class="card-title">Audit Trail</h1>
+                                <div class="table-overflow-y table-scroll" style="min-width: 750px;">
+
+                                    <?php
+
+                                    foreach ($view->logs as $log){
+                                        $id = $log->getLogID();
+                                        $editor = $log->getLogEditor();
+                                        $action = $log->getLogAction();
+                                        $affUser = $log->getLogAffectedUser();
+                                        $affTeam = $log->getLogAffectedTeam();
+                                        $date = $log->getLogDate();
+                                        $alertType = "";
+                                        $icon = "";
+
+                                        switch ($action){
+                                            case "deleted":
+                                                $alertType = "danger";
+                                                $icon = "<i class=\"fas fa-minus\"></i>";
+                                                break;
+                                            case "created":
+                                                $alertType = "success";
+                                                $icon = "<i class=\"fas fa-plus\"></i>";
+                                                break;
+                                            case "updated":
+                                                $alertType = "warning";
+                                                $icon = "<i class=\"fas fa-pencil-alt\"></i>";
+                                                break;
+                                            case "generated a new rota":
+                                                $alertType = "info";
+                                                $affTeam = "";
+                                                $affUser = "";
+                                                $icon = "<i class=\"fas fa-calendar-plus\"></i>";
+                                                break;
+                                            case "published a new rota":
+                                                $alertType = "info";
+                                                $affTeam = "";
+                                                $affUser = "";
+                                                $icon = "<i class=\"fas fa-calendar-plus\"></i>";
+                                                break;
+                                            default:
+                                                $alertType = "secondary";
+                                        }
+
+                                        if ($affUser == "n/a"){ ?>
+                                            <div class="alert alert-<?php echo $alertType; ?>" role="alert">
+                                                <?php echo $icon . " Admin " . $editor . " " . $action . " " . $affTeam . " on " . $date . "!" ?>
+                                            </div>
+                                        <?php } elseif ($affTeam == "n/a"){ ?>
+                                            <div class="alert alert-<?php echo $alertType; ?>" role="alert">
+                                                <?php echo $icon . " Admin " . $editor . " " . $action . " " . $affUser . " on " . $date . "!" ?>
+                                            </div>
+                                        <?php } else { ?>
+                                            <div class="alert alert-info" role="alert">
+                                                <?php echo $icon . " Admin " . $editor . " " . $action . " on " . $date . "!" ?>
+                                            </div>
+                                        <?php }
+                                    }
+
+                                    ?>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <?php else : ?>
                         <h1>You do not have permission to view this page...</h1>
                     <?php endif; ?>
@@ -265,6 +262,7 @@
             </div>
         </div>
     </div>
+</div>
 
 
 
