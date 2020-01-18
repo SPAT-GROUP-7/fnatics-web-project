@@ -191,6 +191,14 @@ class ScheduleData
 
     }
 
+//    function compareUserID($a, $b)
+//    {
+//        $aID = $a->getUserID();
+//        $bID = $b->getUserID();
+//
+//        return $aID - $bID;
+//    }
+
     public function generateRotas($from, $to) {
 
         /*
@@ -206,7 +214,7 @@ class ScheduleData
          *              select devB
          *      Create provisional Schedule(From, To, devA, devB)
          */
-        $nonAdmins =
+
 
         $rotas = [];
         $dateFrom = date_create($from);
@@ -222,6 +230,7 @@ class ScheduleData
 
             $from = date("d-m-Y", strtotime($dateFrom->format("d-m-Y"). ' + ' . $add . ' days'));
             $to = date("d-m-Y", strtotime($from. ' + 14 days'));
+
 
             $dateDB = date('Y-m-d', strtotime($from));
             $nonAdmins = $this->_userData->getAllNonAdmins();

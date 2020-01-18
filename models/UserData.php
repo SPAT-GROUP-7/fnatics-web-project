@@ -90,6 +90,7 @@ class UserData
     }
 
     public function getAllUnavailableUsers($from) {
+
         $sqlQuery = "SELECT U.userID, T.teamName, U.username, U.password, U.firstName, U.lastName, U.dateCreated, U.lastUpdate, U.isAdmin 
                      FROM Users U
                         JOIN Unavailable U2 ON U.userID = U2.userID
