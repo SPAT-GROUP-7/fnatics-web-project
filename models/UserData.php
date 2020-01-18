@@ -118,8 +118,8 @@ class UserData
     public function getAllNonAdmins() {
         $sqlQuery = "SELECT U.userID, T.teamName, U.username, U.password, U.firstName, U.lastName, U.dateCreated, U.lastUpdate, U.isAdmin
                      FROM Users U
-                     JOIN Teams T On U.teamID = T.teamID
-                     WHERE U.isAdmin = 0";
+                        JOIN Teams T On U.teamID = T.teamID
+                     WHERE (U.isAdmin = 0) AND (PERIOD_DIFF(EXTRACT(YEAR_MONTH FROM NOW()), EXTRACT(YEAR_MONTH FROM U.startDate)) >= 4)";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
 
