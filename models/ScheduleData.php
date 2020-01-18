@@ -223,25 +223,30 @@ class ScheduleData
             $from = date("d-m-Y", strtotime($dateFrom->format("d-m-Y"). ' + ' . $add . ' days'));
             $to = date("d-m-Y", strtotime($from. ' + 14 days'));
 
-            $nonAdmins = $this->_userData->getAllAvailableUsers($from, $to);
+            $dateDB = date('Y-m-d', strtotime($from));
+            $nonAdmins = $this->_userData->getAllNonAdmins();
+            $unavailable = $this->_userData->getAllUnavailableUsers($dateDB);
 
-            $indexA = array_rand($nonAdmins, 1);
+            $availableUsers = array_udiff($nonAdmins, $unavailable, function($obj_A, $obj_B) {
+                return ($obj_A->getUserID() - $obj_B->getUserID());
+            });
 
-            $devA =  $nonAdmins[$indexA];
+            $indexA = array_rand($availableUsers, 1);
 
-            unset($nonAdmins[$indexA]);
+            $devA =  $availableUsers[$indexA];
 
-            $indexB = array_rand($nonAdmins, 1);
-            $devB =  $nonAdmins[$indexB];
+            unset($availableUsers[$indexA]);
+
+            $indexB = array_rand($availableUsers, 1);
+            $devB =  $availableUsers[$indexB];
 
             while ($devA->getTeamName() == $devB->getTeamName()) {
-                $indexB = array_rand($nonAdmins, 1);
-                $devB =  $nonAdmins[$indexB];
+                $indexB = array_rand($availableUsers, 1);
+                $devB =  $availableUsers[$indexB];
             }
 
             $rotas[] = Schedule::fromString($from, $to, $devA, $devB);
         }
-
         return $rotas;
     }
 }
