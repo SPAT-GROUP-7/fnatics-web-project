@@ -4,8 +4,8 @@
 //Importing bootstrap custom variables
 @import "customVariables";
 
-//Importing Non-Bootstrap related CSS
-@import "nonbootstrap";
-
 //Importing Bootstrap
 @import "../bootstrap/scss/bootstrap";
+
+//Importing Non-Bootstrap related CSS
+@import "nonbootstrap";
