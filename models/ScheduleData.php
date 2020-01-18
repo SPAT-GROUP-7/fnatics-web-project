@@ -191,6 +191,14 @@ class ScheduleData
 
     }
 
+//    function compareUserID($a, $b)
+//    {
+//        $aID = $a->getUserID();
+//        $bID = $b->getUserID();
+//
+//        return $aID - $bID;
+//    }
+
     public function generateRotas($from, $to) {
 
         /*
@@ -206,7 +214,7 @@ class ScheduleData
          *              select devB
          *      Create provisional Schedule(From, To, devA, devB)
          */
-        $nonAdmins =
+
 
         $rotas = [];
         $dateFrom = date_create($from);
@@ -223,25 +231,31 @@ class ScheduleData
             $from = date("d-m-Y", strtotime($dateFrom->format("d-m-Y"). ' + ' . $add . ' days'));
             $to = date("d-m-Y", strtotime($from. ' + 14 days'));
 
-            $nonAdmins = $this->_userData->getAllAvailableUsers($from, $to);
 
-            $indexA = array_rand($nonAdmins, 1);
+            $dateDB = date('Y-m-d', strtotime($from));
+            $nonAdmins = $this->_userData->getAllNonAdmins();
+            $unavailable = $this->_userData->getAllUnavailableUsers($dateDB);
 
-            $devA =  $nonAdmins[$indexA];
+            $availableUsers = array_udiff($nonAdmins, $unavailable, function($obj_A, $obj_B) {
+                return ($obj_A->getUserID() - $obj_B->getUserID());
+            });
 
-            unset($nonAdmins[$indexA]);
+            $indexA = array_rand($availableUsers, 1);
 
-            $indexB = array_rand($nonAdmins, 1);
-            $devB =  $nonAdmins[$indexB];
+            $devA =  $availableUsers[$indexA];
+
+            unset($availableUsers[$indexA]);
+
+            $indexB = array_rand($availableUsers, 1);
+            $devB =  $availableUsers[$indexB];
 
             while ($devA->getTeamName() == $devB->getTeamName()) {
-                $indexB = array_rand($nonAdmins, 1);
-                $devB =  $nonAdmins[$indexB];
+                $indexB = array_rand($availableUsers, 1);
+                $devB =  $availableUsers[$indexB];
             }
 
             $rotas[] = Schedule::fromString($from, $to, $devA, $devB);
         }
-
         return $rotas;
     }
 }
