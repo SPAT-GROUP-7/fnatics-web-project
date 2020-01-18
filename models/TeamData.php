@@ -33,7 +33,9 @@ class TeamData
 
     //Fetches all teams
     public function fetchAllTeams(){
-        $sqlQuery = "SELECT * FROM Teams";
+        $sqlQuery = "SELECT teamID, teamID, teamName, dateCreated, lastUpdate, isBusy, (select count(userID)
+                      FROM Users where Users.teamID = Teams.teamID) as'memberCount'        
+                     FROM Teams";
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute();
 
@@ -167,7 +169,6 @@ class TeamData
         return $data;
     }
 
-    //$_userID, $_teamName, $_username, $_password, $_firstName, $_lastName, $_dateCreated, $_dateLastUpdated, $_isAdmin;
     public function getTeamMembersNew($teamID) {
         $sqlQuery = "SELECT U.userID, T.teamName, U.username, U.password, U.firstName, U.lastName, U.dateCreated, U.lastUpdate, U.isAdmin 
                      FROM Users U
@@ -188,4 +189,22 @@ class TeamData
         return $data;
     }
 
+    // TODO: maybe un-needed
+    public function isTeamEmpty($teamID) {
+        $sqlQuery = "SELECT U.userID
+                     FROM Users U
+                     JOIN Teams T on U.teamID = :teamID";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->bindValue(":teamID", $teamID, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        $members = $statement->rowCount();
+
+        $this->_dbInstance->destruct();
+
+        return $members > 0;
+    }
 }
