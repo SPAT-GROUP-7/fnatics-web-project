@@ -92,6 +92,18 @@
                 scheduleTableBody[j].children[i+2].setAttribute('class', 'bg-success');
             }
         }
+
+        const absentDev = unavailableDevs.filter(x => x.dateFrom === dateArray[i])
+            .map(x => x.userID);
+
+        absentDev.forEach(function (x) {
+            for (let j = 0; j < scheduleTableBody.length; j++){
+                const currName = scheduleTableBody[j].children[1].innerHTML;
+                if (currName === x){
+                    scheduleTableBody[j].children[i+2].setAttribute('class', 'bg-danger');
+                }
+            }
+        });
     }
 </script>
 

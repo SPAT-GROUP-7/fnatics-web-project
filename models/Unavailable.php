@@ -14,11 +14,11 @@ class Unavailable implements JsonSerializable
      */
     public function __construct($dbRow)
     {
-        $this->unavailableID = $dbRow[''];
-        $this->userID = $dbRow[''];
-        $this->teamID = $dbRow[''];
-        $this->dateFrom = $dbRow[''];
-        $this->dateTo = $dbRow[''];
+        $this->unavailableID = $dbRow['unaID'];
+        $this->userID = $dbRow['name'];
+        $this->teamID = $dbRow['teamID'];
+        $this->dateFrom = date('F j, Y',strtotime($dbRow['dateFrom']));;
+        $this->dateTo = date('F j, Y',strtotime($dbRow['dateTo']));;
     }
 
     /**
