@@ -102,6 +102,19 @@
 
                             <!-- VIEW ALL USERS -->
                             <div class="tab-pane fade" id="pills-contact3" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                <div class="row" id="userSearch">
+                                    <div class="col-md-12 mx-auto">
+                                        <form action="adminPanel.php" method="POST">
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="name">First Name</label>
+                                                <input class="form-control" type="text" placeholder="Jon Snow" name="name">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btn-primary" name="nameSubmit" value="Search Users">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                                 <div class="row" id="users">
                                     <div class="col-md-12 mx-auto">
                                         <div class="card card-body bg-light mt-5">
@@ -111,8 +124,8 @@
                                             <table class="table table-bordered table-striped mb-0">
                                                 <tr>
                                                     <th>Username</th>
-                                                    <th>Firstname</th>
-                                                    <th>Lastname</th>
+                                                    <th>FirstName</th>
+                                                    <th>Last Name</th>
                                                     <th>Team</th>
                                                     <th>Admin</th>
                                                     <th></th>
@@ -151,6 +164,20 @@
 
                             <!-- VIEW ALL TEAMS OPTION TO EDIT AND DELETE -->
                             <div class="tab-pane fade" id="pills-contact4" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                
+                                <div class="row" id="teamsSearch">
+                                    <div class="col-md-12 mx-auto">
+                                        <form action="adminPanel.php" method="POST">
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="name">Team Name</label>
+                                                <input class="form-control" type="text" placeholder="Team Stark" name="name">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btn-primary" name="nameSubmit" value="Search Users">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                                 <div class="row" id="teams">
                                     <div class="col-md-10 mx-auto">
                                         <div class="card card-body bg-light mt-5">
@@ -175,7 +202,7 @@
                                                                 Edit
                                                             </button>
                                                         <td>
-                                                            <button type="button" class="btn btn-danger deleteTeamBtn" data-id="<?php echo $team->getTeamID() ?>" data-toggle="modal" data-target="#deleteTeamWarning">
+                                                            <button type="button" class="btn btn-danger deleteTeamBtn" data-id="<?php echo $team->getTeamID() ?>" data-toggle="modal" data-target="#deleteTeamWarning"<?php if ($team->getMemberCount() > 0) {echo "disabled";} ?> >
                                                                 Delete
                                                             </button>
                                                         </td>
@@ -190,6 +217,26 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="pills-contact5" role="tabpanel" aria-labelledby="pills-contact-tab">
+
+                                <div class="row" id="logSearch">
+                                    <div class="col-md-12 mx-auto">
+                                        <form action="adminPanel.php" method="POST">
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="from">Date From</label>
+                                                <input class="form-control" type="date"  name="from">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="to">Date To</label>
+                                                <input class="form-control" type="date"  name="to">
+                                            </div>
+
+                                            <div>
+                                                <input class="btn btn-primary" type="submit" value="Search Logs" name="logsSubmit">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
                                 <div class="row" id="users">
                                     <div class="col-md-12 mx-auto">
                                         <div class="card card-body bg-light mt-5">
