@@ -36,11 +36,13 @@ if (isset($_POST['teamSubmit'])) {
     $view->teams = $teamData->fetchAllTeams();
 }
 
-
-
-
-
-//Fetches all modifications made to the log view
-$view->logs = $logs->viewLog();
+if (isset($_POST['logsSubmit'])) {
+    $from = htmlentities($_POST['from']);
+    $to = htmlentities($_POST['to']);
+    $view->logs = $logs->getLogs($from, $to);
+} else {
+    //Fetches all modifications made to the log view
+    $view->logs = $logs->viewLog();
+}
 
 require_once ("views/adminPanel.phtml");
