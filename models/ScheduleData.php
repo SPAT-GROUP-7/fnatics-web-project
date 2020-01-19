@@ -75,11 +75,14 @@ class ScheduleData
         return $data;
     }
 
+    /*
+        When is a Rota invalid?
+            => When either DevA or DevB are marked as unavailable within that given time-frame
+            Get all users that are marked in the unavailable table in that date range if they match either devA or devB's
+            userID
+     */
     public function isRotaValid($id, $from, $to) {
-        $sqlQuery = "SELECT DISTINCT U.username
-                     FROM Unavailable A
-                        JOIN Users U ON A.userID = :userID
-                     WHERE (:dateTo > A.dateFrom) or (:dateFrom > A.dateTo)";
+        $sqlQuery = "";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
 
@@ -92,6 +95,7 @@ class ScheduleData
         $this->_dbInstance->destruct();
 
         return $statement->rowCount() != 0;
+
     }
 
     public function getUserSchedules($id) {
@@ -215,18 +219,18 @@ class ScheduleData
          *      Create provisional Schedule(From, To, devA, devB)
          */
 
-
+        $shiftLength = 14;
         $rotas = [];
         $dateFrom = date_create($from);
         $dateTo = date_create($to);
 
 
-        $n = ceil($dateFrom->diff($dateTo)->days / 14) ;
+        $n = ceil($dateFrom->diff($dateTo)->days / $shiftLength) ;
 
         for ($i = 0; $i < $n; $i++) {
 
 
-            $add = ($i * 14);
+            $add = ($i * $shiftLength);
 
             $from = date("d-m-Y", strtotime($dateFrom->format("d-m-Y"). ' + ' . $add . ' days'));
             $to = date("d-m-Y", strtotime($from. ' + 14 days'));
