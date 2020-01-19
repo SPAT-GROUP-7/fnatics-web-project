@@ -31,6 +31,29 @@ class TeamData
         return $dataSet;
     }
 
+    public function fetchTeams($partialName) {
+        $sqlQuery = "SELECT T.teamID, T.teamID, T.teamName, T.dateCreated, T.lastUpdate, T.isBusy, (select count(userID)
+                      FROM Users where Users.teamID = T.teamID) as'memberCount'        
+                     FROM Teams T
+                     WHERE T.teamName LIKE concat(:partialName, '%')";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->bindValue(":partialName", $partialName, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $data = [];
+
+        while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $data[] = new Team($dbRow);
+        }
+
+        $this->_dbInstance->destruct();
+
+        return $data;
+    }
+
     //Fetches all teams
     public function fetchAllTeams(){
         $sqlQuery = "SELECT teamID, teamID, teamName, dateCreated, lastUpdate, isBusy, (select count(userID)

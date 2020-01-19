@@ -28,10 +28,17 @@ if (isset($_POST['nameSubmit'])) {
     $view->users = $userData->getAllUsers();
 }
 
+if (isset($_POST['teamSubmit'])) {
+    $name = htmlentities($_POST['name']);
+    $view->teams = $teamData->fetchTeams($name);
+} else {
+    //Fetches all teams to view
+    $view->teams = $teamData->fetchAllTeams();
+}
 
 
-//Fetches all teams to view
-$view->teams = $teamData->fetchAllTeams();
+
+
 
 //Fetches all modifications made to the log view
 $view->logs = $logs->viewLog();
