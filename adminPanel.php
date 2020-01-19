@@ -21,7 +21,14 @@ $rotaData = new ScheduleData();
 
 $logs = new LogsData();
 
-$view->users = $userData->getAllUsers();
+if (isset($_POST['nameSubmit'])) {
+    $name = htmlentities($_POST['name']);
+    $view->users = $userData->getUsers($name);
+} else {
+    $view->users = $userData->getAllUsers();
+}
+
+
 
 //Fetches all teams to view
 $view->teams = $teamData->fetchAllTeams();

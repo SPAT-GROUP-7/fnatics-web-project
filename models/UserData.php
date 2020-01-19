@@ -85,8 +85,27 @@ class UserData
         return new User($dbRow);
     }
 
-    public function getUsers($search) {
+    public function getUsers($partialName) {
+        $sqlQuery = "SELECT U.userID, T.teamName, U.username, U.password, U.firstName, U.lastName, U.dateCreated, U.lastUpdate, U.isAdmin
+                     FROM Users U
+                        JOIN Teams T on U.teamID = T.teamID
+                     WHERE U.firstName LIKE concat(:partialName, '%')";
 
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+
+        $statement->bindValue(":partialName", $partialName, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        $data = [];
+
+        while ($dbRow = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $data[] = new User($dbRow);
+        }
+
+        $this->_dbInstance->destruct();
+
+        return $data;
     }
 
     public function getAllUnavailableUsers($from) {
