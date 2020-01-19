@@ -106,7 +106,8 @@
                                     <div class="col-md-12 mx-auto">
                                         <form action="adminPanel.php" method="POST">
                                             <div class="form-group">
-                                                <input class="form-control" type="text" placeholder="name" name="name">
+                                                <label class="col-form-label" for="name">First Name</label>
+                                                <input class="form-control" type="text" placeholder="Jon Snow" name="name">
                                             </div>
                                             <div class="form-group">
                                                 <input type="submit" class="btn btn-primary" name="nameSubmit" value="Search Users">
@@ -123,8 +124,8 @@
                                             <table class="table table-bordered table-striped mb-0">
                                                 <tr>
                                                     <th>Username</th>
-                                                    <th>Firstname</th>
-                                                    <th>Lastname</th>
+                                                    <th>FirstName</th>
+                                                    <th>Last Name</th>
                                                     <th>Team</th>
                                                     <th>Admin</th>
                                                     <th></th>
@@ -168,7 +169,8 @@
                                     <div class="col-md-12 mx-auto">
                                         <form action="adminPanel.php" method="POST">
                                             <div class="form-group">
-                                                <input class="form-control" type="text" placeholder="name" name="name">
+                                                <label class="col-form-label" for="name">Team Name</label>
+                                                <input class="form-control" type="text" placeholder="Team Stark" name="name">
                                             </div>
                                             <div class="form-group">
                                                 <input type="submit" class="btn btn-primary" name="nameSubmit" value="Search Users">
@@ -220,9 +222,11 @@
                                     <div class="col-md-12 mx-auto">
                                         <form action="adminPanel.php" method="POST">
                                             <div class="form-group">
+                                                <label class="col-form-label" for="from">Date From</label>
                                                 <input class="form-control" type="date"  name="from">
                                             </div>
                                             <div class="form-group">
+                                                <label class="col-form-label" for="to">Date To</label>
                                                 <input class="form-control" type="date"  name="to">
                                             </div>
 
