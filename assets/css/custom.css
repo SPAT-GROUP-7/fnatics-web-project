@@ -3957,7 +3957,7 @@ input[type=button].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #011f43;
+  background-color: #e53c2e;
 }
 
 .nav-fill .nav-item {
@@ -10579,15 +10579,16 @@ li {
   position: relative;
   display: block;
   height: 500px;
-  width: 20vw;
+  min-width: 20vw;
   overflow: scroll;
 }
 
 .table-scroll-large {
   position: relative;
+  display: block;
   max-height: 85vh;
   max-width: 85vw;
-  overflow: auto;
+  overflow: scroll;
 }
 @media (max-width: 1475px) {
   .table-scroll-large {
