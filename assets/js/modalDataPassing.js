@@ -72,7 +72,7 @@ $(document).ready(function () {
         $('#dtw-name').text(data[0]);
 
         const teamID = $(this).data('id');
-        $("a#dtw-button").prop("href", "editSchedule.php?scheduleID=" + scheduleID);
+        $("a#dtw-button").prop("href", "deleteTeam.php?teamID=" + teamID);
     });
 
     // edit Schedule
@@ -83,9 +83,32 @@ $(document).ready(function () {
             return $(this).text();
         }).get();
 
-        $('#dtw-name').text(data[0]);
+        $('#dtw-').text(data[0]);
 
-        const teamID = $(this).data('id');
+        const scheduleID = $(this).data('id');
         $("a#dtw-button").prop("href", "editSchedule.php?scheduleID=" + scheduleID);
     });
+
+    // edit current schedule
+    $('.editCurrentScheduleBtn').on('click', function() {
+        const $tr = $(this).closest('tr');
+        const data = $tr.children('td').map(function() {
+            return $(this).text();
+        }).get();
+
+        $("#etm-userID").prop("value", data[0]);
+
+        $("#eum-devA option").filter(function() {
+            return ($(this).text()) === data[3]
+        }).prop("selected", true);
+
+        $("#eum-devB option").filter(function() {
+            return ($(this).text() === data[4])
+        }).prop("selected", true);
+
+
+        console.log(data);
+    });
+
+
 });

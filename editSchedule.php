@@ -10,11 +10,13 @@ $view = new stdClass();
 
 $users = new UserData();
 $schedule = new ScheduleData();
+$logsData = new LogsData();
 
 $devA = htmlentities($_POST['devA']);
 $devA = htmlentities($_POST['devB']);
 
-$view.$users = $users->getAllNonAdmins();
+$editorID = $_SESSION['userID'];
+$view->$users = $users->getAllNonAdmins();
 
 $view->schedules = $scheduleData->getAllRotas();
 

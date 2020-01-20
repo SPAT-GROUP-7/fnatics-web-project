@@ -21,5 +21,6 @@ $(document).ready(function () {
    ajaxStuff("createUser.php", "#createUserForm", "#createUserError");
    ajaxStuff("createTeam.php", "#createTeamForm", "#createTeamError");
    ajaxStuff("editUser.php", "#edit-user-form", "#edit-user-error");
-   ajaxStuff("editTeam.php", "#edit-team-form", "#edit-team-error")
+   ajaxStuff("editTeam.php", "#edit-team-form", "#edit-team-error");
+   ajaxStuff("editCurrentSchedule.php", "#edit-schedule-form", "#edit-schedule-error");
 });
