@@ -187,6 +187,107 @@
                                 <h1 class="card-title">Audit Trail</h1>
                                 <div class="table-scroll">
 
+                            <!-- VIEW ALL TEAMS OPTION TO EDIT AND DELETE -->
+                            <div class="tab-pane fade" id="pills-contact4" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                
+                                <div class="row" id="teamsSearch">
+                                    <div class="col-md-12 mx-auto">
+                                        <form action="adminPanel.php" method="POST">
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="name">Team Name</label>
+                                                <input class="form-control" type="text" placeholder="Team Stark" name="name">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btn-primary" name="nameSubmit" value="Search Users">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row" id="teams">
+                                    <div class="col-md-10 mx-auto">
+                                        <div class="card card-body bg-light mt-5">
+                                            <h1 class="card-title">Teams</h1>
+
+                                            <div class="table-overflow-y table-scroll">
+                                            <table class="table">
+                                                <tr>
+                                                    <th>Team Name</th>
+                                                    <th>Is Busy</th>
+                                                    <th>Edit</th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                                <?php
+                                                foreach ($view->teams as $team){
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $team->getTeamName() ?></td>
+                                                        <td><?php echo $team->getIsBusy() ?></td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-warning editTeamBtn" data-id="<?php echo $team->getTeamID() ?>" data-toggle="modal" data-target="#editTeamModal">
+                                                                Edit
+                                                            </button>
+                                                        <td>
+                                                            <button type="button" class="btn btn-danger deleteTeamBtn" data-id="<?php echo $team->getTeamID() ?>" data-toggle="modal" data-target="#deleteTeamWarning"<?php if ($team->getMemberCount() > 0) {echo "disabled";} ?> >
+                                                                Delete
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-contact5" role="tabpanel" aria-labelledby="pills-contact-tab">
+
+                                <div class="row" id="logSearch">
+                                    <div class="col-md-12 mx-auto">
+                                        <form action="adminPanel.php" method="POST">
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="from">Date From</label>
+                                                <input class="form-control" type="date"  name="from">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="to">Date To</label>
+                                                <input class="form-control" type="date"  name="to">
+                                            </div>
+
+                                            <div>
+                                                <input class="btn btn-primary" type="submit" value="Search Logs" name="logsSubmit">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="row" id="users">
+                                    <div class="col-lg-12 text-center">
+                                    <h1>Legend</h1>
+                                </div>
+                                <div class="col-md-12 mx-auto">
+                                    <table class="table table-bordered align-content-center text-center">
+                                        <tr>
+                                            <th>Created</th>
+                                            <th>Updated</th>
+                                            <th>Generated</th>
+                                            <th>Deleted</th>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="alert-success"></td>
+                                            <td class="alert-warning"></td>
+                                            <td class="alert-info"></td>
+                                            <td class="alert-danger"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                    <div class="col-md-12 mx-auto">
+                                        <div class="card card-body bg-light mt-5">
+                                            <h1 class="card-title">Logs</h1>
+                                            <div class="table-overflow-y table-scroll" style="min-width: 750px;">
+
                                     <?php
 
                                     foreach ($view->logs as $log){

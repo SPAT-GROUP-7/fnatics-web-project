@@ -21,12 +21,28 @@ $rotaData = new ScheduleData();
 
 $logs = new LogsData();
 
-$view->users = $userData->getAllUsers();
+if (isset($_POST['nameSubmit'])) {
+    $name = htmlentities($_POST['name']);
+    $view->users = $userData->getUsers($name);
+} else {
+    $view->users = $userData->getAllUsers();
+}
 
-//Fetches all teams to view
-$view->teams = $teamData->fetchAllTeams();
+if (isset($_POST['teamSubmit'])) {
+    $name = htmlentities($_POST['name']);
+    $view->teams = $teamData->fetchTeams($name);
+} else {
+    //Fetches all teams to view
+    $view->teams = $teamData->fetchAllTeams();
+}
 
-//Fetches all modifications made to the log view
-$view->logs = $logs->viewLog();
+if (isset($_POST['logsSubmit'])) {
+    $from = htmlentities($_POST['from']);
+    $to = htmlentities($_POST['to']);
+    $view->logs = $logs->getLogs($from, $to);
+} else {
+    //Fetches all modifications made to the log view
+    $view->logs = $logs->viewLog();
+}
 
 require_once ("views/adminPanel.phtml");
