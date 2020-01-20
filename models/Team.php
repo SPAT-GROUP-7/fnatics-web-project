@@ -8,7 +8,7 @@
 
 class Team implements JsonSerializable
 {
-    protected $_teamID, $_teamName, $_isBusy, $_dateCreated, $_dateLastUpdated;
+    protected $_teamID, $_teamName, $_isBusy, $_dateCreated, $_dateLastUpdated, $_memberCount;
 
     public function __construct($dbRow)
     {
@@ -17,6 +17,7 @@ class Team implements JsonSerializable
         $this->_isBusy = $dbRow['isBusy'] == 1 ? "Yes" : "No" ;
         $this->_dateCreated = $dbRow['dateCreated'];
         $this->_dateLastUpdated = $dbRow['lastUpdate'];
+        $this->_memberCount = $dbRow['memberCount'];
     }
 
     /**
@@ -57,6 +58,10 @@ class Team implements JsonSerializable
     public function getDateLastUpdated()
     {
         return $this->_dateLastUpdated;
+    }
+
+    public function getMemberCount() {
+        return $this->_memberCount;
     }
 
     public function jsonSerialize()
