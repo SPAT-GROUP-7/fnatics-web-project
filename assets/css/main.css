@@ -1,0 +1,83 @@
+.sidebar-wrapper {
+  z-index: 999;
+  position: absolute;
+  height: calc(100vh - 40px);
+  overflow-x: hidden;
+  background: #343a40;
+  margin-top: 40px;
+  text-align: -webkit-center;
+}
+.sidebar-wrapper .sidebar-nav {
+  height: calc(100vh - 40px);
+  display: table-cell;
+  vertical-align: middle;
+  list-style-type: none;
+  padding: 25px;
+}
+
+.content-wrapper {
+  position: absolute;
+  padding: auto;
+  margin-top: 40px;
+  margin-left: 200px;
+  margin-right: auto;
+  padding-right: 0px;
+}
+
+.n-text {
+  font-family: "Open Sans";
+  font-weight: 400;
+  color: white;
+  font-size: 18px;
+  font-size: 1.125rem;
+  transition: 0.5s;
+}
+.n-text:hover {
+  color: #ffa3a3;
+  text-decoration: none;
+}
+
+.f-raleway-thin {
+  font-family: "Raleway";
+  font-weight: 300;
+  color: black;
+}
+
+.f-opensans-bold {
+  font-family: "Open Sans";
+  font-weight: 700;
+  color: black;
+}
+
+body {
+  overflow: hidden;
+}
+
+.table-scroll {
+  position: relative;
+  height: 400px;
+  overflow: auto;
+}
+@media (max-height: 700px) {
+  .table-scroll {
+    max-height: 250px;
+  }
+}
+
+.table-overflow-y {
+  display: block;
+}
+
+.table-overflow-x {
+  display: block;
+}
+
+.table-scroll-large {
+  position: relative;
+  height: 85vh;
+  width: 85vw;
+  overflow: auto;
+}
+
+#logs
+/*# sourceMappingURL=main.css.map */
