@@ -72,7 +72,7 @@ $(document).ready(function () {
         $('#dtw-name').text(data[0]);
 
         const teamID = $(this).data('id');
-        $("a#dtw-button").prop("href", "editSchedule.php?scheduleID=" + scheduleID);
+        $("a#dtw-button").prop("href", "deleteTeam.php?teamID=" + teamID);
     });
 
     // edit Schedule
