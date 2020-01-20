@@ -6,16 +6,19 @@ require_once ("models/ScheduleData.php");
 
 session_start();
 
+
+
 $view = new stdClass();
 
 $users = new UserData();
 $schedule = new ScheduleData();
 
 $devA = htmlentities($_POST['devA']);
-$devA = htmlentities($_POST['devB']);
+$devB = htmlentities($_POST['devB']);
+$scheduleID = htmlentities($_POST['scheduleID']);
 
-$view.$users = $users->getAllNonAdmins();
+$schedule->updateRota($scheduleID, $devA, $devB);
 
-$view->schedules = $scheduleData->getAllRotas();
+$view->users = $users->getAllNonAdmins();
 
-header("Location: rota.php");
+$view->schedules = $schedule->getAllRotas();

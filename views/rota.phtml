@@ -2,57 +2,60 @@
 <?php require_once ("templates/navbar.phtml") ?>
 <?php require("templates/editCurrentSchedule.phtml"); ?>
 
-<div class="content-wrapper pt-4 align-content-center">
+<div class="content-wrapper pt-4">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-12 mt-5 ml-5 offset-2">
+            <div class="col-lg-12 mt-5 ml-5">
                 <h1>Rota</h1>
-                <a class="btn btn-primary" href="generateRota.php">Generate a new Rota</a>
-            </div>
-        </div>
-    <hr>
-    <div class="col-lg-12">
-        <h1 class="card-title">Current Schedule</h1>
-        <form action="rota.php" method="POST">
-            <div class="form-row align-items-center">
-                <div class="col">
-                <input type="date" name="dateFrom" class="form-control" id="from" placeholder="Date From">
-                </div>
-                <div class="col">
-                <input type="date" name="dateTo" class="form-control" id="to">
-                </div>
-                <div class="col">
-                <input class="btn btn-primary" type="submit" name="submit" value="Filter" placeholder="Date To">
-                </div>
-            </div>
-        </form>
-    </div>
-    <hr>
-        <div class="table-scroll table-overflow-y">
-            <table class="table table-bordered table-hover">
-                <tr>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Dev A</th>
-                    <th>Dev B</th>
-                    <th>Edit Schedule</th>
-                </tr>
-                <?php
-                foreach ($view->rotas as $rota) {
-                    ?>
-                    <tr>
-                        <td><?php echo $rota->getFrom() ?></td>
-                        <td><?php echo $rota->getTo() ?></td>
-                        <td><?php echo $rota->getDevA() ?></td>
-                        <td><?php echo $rota->getDevB() ?></td>
-                        <td><button type="button" class="btn btn-warning editCurrentScheduleBtn" data-id="editCurrentSchedule" data-toggle="modal" data-target="#editCurrentSchedule">
-                                Edit
-                            </button></td>
-                    </tr>
-                    <?php
-                }
-                ?>
-            </table>
-        </div>
+                <a class="btn btn-primary mb-2" href="generateRota.php">Generate a new Rota</a>
 
+                <div class="card card-body">
+                    <div class="card-header-pills">
+                        <div class="card-body">
+                            <form action="rota.php" method="POST">
+                                <div class="form-group">
+                                    <label for="datefrom">Date From:</label>
+                                    <input type="date" name="dateFrom" class="form-control" id="from">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dateTo">Date From:</label>
+                                    <input type="date" name="dateTo" class="form-control" id="to">
+                                </div>
+
+                                <input class="btn btn-primary" type="submit" name="submit" value="Filter">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-body bg-light mt-5">
+                    <h1 class="card-title">Current Schedule</h1>
+                    <table class="table table-overflow-y table-scroll">
+                        <tr>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Dev A</th>
+                            <th>Dev B</th>
+                        </tr>
+                        <?php
+                            foreach ($view->rotas as $rota) { ?>
+                                <tr>
+                                    <td><?php echo $rota->getFrom() ?></td>
+                                    <td><?php echo $rota->getTo() ?></td>
+                                    <td><?php echo $rota->getDevA() ?></td>
+                                    <td><?php echo $rota->getDevB() ?></td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning editCurrentScheduleBtn" data-id="editCurrentSchedule" data-toggle="modal" data-target="#editCurrentSchedule">
+                                            Edit
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php }
+                        ?>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 <?php require_once ("templates/footer.phtml") ?>
