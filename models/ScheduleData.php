@@ -169,18 +169,15 @@ class ScheduleData
         return true;
     }
 
-    public function updateRota($from, $to, $devA, $devB) {
+    public function updateRota($scheduleID, $devA, $devB) {
         $sqlQuery = "UPDATE Rota R
-                     SET R.dateFrom = :dateFrom,
-                         R.dateTo = :dateTo,
-                         R.devA = :devA,
+                     SET R.devA = :devA,
                          R.devB = :devB
-                     WHERE R.dateFrom = :dateFrom AND R.dateTo = :dateTo";
+                     WHERE R.rotaID = :scheduleID";
 
         $statement = $this->_dbHandle->prepare($sqlQuery);
 
-        $statement->bindValue(":dateFrom", $from, PDO::PARAM_STR);
-        $statement->bindValue(":dateTo", $to, PDO::PARAM_STR);
+        $statement->bindValue(":scheduleID", $scheduleID, PDO::PARAM_INT);
         $statement->bindValue(":devA", $devA, PDO::PARAM_INT);
         $statement->bindValue(":devB", $devB, PDO::PARAM_INT);
 
