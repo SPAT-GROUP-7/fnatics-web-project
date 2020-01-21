@@ -11,9 +11,8 @@ $userData = new UserData();
 $view = new stdClass();
 $view->title = "Rota";
 $view->pageName = "admin";
-$from = date("Y-m-d");
-$to = date("Y-m-d", strtotime($from. ' + 56 days'));
-$view->rotas = $rotaData->getRotas($from, $to);
+
+$view->rotas = $rotaData->getAllRotas();
 $view->users = $userData->getAllNonAdmins();
 
 if (isset($_POST['submit'])) {

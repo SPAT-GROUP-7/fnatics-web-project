@@ -10,7 +10,7 @@ $logData = new LogsData();
 
 $username = $userData->getUsernameByID($id);
 
-$logData->addLog($_SESSION['userID'], 'deleted', $username, null);
+$logData->addLog($_SESSION['userID'], 'deleted', $username, null, null);
 
 $delUser = $userData->deleteUser($id);
 

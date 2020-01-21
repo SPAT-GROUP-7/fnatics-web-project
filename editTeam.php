@@ -21,7 +21,7 @@ if (isset($_POST['teamName'])) {
 
     if ($teamData->checkTeamNameExistsIgnore($teamName, $teamID)){
         $teamData->updateTeam(intval($teamID), $teamName, $isBusy);
-        $logData->addLog($_SESSION['userID'], 'updated', null, $teamName);
+        $logData->addLog($_SESSION['userID'], 'updated', null, $teamName, null);
         if ($isBusy == 1){
             $members = $teamData->getTeamMembersNew($teamID);
 

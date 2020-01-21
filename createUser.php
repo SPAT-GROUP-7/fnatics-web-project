@@ -21,7 +21,7 @@ if (isset($_POST['firstName'])) {
 
     if ($emailExists) {
         $userData->createUser($teamID, $username, $password, $firstName, $lastName, $isAdmin);
-        $logData->addLog($_SESSION['userID'], 'created', $firstName . $lastName, null);
+        $logData->addLog($_SESSION['userID'], 'created', $firstName . $lastName, null, null);
     } else {
         $output = '<div class="alert alert-danger" id="error-message" role="alert">
                             <strong>Error:</strong> A user with that email already exists!
