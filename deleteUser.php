@@ -14,4 +14,4 @@ $logData->addLog($_SESSION['userID'], 'deleted', $username, null, null);
 
 $delUser = $userData->deleteUser($id);
 
-header("Location: index.php");
+header("Location: adminPanel.php");

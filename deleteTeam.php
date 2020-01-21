@@ -13,4 +13,4 @@ $teamName = $teamData->getTeamNameByID($teamID);
 $logData->addLog($_SESSION['userID'], 'deleted', null, $teamName, null);
 $delTeam = $teamData->deleteTeam($teamID);
 
-header("Location: index.php");
+header("Location: adminPanel.php");
