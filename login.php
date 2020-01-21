@@ -23,7 +23,7 @@ if (isset($_POST['username'])) {
         }
     } else {
         // Failure redirect
-        $modalOutput = '<div class="alert alert-danger" id="error-message" role="alert">
+            $modalOutput = '<div class="alert alert-danger" id="error-message" role="alert">
                             <strong>Error:</strong> Invalid Username or Password!
                         </div>';
     }
