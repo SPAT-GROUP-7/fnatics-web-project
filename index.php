@@ -5,13 +5,15 @@ require_once("models/ScheduleData.php");
 
 $view = new stdClass();
 $view->title = "Schedule System - Fanatics";
-$view->pageName = "index";
+$view->page = "index";
 $rotaData = new ScheduleData();
 if (isset($_SESSION['userID'])) {
     $id = $_SESSION['userID'];
     $view->rotas = $rotaData->getUserSchedules($id);
 } else {
-    $view->rotas = $rotaData->getAllRotas();
+    $from = date("Y-m-d");
+    $to = date("Y-m-d", strtotime($from. ' + 56 days'));
+    $view->rotas = $rotaData->getRotas($from, $to);
 }
 
 

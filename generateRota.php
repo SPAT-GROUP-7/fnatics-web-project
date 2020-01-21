@@ -17,9 +17,11 @@ if (isset($_POST['submit'])) {
     $from = $_POST['from'];
 
     $view->schedules = $scheduleData->generateRotas($from, $to);
-    $logData->addLog($_SESSION['userID'], 'generated a new rota', null, null);
+    $logData->addLog($_SESSION['userID'], 'generated a new rota', null, null, null);
 } else {
-    $view->schedules = $scheduleData->generateRotas("12-01-2021", "10-02-2021");
+    $from = date("d-m-Y");
+    $to = date("d-m-Y", strtotime($from . "+ 56 days"));
+    $view->schedules = $scheduleData->generateRotas($from, $to);
 }
 $view->users = $userData->getAllNonAdmins();
 require_once ("views/generateRota.phtml");
