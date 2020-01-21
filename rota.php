@@ -7,8 +7,11 @@ $rotaData = new ScheduleData();
 $userData = new UserData();
 
 $view = new stdClass();
+$view->title = "Rota";
 $view->pageName = "admin";
-$view->rotas = $rotaData->getRotas("2020-01-01", "2020-02-28");
+$from = date("Y-m-d");
+$to = date("Y-m-d", strtotime($from. ' + 56 days'));
+$view->rotas = $rotaData->getRotas($from, $to);
 $view->users = $userData->getAllNonAdmins();
 
 if (isset($_POST['submit'])) {
