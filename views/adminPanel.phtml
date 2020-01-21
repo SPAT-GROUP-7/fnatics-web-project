@@ -102,15 +102,15 @@
                         <div class="row" id="users">
                             <div class="col-md-12 mx-auto">
                                 <div class="row" id="userSearch">
-                                    <div class="col-md-8"><h1 class="card-title">Users</h1></div>
-                                    <div class="col-md-4 mx-auto">
+                                    <div class="col-md-9 my-auto"><h1 class="card-title">Users</h1></div>
+                                    <div class="col-md-3 mx-auto">
                                         <form action="adminPanel.php" method="POST">
                                             <div class="form-group">
                                                 <label class="col-form-label" for="name">First Name</label>
-                                                <input class="form-control" type="text" placeholder="Jon Snow" name="name">
+                                                <input class="form-control" type="text" placeholder="John" name="name">
                                             </div>
                                             <div class="form-group">
-                                                <input type="submit" class="btn btn-primary" name="nameSubmit" value="Search Users">
+                                                <input type="submit" class="btn btn-primary btn-block" name="nameSubmit" value="Search Users">
                                             </div>
                                         </form>
                                     </div>
@@ -160,15 +160,15 @@
                         <div class="row" id="teams">
                             <div class="col-md-12 mx-auto">
                                 <div class="row" id="teamsSearch">
-                                    <div class="col-md-8"><h1 class="card-title">Teams</h1></div>
-                                    <div class="col-md-4 mx-auto">
+                                    <div class="col-md-9 my-auto"><h1 class="card-title">Teams</h1></div>
+                                    <div class="col-md-3 mx-auto">
                                         <form action="adminPanel.php" method="POST">
                                             <div class="form-group">
                                                 <label class="col-form-label" for="name">Team Name</label>
                                                 <input class="form-control" type="text" placeholder="Team Stark" name="name">
                                             </div>
                                             <div class="form-group">
-                                                <input type="submit" class="btn btn-primary" name="nameSubmit" value="Search Users">
+                                                <input type="submit" class="btn btn-primary btn-block" name="nameSubmit" value="Search Users">
                                             </div>
                                         </form>
                                     </div>
@@ -210,20 +210,21 @@
                         <div class="row" id="users">
                             <div class="col-md-12 mx-auto">
                                 <div class="row" id="logSearch">
-                                    <div class="col-md-8"><h1 class="card-title">Audit Trail</h1></div>
-                                    <div class="col-md-4 mx-auto">
+                                    <div class="col-md-7 my-auto"><h1 class="card-title">Audit Trail</h1></div>
+                                    <div class="col-md-5 mb-3">
                                         <form action="adminPanel.php" method="POST">
-                                            <div class="form-group">
-                                                <label class="col-form-label" for="from">Date From</label>
-                                                <input class="form-control" type="date"  name="from">
+                                            <div class="form-row mb-2">
+                                                <div class="col-md-6">
+                                                    <label class="col-form-label" for="from">Date From</label>
+                                                    <input class="form-control" type="date" id="from" name="from">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="col-form-label" for="to">Date To</label>
+                                                    <input class="form-control" type="date" id="to" name="to">
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-form-label" for="to">Date To</label>
-                                                <input class="form-control" type="date"  name="to">
-                                            </div>
-
                                             <div>
-                                                <input class="btn btn-primary" type="submit" value="Search Logs" name="logsSubmit">
+                                                <input class="btn btn-primary btn-block" type="submit" value="Search Logs" name="logsSubmit">
                                             </div>
                                         </form>
                                     </div>
