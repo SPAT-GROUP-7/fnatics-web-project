@@ -12,10 +12,10 @@
             <div class="modal-body">
                 <span id="edit-schedule-error"></span>
                 <form method="post" id="edit-schedule-form">
-                    <input type="hidden" name="userID" id="etm-userID">
+                        <input type="hidden" name="scheduleID" id="etm-userID">
                     <div class="form-group">
                         <label for="eum-user">Dev A: </label>
-                        <select class="form-control" name="devA" id="eum-user" required>
+                        <select class="form-control" name="devA" id="eum-devA" required>
                             <?php
                             foreach ($view->users as $user) {
                                 ?>
@@ -27,7 +27,7 @@
                         </select>
                         <div class="form-group">
                             <label for="eum-user">Dev B: </label>
-                            <select class="form-control" name="devB" id="eum-user" required>
+                            <select class="form-control" name="devB" id="eum-devB" required>
                                 <?php
                                 foreach ($view->users as $user) {
                                     ?>
@@ -40,7 +40,7 @@
                     </div>
                     <br>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" name="submit" class="btn btn-success">Save</button>
+                    <button type="submit" name="submit" id="updateSchedule" class="btn btn-success">Save</button>
                 </form>
             </div>
         </div>

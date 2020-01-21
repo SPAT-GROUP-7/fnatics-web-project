@@ -238,6 +238,7 @@
                                         $affUser = $log->getLogAffectedUser();
                                         $affTeam = $log->getLogAffectedTeam();
                                         $date = $log->getLogDate();
+                                        $affSchedule = $log->getLogAffectedSchedule();
                                         $alertType = "";
                                         $icon = "";
 
@@ -266,11 +267,19 @@
                                                 $affUser = "";
                                                 $icon = "<i class=\"fas fa-calendar-plus\"></i>";
                                                 break;
+                                            case "updated a rota":
+                                                $alertType = "warning";
+                                                $icon = "<i class=\"fas fa-calendar-plus\"></i>";
+                                                break;
                                             default:
                                                 $alertType = "secondary";
                                         }
 
-                                        if ($affUser == "n/a"){ ?>
+                                        if ($affSchedule != "n/a") { ?>
+                                            <div class="alert alert-<?php echo $alertType; ?>" role="alert">
+                                                <?php echo $icon . " Admin " . $editor . " " . $action . " " . $affSchedule . " on " . $date . "!" ?>
+                                            </div>
+                                        <?php } elseif ($affUser == "n/a"){ ?>
                                             <div class="alert alert-<?php echo $alertType; ?>" role="alert">
                                                 <?php echo $icon . " Admin " . $editor . " " . $action . " " . $affTeam . " on " . $date . "!" ?>
                                             </div>

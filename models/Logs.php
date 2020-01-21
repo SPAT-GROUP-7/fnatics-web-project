@@ -3,7 +3,7 @@
 
 class Logs
 {
-    private $logID, $logEditor, $logAction, $logAffectedUser, $logAffectedTeam, $logDate;
+    private $logID, $logEditor, $logAction, $logAffectedUser, $logAffectedTeam, $logDate, $logAffectedSchedule;
 
     /**
      * Logs constructor.
@@ -17,6 +17,7 @@ class Logs
         $this->logAffectedUser = $dbRow['logAffectedUser'];
         $this->logAffectedTeam = $dbRow['logAffectedTeam'];
         $this->logDate = $dbRow['logDate'];
+        $this->logAffectedSchedule = $dbRow['logAffectedSchedule'];
 
         //var_dump($this->logID, $this->logEditor, $this->logAction, $this->logAffectedUser, $this->logAffectedTeam, $this->logDate);
     }
@@ -115,6 +116,10 @@ class Logs
     public function setLogDate($logDate): void
     {
         $this->logDate = $logDate;
+    }
+
+    public function getLogAffectedSchedule() {
+        return $this->logAffectedSchedule;
     }
 
 

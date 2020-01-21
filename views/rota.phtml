@@ -31,6 +31,7 @@
                     <h1 class="card-title">Current Schedule</h1>
                     <table class="table table-overflow-y table-scroll">
                         <tr>
+                            <th hidden>ID</th>
                             <th>From</th>
                             <th>To</th>
                             <th>Dev A</th>
@@ -39,6 +40,7 @@
                         <?php
                             foreach ($view->rotas as $rota) { ?>
                                 <tr>
+                                    <td hidden> <?php echo $rota->getScheduleID() ?></td>
                                     <td><?php echo $rota->getFrom() ?></td>
                                     <td><?php echo $rota->getTo() ?></td>
                                     <td><?php echo $rota->getDevA() ?></td>
