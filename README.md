@@ -3,7 +3,7 @@
 ## Setup Instructions
 1. Clone the git repository from the latest commit to MASTER (this is the current stable version)
 2. Create a database on your chosen platform
-3. create a file called Secret.php in the models directory (as shown below)
+3. create a file called Secrets.php in the models directory (as shown below)
 ![An image showing the directory structure for the project](https://i.gyazo.com/a58693ba4c2fc442cd5a12ccf59ba2e4.png)
 
 
