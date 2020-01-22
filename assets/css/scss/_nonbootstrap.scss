@@ -1,0 +1,100 @@
+body {
+    overflow: hidden;
+}
+
+h1 {
+    @include bv-text-setup("Nexa Bold", 700, $color-black);
+}
+
+li {
+    list-style-type: none;
+}
+
+//Gives tables a scroll bar.
+.table-scroll {
+    position: relative;
+    display: block;
+    height: 500px;
+    min-width: 20vw;
+    overflow: scroll;
+}
+
+.table-scroll-large {
+    position: relative;
+    display: block;
+    max-height: 85vh;
+    max-width: 85vw;
+    overflow: scroll;
+
+    @media (max-width: 1310px) {
+        max-width: 90vw;
+    }
+}
+
+//The blue sidebar, hidden on smaller displays.
+.sidebar-wrapper {
+    z-index: 999;
+    overflow-x: hidden;
+    background: $color-fanatics-blue;
+    margin-top: 50px;
+    text-align: -webkit-center;
+    border-right: 1px solid rgba(0,0,0,.2);
+    min-width: 200px;
+
+    .sidebar-nav {
+        height: 100vh;
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    @media (max-width: 1310px) {
+        visibility: hidden;
+        min-width: unset;
+        max-width: 1px;
+    }
+}
+
+//Page Content Wrapper
+
+nav {
+    border-bottom: 1px solid rgba(0,0,0,.2);
+}
+
+#mobileNav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 1035;
+}
+
+.collapse {
+    transition: ease-in-out .5s;
+}
+
+.navbar-nav {
+    flex-direction: row;
+}
+
+.close {
+    opacity: 1;
+}
+
+.w-85 {
+    max-width: 85% !important;
+}
+
+//Navbar text
+.n-text {
+    @include bv-text-setup("Nexa Bold", 400, $color-white);
+    @include font-size(18px);
+    @include hover-effect($color-fanatics-red, .5s);
+}
+
+.m-text {
+    @include bv-text-setup("Nexa Bold", 400, $color-white);
+    @include font-size(32px);
+    @include hover-effect($color-fanatics-red, .5s);
+}

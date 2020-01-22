@@ -1,0 +1,108 @@
+//==========================
+// James Mulvaney          |
+// Colors for Projects     |
+//==========================
+
+
+//Flat Colors
+$color-white: rgb(255,255,255);
+$color-black: rgb(0,0,0);
+$color-red: rgb(255,0,0);
+$color-green: rgb(0,255,0);
+$color-blue: rgb(0,0,255);
+$color-purple: rgb(170,0,255);
+
+//Fanatics Colors
+$color-fanatics-red: rgb(229,60,46);
+$color-fanatics-blue: rgb(1,31,67);
+
+
+//==========================
+//         Mixins          |
+//==========================
+
+
+//Set Prefixes
+@mixin bv-prefix($prop, $val) {
+    @each $pre in -webkit-, -moz-, -ms-, -o-, '' {
+        #{$pre}#{$prop}: $val;
+    }
+}
+//Clearfix
+@mixin clearfix {
+    *zoom: 1;
+    &:before, &:after {
+        content: " ";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+//Inline List
+@mixin inline-list {
+    list-style-type:none;
+    padding:0;
+    margin:0;
+    @include clearfix;
+    > li{
+        display:block;
+        float:left;
+        &:last-child{
+            margin-right:0px;
+        }
+    }
+}
+
+//Unstyled List
+@mixin unstyled-list {
+    list-style-type:none;
+    padding:0;
+    margin:0;
+}
+
+//px -> rem
+@function calculateRem($size) {
+    $remSize: $size / 16px;
+    @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+    font-size: $size;
+    font-size: calculateRem($size);
+}
+
+//Color on Hover
+@mixin hover-effect($color, $time) {
+    transition: $time;
+
+    &:hover {
+        color: $color;
+        text-decoration: none;
+    }
+}
+
+//Text Setup
+@mixin bv-text-setup($name, $weight, $color) {
+    font-family: $name;
+    font-weight: $weight;
+    color: $color;
+}
+
+@font-face {
+    font-family: 'Nexa Bold';
+    src: url('/assets/fonts/Nexa-Bold.otf');
+    src: url('/assets/fonts/Nexa-Bold.otf') format('opentype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa Light';
+    src: url('/assets/fonts/Nexa-Light.otf');
+    src: url('/assets/fonts/Nexa-Light.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+}

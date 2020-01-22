@@ -1,0 +1,20 @@
+//Setting theme colors to Fanatics brand colors.
+$theme-colors: (
+    "primary": $color-fanatics-blue,
+    "danger": $color-fanatics-red
+);
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1310px
+);
+
+$font-family-base: "Nexa Light", sans-serif;
+
+$transition-collapse: none;
+
+$nav-pills-link-active-bg: $color-fanatics-red;
