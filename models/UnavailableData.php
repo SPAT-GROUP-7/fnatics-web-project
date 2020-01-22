@@ -2,16 +2,35 @@
 require_once 'models/Unavailable.php';
 require_once ("Database.php");
 
+/**
+ * Class UnavailableData
+ */
 class UnavailableData
 {
+    /**
+     * @var PDO
+     */
+    /**
+     * @var Database|PDO
+     */
     protected $_dbHandle, $_dbInstance;
 
+    /** Establish a connection to the database
+     *
+     * UnavailableData constructor.
+     */
     public function __construct() {
         $this->_dbInstance = Database::getInstance();
         $this->_dbHandle = $this->_dbInstance->getConnection();
     }
 
 
+    /**
+     * @param $userID : the ID of the User
+     * @param $teamID : the ID of the Users Team
+     * @param $dateFrom : the start date of the absence
+     * @param $dateTo : the end date of the absence
+     */
     public function markAsAbsent($userID, $teamID, $dateFrom, $dateTo){
         $sqlQuery = "INSERT INTO Unavailable (userID, teamID, dateFrom, dateTo) VALUES (:userID, :teamID, :dateFrom, :dateTo)";
         $statement = $this->_dbHandle->prepare($sqlQuery);
@@ -25,6 +44,10 @@ class UnavailableData
         $this->_dbInstance->destruct();
     }
 
+    /** This function will return all unavailable Users in the system
+     *
+     * @return array : a collection of Unavailable Objects
+     */
     public function getAllUnavailableUsers() {
         $sqlQuery = "SELECT U2.unaID, CONCAT(U.firstName, ' ', U.lastName) as 'name', T.teamID, U2.dateFrom, U2.dateTo 
                      FROM Unavailable U2
@@ -49,10 +72,6 @@ class UnavailableData
 
 }
 
-/* Getting all available users
-
-user is available if theyre are in users table and a
- */
 
 
 
