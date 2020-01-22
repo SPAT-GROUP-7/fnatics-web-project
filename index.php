@@ -7,6 +7,8 @@ $view = new stdClass();
 $view->title = "Schedule System - Fanatics";
 $view->page = "index";
 $rotaData = new ScheduleData();
+
+// if set, a User is logged in, try to retrieve their personalised schedule, otherwise grab the next 4 schedules
 if (isset($_SESSION['userID'])) {
     $id = $_SESSION['userID'];
     $view->rotas = $rotaData->getUserSchedules($id);

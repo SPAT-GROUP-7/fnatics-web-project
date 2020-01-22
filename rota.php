@@ -15,6 +15,7 @@ $view->pageName = "admin";
 $view->rotas = $rotaData->getAllRotas();
 $view->users = $userData->getAllNonAdmins();
 
+// if set, filter the rotas, otherwise just display all rotas
 if (isset($_POST['submit'])) {
     $from = $_POST['dateFrom'];
     $to = $_POST['dateTo'];

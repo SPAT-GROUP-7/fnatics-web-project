@@ -7,6 +7,7 @@ session_start();
 
 $logData = new LogsData();
 
+// If set, attempt to update a User and add to the Logs
 if (isset($_POST['username'])){
     $output = '';
 

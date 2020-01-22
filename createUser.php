@@ -3,6 +3,7 @@ require_once ("models/UserData.php");
 require_once ("models/LogsData.php");
 session_start();
 
+// If set, attempt to create a new User and update the Logs
 if (isset($_POST['firstName'])) {
 
     $userData = new UserData();
@@ -17,6 +18,7 @@ if (isset($_POST['firstName'])) {
     $isAdmin = isset($_POST['isAdmin']) ? 1 : 0;
 
 
+    // Ensure no one with that Username already exists (must be unique)
     $emailExists = $userData->checkUsernameExists($username);
 
     if ($emailExists) {

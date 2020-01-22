@@ -6,9 +6,11 @@ require_once ("models/LogsData.php");
 
 $scheduleData = new ScheduleData();
 $logsData = new LogsData();
+
+// Data provided is serialized, decode it
 $schedules = unserialize(base64_decode($_POST['schedules']));
 
-
+// insert each record into the database and update the Logs
 foreach ($schedules as $schedule) {
     $convertedFromDate = date_format(date_create($schedule->getFrom()), "Y-m-d");
     $convertedToDate = date_format(date_create($schedule->getTo()), "Y-m-d");

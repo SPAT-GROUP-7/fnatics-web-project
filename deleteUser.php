@@ -4,6 +4,8 @@ require_once ("models/LogsData.php");
 require_once ("models/User.php");
 session_start();
 
+// Grab the User by the ID provided and delete them from the System and update the Logs
+
 $id = $_GET['userID'];
 $userData = new UserData();
 $logData = new LogsData();

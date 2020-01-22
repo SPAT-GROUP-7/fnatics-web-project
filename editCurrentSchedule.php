@@ -6,7 +6,9 @@ require_once ("models/ScheduleData.php");
 
 session_start();
 
-
+/*
+ *  Update the selected schedule and update the logs accordingly
+ */
 
 $view = new stdClass();
 

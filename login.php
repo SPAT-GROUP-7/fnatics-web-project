@@ -4,6 +4,7 @@ session_start();
 
 require_once ("models/Login.php");
 
+// if set, try to authenticate a User and set their session variables, if it fails, inform the user
 if (isset($_POST['username'])) {
     // Login
     $username = htmlentities($_POST['username']);

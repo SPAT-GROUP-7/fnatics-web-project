@@ -7,6 +7,7 @@ session_start();
 $logData = new LogsData();
 $unavailable = new UnavailableData();
 
+// if set, attempt to edit a Team and update the Logs
 if (isset($_POST['teamName'])) {
     $output = '';
 
@@ -19,6 +20,7 @@ if (isset($_POST['teamName'])) {
     $teamData = new TeamData();
     $teamData->getTeamNameByID($teamID);
 
+    // Ensure the team name doesn't already exist in the system
     if ($teamData->checkTeamNameExistsIgnore($teamName, $teamID)){
         $teamData->updateTeam(intval($teamID), $teamName, $isBusy);
         $logData->addLog($_SESSION['userID'], 'updated', null, $teamName, null);

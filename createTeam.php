@@ -3,6 +3,7 @@ require_once ("models/TeamData.php");
 require_once ("models/LogsData.php");
 session_start();
 
+// if set, attempt to create a new Team and update the Logs
 if (isset($_POST['teamName'])) {
 
     $teamData = new TeamData();
@@ -14,6 +15,7 @@ if (isset($_POST['teamName'])) {
     $_isBusy = isset($_POST['isBusy']) ? 1 : 0;
 
 
+    // Ensure that the team name doesnt already exist
     if ($teamData->checkTeamNameExists($_teamName)){
         $teamData->createTeam($_teamName, $_isBusy);
         $logData->addLog($_SESSION['userID'], 'created', null, $_teamName, null);

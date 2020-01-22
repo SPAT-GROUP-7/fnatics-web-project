@@ -11,6 +11,7 @@ $userData = new UserData();
 
 $view->title = "Generate new Schedule";
 
+// If set, attempt to generate a list of N temporary rotas and update the Logs
 if (isset($_POST['submit'])) {
     // Generate of given date ranges
     $to = $_POST['to'];

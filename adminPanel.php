@@ -21,6 +21,7 @@ $rotaData = new ScheduleData();
 
 $logs = new LogsData();
 
+// if set, filter Users, otherwise grab all Users
 if (isset($_POST['nameSubmit'])) {
     $name = htmlentities($_POST['name']);
     $view->users = $userData->getUsers($name);
@@ -28,6 +29,7 @@ if (isset($_POST['nameSubmit'])) {
     $view->users = $userData->getAllUsers();
 }
 
+// If set, filter Teams, otherwise grab all Teams
 if (isset($_POST['teamSubmit'])) {
     $name = htmlentities($_POST['name']);
     $view->teams = $teamData->fetchTeams($name);
@@ -36,6 +38,7 @@ if (isset($_POST['teamSubmit'])) {
     $view->teams = $teamData->fetchAllTeams();
 }
 
+// If set, filter Logs, otherwise grab all Logs
 if (isset($_POST['logsSubmit'])) {
     $from = htmlentities($_POST['from']);
     $to = htmlentities($_POST['to']);

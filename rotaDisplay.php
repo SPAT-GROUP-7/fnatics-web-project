@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+// if the user is an administrator, allow them access and retrieve all information needed to display the rota calendar
 if (isset($_SESSION['isAdmin']) && ($_SESSION['isAdmin'] == true)) {
 
     require_once ("models/TeamData.php");
