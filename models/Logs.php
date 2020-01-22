@@ -1,13 +1,38 @@
 <?php
 
 
+/**
+ * Class Logs
+ * This class is used to represent a Log Object which provides an audit trail for changes made to the system
+ */
 class Logs
 {
+    /**
+     * @var $logID : The ID in the database for a given Log Object
+     */
+    /**
+     * @var $logEditor : The ID of the Admin user which performed the action
+     */
+    /**
+     * @var $logAction : The action that caused the log to be triggered
+     */
+    /**
+     * @var $logAffectedUser : The ID of the user affected by the action
+     */
+    /**
+     * @var $logAffectedTeam : The ID of the team affected by the action
+     */
+    /**
+     * @var $logDate : The timestamp corresponding to when the log was added to the database
+     */
+    /**
+     * @var $logAffectedSchedule : The ID of the schedule affected by the action
+     */
     private $logID, $logEditor, $logAction, $logAffectedUser, $logAffectedTeam, $logDate, $logAffectedSchedule;
 
     /**
      * Logs constructor.
-     * @param $dbRow
+     * @param $dbRow : A row from the database containing the information required to construct a Log Object
      */
     public function __construct($dbRow)
     {
@@ -19,11 +44,10 @@ class Logs
         $this->logDate = $dbRow['logDate'];
         $this->logAffectedSchedule = $dbRow['logAffectedSchedule'];
 
-        //var_dump($this->logID, $this->logEditor, $this->logAction, $this->logAffectedUser, $this->logAffectedTeam, $this->logDate);
     }
 
     /**
-     * @return mixed
+     * @return mixed $logID : retrieve the ID of the Log
      */
     public function getLogID()
     {
@@ -31,7 +55,7 @@ class Logs
     }
 
     /**
-     * @param mixed $logID
+     * @param mixed $logID : The new ID for the given Log Object
      */
     public function setLogID($logID): void
     {
@@ -39,7 +63,7 @@ class Logs
     }
 
     /**
-     * @return mixed
+     * @return mixed $logEditor : Retrieve the ID of the Admin associated with the Log Object
      */
     public function getLogEditor()
     {
@@ -47,7 +71,7 @@ class Logs
     }
 
     /**
-     * @param mixed $logEditor
+     * @param mixed $logEditor : The new ID for the editor of the Log Object
      */
     public function setLogEditor($logEditor): void
     {
@@ -55,7 +79,7 @@ class Logs
     }
 
     /**
-     * @return mixed
+     * @return mixed $logAction : Retrieve the action associated with the Log Object
      */
     public function getLogAction()
     {
@@ -63,7 +87,7 @@ class Logs
     }
 
     /**
-     * @param mixed $logAction
+     * @param mixed $logAction : The new action for the Log Object
      */
     public function setLogAction($logAction): void
     {
@@ -71,7 +95,7 @@ class Logs
     }
 
     /**
-     * @return mixed
+     * @return mixed : Retrieve the ID of the user affected by this Log Object
      */
     public function getLogAffectedUser()
     {
@@ -79,7 +103,7 @@ class Logs
     }
 
     /**
-     * @param mixed $logAffectedUser
+     * @param mixed $logAffectedUser : The new ID of the user affected by this Log Object
      */
     public function setLogAffectedUser($logAffectedUser): void
     {
@@ -87,7 +111,7 @@ class Logs
     }
 
     /**
-     * @return mixed
+     * @return mixed $logAffectedTeam : Retrieve the ID of the team affected by this Log Object
      */
     public function getLogAffectedTeam()
     {
@@ -95,7 +119,7 @@ class Logs
     }
 
     /**
-     * @param mixed $logAffectedTeam
+     * @param mixed $logAffectedTeam : The new ID of the team affected by this Log Object
      */
     public function setLogAffectedTeam($logAffectedTeam): void
     {
@@ -103,7 +127,7 @@ class Logs
     }
 
     /**
-     * @return mixed
+     * @return mixed $logDate : Retrieve the timestamp at which this Log was created
      */
     public function getLogDate()
     {
@@ -111,13 +135,16 @@ class Logs
     }
 
     /**
-     * @param mixed $logDate
+     * @param mixed $logDate : The new Timestamp for when this Log was created
      */
     public function setLogDate($logDate): void
     {
         $this->logDate = $logDate;
     }
 
+    /**
+     * @return mixed : Retrieve the ID of the schedule affected by this Log Object
+     */
     public function getLogAffectedSchedule() {
         return $this->logAffectedSchedule;
     }
