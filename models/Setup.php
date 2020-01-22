@@ -1,16 +1,35 @@
 <?php
 require_once ("models/Database.php");
 
+/**
+ * Class Setup
+ *
+ * This class should be ran on the first use of the system, it creates all necessary Database tables, foreign keys and indexes
+ * as well as a means of accessing the system by setting up an administrator team and administrator account
+ */
 class Setup
 {
+    /**
+     * @var PDO
+     */
+    /**
+     * @var Database|PDO
+     */
     protected $_dbHandle, $_dbInstance;
 
+    /** Establish a connection to the database
+     *
+     * Setup constructor.
+     */
     public function __construct()
     {
         $this->_dbInstance = Database::getInstance();
         $this->_dbHandle = $this->_dbInstance->getConnection();
     }
 
+    /**
+     * This function will create all database tables and create an admin account
+     */
     public function initialiseTables() {
         $this->createTeamsTable();
         $this->createUsersTable();
@@ -23,6 +42,9 @@ class Setup
         echo "<h1><a href='index.php'>Go to app</a></h1>";
     }
 
+    /**
+     * This function creates the Teams table
+     */
     public function createTeamsTable()
     {
         $sqlQuery = "create table Teams
@@ -47,6 +69,9 @@ class Setup
         echo "<h1>[INFO]: CREATED Teams TABLE</h1>";
     }
 
+    /**
+     * This function creates the Users table
+     */
     public function createUsersTable() {
         $sqlQuery = "create table Users
                         (
@@ -76,6 +101,9 @@ class Setup
 
     }
 
+    /**
+     * This function creates the Rota table
+     */
     public function createRotaTable() {
         $sqlQuery = "create table Rota
                         (
@@ -107,6 +135,9 @@ class Setup
         echo "<h1>[INFO]: CREATED Rota TABLE</h1>";
     }
 
+    /**
+     * This function creates the Logs table
+     */
     public function createLogsTable() {
         $sqlQuery = "create table if not exists Logs
                      (
@@ -135,6 +166,9 @@ class Setup
 
     }
 
+    /**
+     * This function creates the Unavailable table
+     */
     public function createUnavailableTable() {
         $sqlQuery = "create table Unavailable
                         (
@@ -167,6 +201,9 @@ class Setup
         echo "<h1>[INFO]: CREATED Unavailable TABLE</h1>";
     }
 
+    /**
+     * This function creates an Administrator team as well as a default administrator account
+     */
     public function createAdminAccess() {
         $sqlQuery = "INSERT INTO Teams (teamName, dateCreated, lastUpdate, isBusy)  
                      VALUES ('Administrator', now(), now(), 0);
