@@ -1,12 +1,30 @@
 <?php
 
 require_once ("Secrets.php");
+
+/**
+ * Class Database : This class allows connection to a database using the singleton pattern
+ */
 class Database
 {
+    /**
+     * @var $_dbInstance : the current instance of a database connection
+     */
     protected static $_dbInstance = null;
+    /**
+     * @var $_dbHandle : The handler for the database connection
+     */
     protected $_dbHandle;
 
     // Establish a connection to the DB
+
+    /**
+     * Database constructor.
+     * @param $username : The username used to connect to the database
+     * @param $password : The password used to connect to the database
+     * @param $host : The host of the database
+     * @param $dbName : The name of the database
+     */
     public function __construct($username, $password, $host, $dbName) {
         try {
             $this->_dbHandle = new PDO("mysql:host=$host;dbname=$dbName", $username, $password);
@@ -16,7 +34,11 @@ class Database
         }
     }
 
-    // return an instance of the DB, if an instance is already active use it, otherwise create a new instance
+
+    /**
+     * @return Database : If there is a current connection to the database, return it
+     *                    otherwise establish a new connection
+     */
     public static function getInstance() {
         $username = Secrets::$USERNAME;
         $password = Secrets::$PASSWORD;
@@ -30,12 +52,18 @@ class Database
         return self::$_dbInstance;
     }
 
-    // Return the current connection to the DB
+
+    /**
+     * @return PDO - return the currently active connection to the database
+     */
     public function getConnection() {
         return $this->_dbHandle;
     }
 
-    // Close the connection to the DB and release the resources used
+
+    /**
+     * Release the current database connection to free resources
+     */
     public function destruct() {
         $this->_dbHandle = null;
     }
