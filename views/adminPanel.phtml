@@ -193,7 +193,7 @@
                                                     </button>
                                                 <td>
                                                     <button type="button" class="btn btn-danger deleteTeamBtn" data-id="<?php echo $team->getTeamID() ?>" data-toggle="modal" data-target="#deleteTeamWarning"
-                                                        <?php if ($team->getMemberCount() != 0) { echo "disabled";} ?> >
+                                                        <?php if ($team->getMemberCount() != 0) { echo "title=\"Team is not empty!\" disabled";} ?>>
                                                         Delete
                                                     </button>
                                                 </td>

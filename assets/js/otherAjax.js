@@ -1,5 +1,6 @@
-//Stuff
-function ajaxStuff(theUrl, form, formerr) {
+//Creates an ajax post request from arguments that can return an error to the modal
+//without reloading the page.
+function ajaxPost(theUrl, form, formerr) {
     $(form).on('submit', function (event) {
         event.preventDefault();
         $.ajax({
@@ -18,9 +19,9 @@ function ajaxStuff(theUrl, form, formerr) {
 }
 
 $(document).ready(function () {
-   ajaxStuff("createUser.php", "#createUserForm", "#createUserError");
-   ajaxStuff("createTeam.php", "#createTeamForm", "#createTeamError");
-   ajaxStuff("editUser.php", "#edit-user-form", "#edit-user-error");
-   ajaxStuff("editTeam.php", "#edit-team-form", "#edit-team-error");
-   ajaxStuff("editCurrentSchedule.php", "#edit-schedule-form", "#edit-schedule-error");
+    ajaxPost("createUser.php", "#createUserForm", "#createUserError");
+    ajaxPost("createTeam.php", "#createTeamForm", "#createTeamError");
+    ajaxPost("editUser.php", "#edit-user-form", "#edit-user-error");
+    ajaxPost("editTeam.php", "#edit-team-form", "#edit-team-error");
+    ajaxPost("editCurrentSchedule.php", "#edit-schedule-form", "#edit-schedule-error");
 });

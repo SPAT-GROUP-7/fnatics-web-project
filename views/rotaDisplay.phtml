@@ -72,9 +72,9 @@
 
 <script>
 
+    //Changes data arrays to JSON format.
     let schedules = <?php echo json_encode($view->schedules);?>;
     let unavailableDevs = <?php echo json_encode($view->unavailable);?>;
-    console.log(unavailableDevs);
 
     //Date Array
     const dateArray = [];
@@ -99,11 +99,14 @@
     // Get the devs who are scheduled to be on support on a given day.
     // Then find the given day in the table and set the cell background to green.
     for (let i = 0; i < schedules.length; i++){
+        //Gets the two devs who are on schedule for date i.
         const devNamesOnSched = schedules.filter(x => x._from === dateArray[i])
             .map(x => [x._devA, x._devB]);
 
         const [ devA, devB ] = devNamesOnSched[0];
 
+        //Loops through the table. If the cell value equals one of the devs names,
+        //Set the cell to color green.
         for (let j = 0; j < scheduleTableBody.length; j++){
             const currName = scheduleTableBody[j].children[1].innerHTML;
             if (currName === devA || currName === devB){
@@ -111,9 +114,12 @@
             }
         }
 
+        //Gets the absent dev at date i.
         const absentDev = unavailableDevs.filter(x => x.dateFrom === dateArray[i])
             .map(x => x.userID);
 
+        //Loops through the table. If the cell value equals the name of the dev,
+        //Set the cell to color red.
         absentDev.forEach(function (x) {
             for (let j = 0; j < scheduleTableBody.length; j++){
                 const currName = scheduleTableBody[j].children[1].innerHTML;

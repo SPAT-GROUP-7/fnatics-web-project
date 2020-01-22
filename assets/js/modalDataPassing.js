@@ -105,10 +105,5 @@ $(document).ready(function () {
         $("#eum-devB option").filter(function() {
             return ($(this).text() === data[4])
         }).prop("selected", true);
-
-
-        console.log(data);
     });
-
-
 });
