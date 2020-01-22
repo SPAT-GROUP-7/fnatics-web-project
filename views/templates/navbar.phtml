@@ -29,21 +29,19 @@
         <div class="h-100 w-100 d-flex">
             <div class="mobile-content mx-auto my-auto">
                 <li>
-                    <a href="rota.php" class="m-text"><i class="far fa-calendar-alt"></i> Rota</a>
+                    <a href="
+                        <?php if ($_SESSION["isAdmin"] == true) { echo 'rotaDisplay.php'; } else { echo 'index.php'; } ?>
+                    " class="m-text"><i class="far fa-calendar-alt"></i> Rota</a>
                 </li>
                 <?php if (isset($_SESSION["loggedIn"]) && ($_SESSION["loggedIn"] == true)) : ?>
-                    <li>
-                        <a href="#" class="m-text"><i class="fas fa-handshake"></i> Shift Swap</a>
-                    </li>
-                    <li>
-                        <?php if (isset($_SESSION["isAdmin"]) && ($_SESSION["isAdmin"] == true)) : ?>
+                    <?php if (isset($_SESSION["isAdmin"]) && ($_SESSION["isAdmin"] == true)) : ?>
+                        <li>
                             <a href="adminPanel.php" class="m-text"><i class="fas fa-shield-alt"></i> Admin Panel</a>
-                        <?php endif; ?>
-                    </li>
-                    <li>
-                        <a href="#" class="m-text"><i class="fas fa-cog"></i> Settings</a>
-                    </li>
-                    <li>
+                        <li>
+                        <li>
+                            <a href="rota.php" class="m-text"><i class="fas fa-pencil-alt"></i> Edit Rota</a>
+                        <li>
+                    <?php endif; ?>
                         <a href="logout.php" class="m-text"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </li>
                 <?php else : ?>
@@ -61,20 +59,19 @@
     <div class="sidebar-wrapper">
         <ul class="sidebar-nav px-4">
             <li>
-                <a href="rota.php" class="n-text"><i class="far fa-calendar-alt"></i> Rota</a>
+                <a href="
+                        <?php if (isset($_SESSION["isAdmin"]) && ($_SESSION["isAdmin"] == true)) { echo 'rotaDisplay.php'; } else { echo 'index.php'; } ?>
+                    " class="n-text"><i class="far fa-calendar-alt"></i> Rota</a>
             </li>
             <?php if (isset($_SESSION["loggedIn"]) && ($_SESSION["loggedIn"] == true)) : ?>
-                <li>
-                    <a href="#" class="n-text"><i class="fas fa-handshake"></i> Shift Swap</a>
-                </li>
-                <li>
-                    <?php if (isset($_SESSION["isAdmin"]) && ($_SESSION["isAdmin"] == true)) : ?>
+                <?php if (isset($_SESSION["isAdmin"]) && ($_SESSION["isAdmin"] == true)) : ?>
+                    <li>
                         <a href="adminPanel.php" class="n-text"><i class="fas fa-shield-alt"></i> Admin Panel</a>
-                    <?php endif; ?>
-                </li>
-                <li>
-                    <a href="#" class="n-text"><i class="fas fa-cog"></i> Settings</a>
-                </li>
+                    <li>
+                    <li>
+                        <a href="rota.php" class="n-text"><i class="fas fa-pencil-alt"></i> Edit Rota</a>
+                    <li>
+                <?php endif; ?>
             <?php endif; ?>
         </ul>
     </div>

@@ -10578,7 +10578,7 @@ li {
 .table-scroll {
   position: relative;
   display: block;
-  height: 500px;
+  max-height: 50vh;
   min-width: 20vw;
   overflow: scroll;
 }
@@ -10586,7 +10586,7 @@ li {
 .table-scroll-large {
   position: relative;
   display: block;
-  max-height: 85vh;
+  max-height: 70vh;
   max-width: 85vw;
   overflow: scroll;
 }
