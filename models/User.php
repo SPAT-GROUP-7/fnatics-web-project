@@ -8,8 +8,39 @@
 
 class User
 {
+    /**
+     * @var $_userID : the ID of the User
+     */
+    /**
+     * @var $_teamName : the name of the Team the User belongs to
+     */
+    /**
+     * @var $_username : the username of the User
+     */
+    /**
+     * @var $_password : the password of the User
+     */
+    /**
+     * @var $_firstName : the first name of the User
+     */
+    /**
+     * @var $_lastName : the last name of the User
+     */
+    /**
+     * @var $_dateCreated : the DateTime the User was created in the System
+     */
+    /**
+     * @var $_dateLastUpdated : the DateTime the User was last modified
+     */
+    /**
+     * @var $_isAdmin : a flag set whether the user has Administrator privileges
+     */
     protected $_userID, $_teamName, $_username, $_password, $_firstName, $_lastName, $_dateCreated, $_dateLastUpdated, $_isAdmin;
 
+    /**
+     * User constructor.
+     * @param $dbRow : a database row containing information to create a User Object
+     */
     public function __construct($dbRow)
     {
         $this->_userID = $dbRow['userID'];
@@ -25,7 +56,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return mixed : the ID of the User
      */
     public function getUserID()
     {
@@ -33,7 +64,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return mixed : the teamName of the User
      */
     public function getTeamName()
     {
@@ -41,7 +72,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return mixed : the Username of the User
      */
     public function getUsername()
     {
@@ -49,7 +80,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return mixed : the FirstName of the User
      */
     public function getFirstName()
     {
@@ -57,7 +88,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return mixed : the LastName of the User
      */
     public function getLastName()
     {
@@ -65,7 +96,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return mixed : the DateTime the user was created
      */
     public function getDateCreated()
     {
@@ -73,7 +104,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return mixed : the DateTime the User was last modified
      */
     public function getDateLastUpdated()
     {
@@ -81,7 +112,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return mixed : whether the User is an admin
      */
     public function getIsAdmin()
     {
