@@ -2,17 +2,38 @@
 require_once ("Database.php");
 require_once ("Logs.php");
 
+/**
+ * Class LogsData
+ * This class is used to aggregate a collection of Log Objects
+ */
 class LogsData
 {
+    /**
+     * @var PDO
+     */
+    /**
+     * @var Database|PDO
+     */
     protected $_dbHandle, $_dbInstance;
 
     // Establish a connection to the DB
+
+    /**
+     * LogsData constructor.
+     * Establishes a connection to the database
+     */
     public function __construct()
     {
         $this->_dbInstance = Database::getInstance();
         $this->_dbHandle = $this->_dbInstance->getConnection();
     }
 
+    /** This function will retrieve a colllection of Logs created in a specified time frame
+     *
+     * @param $from : The DateTime in format Y-m-d from which to start the search
+     * @param $to : The DateTime in format Y-m-d from which to end the search
+     * @return array : An array containing a collection of Log Objects matching the search criteria
+     */
     public function getLogs($from, $to) {
         $sqlQuery = "SELECT L.logID, concat(U.firstName, ' ', U.lastName) as name, L.logActionType, IFNULL(L.logAffectedUser, 'n/a') as logAffectedUser, IFNULL(L.logAffectedTeam, 'n/a') as logAffectedTeam, L.logDate
                      FROM Logs L
@@ -37,8 +58,13 @@ class LogsData
         return $data;
     }
 
-    //Views all logs in the system
-    public function viewLog(){
+
+    /** This function will return a collection of all Log Objects in the database
+     *
+     * @return array : A collection of all Log Objects
+     */
+    public function viewLog()
+    {
         $sqlQuery = "SELECT logID, concat(U.firstName, ' ', U.lastName) as name, logActionType, IFNULL(logAffectedUser, 'n/a') as logAffectedUser, IFNULL(logAffectedTeam, 'n/a') as logAffectedTeam, logDate,
                      IF(logAffectedSchedule,
                         (SELECT R.dateFrom
@@ -59,7 +85,14 @@ class LogsData
         return $dataSet;
     }
 
-    //Adds new log in the system
+    /** This function will add a new Log to the database
+     *
+     * @param $logEditor : The ID of the admin who caused the Log to be created
+     * @param $actionType : The action of the created Log
+     * @param $affectedUser : The ID of the user affected by the Log
+     * @param $affectedTeam : The ID of the team affected by the Log
+     * @param $affectedRota : The ID of the schedule affected by the Log
+     */
     public function addLog($logEditor, $actionType, $affectedUser, $affectedTeam, $affectedRota){
         $sqlQuery = "INSERT INTO Logs (logEditorID, logActionType, logAffectedUser, logAffectedTeam, logDate, logAffectedSchedule) VALUES (:logEditor, :logAction, :logAffectedUser, :logAffectedTeam, NOW(), :logAffectedRota)";
         $statement = $this->_dbHandle->prepare($sqlQuery);
