@@ -2,17 +2,35 @@
 require_once ("Database.php");
 require_once ("User.php");
 
+/**
+ * Class UserData
+ * This class is used to represent an aggregation of User Objects
+ */
 class UserData
 {
+    /**
+     * @var PDO
+     */
+    /**
+     * @var Database|PDO
+     */
     protected $_dbHandle, $_dbInstance;
 
-    // Establish a connection to the DB
+
+    /** Establish a connection to the database
+     *
+     * UserData constructor.
+     */
     public function __construct()
     {
         $this->_dbInstance = Database::getInstance();
         $this->_dbHandle = $this->_dbInstance->getConnection();
     }
 
+    /** This function retrieves all Users from the system
+     *
+     * @return array : a collection of Users
+     */
     public function getAllUsers() {
         $sqlQuery = "SELECT U.userID, T.teamName, U.username, U.password, U.firstName, U.lastName, U.dateCreated, U.lastUpdate, U.isAdmin 
         FROM Users U
@@ -34,6 +52,11 @@ class UserData
         return $data;
     }
 
+    /** This function retrieves a user with a given ID
+     *
+     * @param $id : the ID of the user to Retrieve
+     * @return string : the Username of the User with a given ID
+     */
     public function getUsernameByID($id){
         $sqlQuery = "SELECT username FROM Users
                      WHERE userID = :userID";
@@ -51,6 +74,11 @@ class UserData
         return $r;
     }
 
+    /** This function retrieves a User with a given Username
+     *
+     * @param $username : the username to search
+     * @return mixed : a User Object
+     */
     public function getUserByUsername($username) {
         $sqlQuery = "SELECT * FROM Users U
                      WHERE U.username = :username";
@@ -68,6 +96,10 @@ class UserData
         return $user;
     }
 
+    /** This function retrieves a User with a given ID
+     * @param $id : the ID to search for
+     * @return User : the User Object
+     */
     public function getUserByID($id) {
         $sqlQuery = "SELECT  * FROM Users U
                      WHERE U.userID = :id";
@@ -85,6 +117,11 @@ class UserData
         return new User($dbRow);
     }
 
+    /** This function allows the filtering of Users with a partial first name
+     *
+     * @param $partialName : the first name to search form
+     * @return array : a collection of User Objects
+     */
     public function getUsers($partialName) {
         $sqlQuery = "SELECT U.userID, T.teamName, U.username, U.password, U.firstName, U.lastName, U.dateCreated, U.lastUpdate, U.isAdmin
                      FROM Users U
@@ -108,6 +145,11 @@ class UserData
         return $data;
     }
 
+    /** This function retrieves all users who are unavailable for a given date range
+     *
+     * @param $from : the start date
+     * @return array : a collection of User Objects
+     */
     public function getAllUnavailableUsers($from) {
 
         $sqlQuery = "SELECT U.userID, T.teamName, U.username, U.password, U.firstName, U.lastName, U.dateCreated, U.lastUpdate, U.isAdmin 
@@ -134,6 +176,10 @@ class UserData
 
     }
 
+    /** This function will retrieve all non admin Users
+     *
+     * @return array : a collection of User Objects
+     */
     public function getAllNonAdmins() {
         $sqlQuery = "SELECT U.userID, T.teamName, U.username, U.password, U.firstName, U.lastName, U.dateCreated, U.lastUpdate, U.isAdmin
                      FROM Users U
@@ -155,14 +201,18 @@ class UserData
         return $data;
     }
 
-    public function getAllAdmins() {
 
-    }
 
-    public function getAdminByID($id) {
 
-    }
-
+    /** This function will add a new User to the System
+     *
+     * @param $teamID : the ID of the Users Team
+     * @param $username : the username of the User
+     * @param $password : the password of the User
+     * @param $firstName : the firstName of the User
+     * @param $lastName : the lastName of the User
+     * @param $isAdmin : whether the User is an admin
+     */
     public function createUser($teamID, $username, $password, $firstName, $lastName, $isAdmin)
     {
         $options = ['cost' => 11];
@@ -184,11 +234,18 @@ class UserData
 
         $this->_dbInstance->destruct();
 
-        // TODO: figure out a proper check for this?
-        return true;
     }
 
-    // Unsure of the parameters for this
+
+    /** This function will update a given User
+     *
+     * @param $userID : the ID of the User to update
+     * @param $teamID : the teamID of the User
+     * @param $username : the username of the User
+     * @param $firstName : the firstName of the User
+     * @param $lastName : the lastName of the User
+     * @param $isAdmin : Whether the User is an admin or not
+     */
     public function updateUser($userID, $teamID, $username, $firstName, $lastName, $isAdmin) {
         $sqlQuery = "UPDATE Users U 
                      SET U.username = :username,
@@ -211,11 +268,12 @@ class UserData
         $statement->execute();
 
         $this->_dbInstance->destruct();
-
-        return true;
     }
 
-    //Delete user
+
+    /** This function will delete a given user
+     * @param $id : the ID of the User to delete
+     */
     public function deleteUser($id) {
         $sqlQuery = "DELETE FROM Users
                      WHERE userID = :userID";
@@ -227,12 +285,13 @@ class UserData
         $statement->execute();
 
         $this->_dbInstance->destruct();
-
-        // TODO: Add a check for this
-        return true;
     }
 
-    //Check Username Exists
+
+    /** This function will try to find any existing Users with a matching Username
+     * @param $username : the Username to check
+     * @return bool : Whether a match was found
+     */
     public function checkUsernameExists($username){
         $sqlQuery = "SELECT * FROM Users
                      WHERE username = :username";
@@ -245,7 +304,12 @@ class UserData
         return ($statement->fetch() == null);
     }
 
-    //Check Username Exists, Ignore Current Username
+
+    /**
+     * @param $newUsername
+     * @param $id
+     * @return bool
+     */
     public function checkUsernameExistsIgnore($newUsername, $id){
         $sqlQuery = "SELECT username FROM Users
                      WHERE userID = :userID"; // Get user's old email.
