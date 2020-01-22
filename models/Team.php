@@ -8,8 +8,30 @@
 
 class Team implements JsonSerializable
 {
+    /**
+     * @var $_teamID : the ID of the team
+     */
+    /**
+     * @var $_teamName : The name of the team
+     */
+    /**
+     * @var $_isBusy : status whether the team is eligible to be on a Schedule
+     */
+    /**
+     * @var $_dateCreated : The DateTime the team was created
+     */
+    /**
+     * @var $_dateLastUpdated : The DateTime the team was last modified
+     */
+    /**
+     * @var $_memberCount : An Integer representing how many users are in a team
+     */
     protected $_teamID, $_teamName, $_isBusy, $_dateCreated, $_dateLastUpdated, $_memberCount;
 
+    /**
+     * Team constructor.
+     * @param $dbRow : A database row containing information to create a Team Object
+     */
     public function __construct($dbRow)
     {
         $this->_teamID = $dbRow['teamID'];
@@ -21,7 +43,7 @@ class Team implements JsonSerializable
     }
 
     /**
-     * @return mixed
+     * @return mixed : The ID of the Team
      */
     public function getTeamID()
     {
@@ -29,7 +51,7 @@ class Team implements JsonSerializable
     }
 
     /**
-     * @return mixed
+     * @return mixed : The name of the Team
      */
     public function getTeamName()
     {
@@ -37,7 +59,7 @@ class Team implements JsonSerializable
     }
 
     /**
-     * @return mixed
+     * @return mixed : The busy status of the Team
      */
     public function getIsBusy()
     {
@@ -45,7 +67,7 @@ class Team implements JsonSerializable
     }
 
     /**
-     * @return mixed
+     * @return mixed : The DateTime the team was created
      */
     public function getDateCreated()
     {
@@ -53,17 +75,24 @@ class Team implements JsonSerializable
     }
 
     /**
-     * @return mixed
+     * @return mixed : The DateTime the team was last modified
      */
     public function getDateLastUpdated()
     {
         return $this->_dateLastUpdated;
     }
 
+    /**
+     * @return mixed : How many users the Team has
+     */
     public function getMemberCount() {
         return $this->_memberCount;
     }
 
+    /** This function allows the PHP Object to be converted to JSON
+     *
+     * @return array|mixed
+     */
     public function jsonSerialize()
     {
         return get_object_vars($this);
