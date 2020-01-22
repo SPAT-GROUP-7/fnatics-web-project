@@ -29,7 +29,9 @@
         <div class="h-100 w-100 d-flex">
             <div class="mobile-content mx-auto my-auto">
                 <li>
-                    <a href="index.php" class="m-text"><i class="far fa-calendar-alt"></i> Rota</a>
+                    <a href="
+                        <?php if ($_SESSION["isAdmin"] == true) { echo 'rotaDisplay.php'; } else { echo 'index.php'; } ?>
+                    " class="m-text"><i class="far fa-calendar-alt"></i> Rota</a>
                 </li>
                 <?php if (isset($_SESSION["loggedIn"]) && ($_SESSION["loggedIn"] == true)) : ?>
                     <?php if (isset($_SESSION["isAdmin"]) && ($_SESSION["isAdmin"] == true)) : ?>
@@ -57,7 +59,9 @@
     <div class="sidebar-wrapper">
         <ul class="sidebar-nav px-4">
             <li>
-                <a href="index.php" class="n-text"><i class="far fa-calendar-alt"></i> Rota</a>
+                <a href="
+                        <?php if (isset($_SESSION["isAdmin"]) && ($_SESSION["isAdmin"] == true)) { echo 'rotaDisplay.php'; } else { echo 'index.php'; } ?>
+                    " class="n-text"><i class="far fa-calendar-alt"></i> Rota</a>
             </li>
             <?php if (isset($_SESSION["loggedIn"]) && ($_SESSION["loggedIn"] == true)) : ?>
                 <?php if (isset($_SESSION["isAdmin"]) && ($_SESSION["isAdmin"] == true)) : ?>

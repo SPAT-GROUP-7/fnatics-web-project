@@ -8,27 +8,25 @@
             <div class="col-lg-12 mt-5 ml-5">
                 <?php if (isset($_SESSION['isAdmin'])) : ?>
                 <h1>Rota</h1>
-                <a class="btn btn-primary mb-2" href="generateRota.php">Generate a new Rota</a>
+                <a class="btn btn-danger mb-2" href="generateRota.php">Generate a new Rota</a>
 
-                <div class="card card-body">
-                    <div class="card-header-pills">
-                        <div class="card-body">
-                            <form action="rota.php" method="POST">
-                                <div class="form-group">
-                                    <label for="datefrom">Date From:</label>
-                                    <input type="date" name="dateFrom" class="form-control" id="from">
-                                </div>
-                                <div class="form-group">
-                                    <label for="dateTo">Date From:</label>
-                                    <input type="date" name="dateTo" class="form-control" id="to">
-                                </div>
 
-                                <input class="btn btn-primary" type="submit" name="submit" value="Filter">
-                            </form>
+                <form action="rota.php" method="POST">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <label for="datefrom">Date From:</label>
+                            <input type="date" name="dateFrom" class="form-control" id="from">
+                        </div>
+                        <div class="col">
+                            <label for="dateTo">Date From:</label>
+                            <input type="date" name="dateTo" class="form-control" id="to">
                         </div>
                     </div>
-                </div>
-                <div class="card card-body bg-light mt-5">
+
+                    <input class="btn btn-primary btn-block" type="submit" name="submit" value="Filter">
+                </form>
+
+                <div class="card card-body bg-light mt-3" style="height: 450px">
                     <h1 class="card-title">Current Schedule</h1>
                     <table class="table table-overflow-y table-scroll">
                         <tr>
